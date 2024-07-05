@@ -560,42 +560,42 @@
 
 
 
-#include<iostream>
-using namespace std;
-void heapify(int n,int a[],int i){
-int small=i;
-int left=2*i+1;
-int right=2*i+2;
-if(left<n && a[left]<a[small])
-small=left;
-if(right<n && a[right]<a[small])
-small=right;
-if(small!=i){
-swap(a[small],a[i]);
-heapify(n,a,small);}}
-void heapsort(int n,int a[]){
-for(int i=n/2-1;i>=0;i--)
-heapify(n,a,i);
-for(int i=n-1;i>0;i--){
-swap(a[0],a[i]);
-heapify(i,a,0);}}
-int main(){
-int n;
-cout<<"ENTER THE SIZE OF THE ARRAY:"<<endl;
-cin>>n;
-int a[n];
-cout<<"ENTER THE ELEMENTS IN THE ARRAY:"<<endl;
-for(int i=0;i<n;i++)
-cin>>a[i];
-cout<<"ARRAY BEFORE USING MIN-HEAP SORT ALGORITHM:"<<endl;
-for(int i=0;i<n;i++)
-cout<<a[i]<<" ";
-cout<<endl;
-heapsort(n,a);
-cout<<"ARRAY AFTER USING MIN-HEAP SORT ALGORITHM: "<<endl;
-for(int i=0;i<n;i++)
-cout<<a[i]<<" ";
-return 0;}
+// #include<iostream>
+// using namespace std;
+// void heapify(int n,int a[],int i){
+// int small=i;
+// int left=2*i+1;
+// int right=2*i+2;
+// if(left<n && a[left]<a[small])
+// small=left;
+// if(right<n && a[right]<a[small])
+// small=right;
+// if(small!=i){
+// swap(a[small],a[i]);
+// heapify(n,a,small);}}
+// void heapsort(int n,int a[]){
+// for(int i=n/2-1;i>=0;i--)
+// heapify(n,a,i);
+// for(int i=n-1;i>0;i--){
+// swap(a[0],a[i]);
+// heapify(i,a,0);}}
+// int main(){
+// int n;
+// cout<<"ENTER THE SIZE OF THE ARRAY:"<<endl;
+// cin>>n;
+// int a[n];
+// cout<<"ENTER THE ELEMENTS IN THE ARRAY:"<<endl;
+// for(int i=0;i<n;i++)
+// cin>>a[i];
+// cout<<"ARRAY BEFORE USING MIN-HEAP SORT ALGORITHM:"<<endl;
+// for(int i=0;i<n;i++)
+// cout<<a[i]<<" ";
+// cout<<endl;
+// heapsort(n,a);
+// cout<<"ARRAY AFTER USING MIN-HEAP SORT ALGORITHM: "<<endl;
+// for(int i=0;i<n;i++)
+// cout<<a[i]<<" ";
+// return 0;}
 
 
 // #include<iostream>
