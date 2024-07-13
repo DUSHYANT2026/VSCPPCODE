@@ -170,6 +170,97 @@
 
 
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// class Solution {
+//   public:
+//     vector<int> shortestPath(int n, int m, vector<vector<int>>& edges) {
+//         vector<pair<int, int>> graph[n + 1];
+//         for (auto it : edges) {
+//             graph[it[0]].push_back({it[1], it[2]});
+//             graph[it[1]].push_back({it[0], it[2]});
+//         }
+        
+//         vector<int> dist(n + 1, 1e9);
+//         vector<int> par(n + 1);
+//         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+        
+//         dist[1] = 0;
+//         for(int i=1; i<n+1;i++){
+//             par[i]=i;
+//         }
+//         pq.push({0, 1});
+        
+//         while (!pq.empty()) {
+//             auto i = pq.top(); pq.pop();
+//             int node = i.second;
+//             int dis = i.first;
+            
+//             for (auto it : graph[node]) {
+//                 int newnode = it.first;
+//                 int weight = it.second;
+//                 if (dist[newnode] > dis + weight) {
+//                     dist[newnode] = dis + weight;
+//                     pq.push({dis + weight, newnode});
+//                     par[newnode] = node;
+//                 }
+//             }
+//         }
+        
+        
+//         if(dist[n]==1e9) return {-1};
+//         vector<int> ans;
+//         int node=n;
+//         while(par[node]!=node){
+//             ans.push_back(node);
+//             node=par[node];
+//         }
+//         ans.push_back(1);
+//         ans.push_back(dist[n]);
+//         reverse(ans.begin(),ans.end());
+//         return ans;
+    
+//     }
+// };
+// int main() {
+
+//     int t;
+//     cin >> t;
+//     while (t--) {
+//         int n, m;
+//         cin >> n >> m;
+//         vector<vector<int>> edges;
+//         map<pair<int, int>, int> mp;
+//         for (int i = 0; i < m; ++i) {
+//             vector<int> temp;
+//             for (int j = 0; j < 3; ++j) {
+//                 int x;
+//                 cin >> x;
+//                 temp.push_back(x);
+//             }
+//             edges.push_back(temp);
+//             mp[{edges.back()[0], edges.back()[1]}] = edges.back()[2];
+//             mp[{edges.back()[1], edges.back()[0]}] = edges.back()[2];
+//         }
+
+//         Solution obj;
+//         vector<int> res = obj.shortestPath(n, m, edges);
+//         int ans = 0;
+//         for (int i = 2; i < res.size(); i++) {
+//             ans += mp[{res[i], res[i - 1]}];
+//         }
+//         if (ans == res[0]) {
+
+//         } else if (res.size() == 1 && res[0] == -1)
+//             ans = res[0];
+//         else
+//             ans = -2;
+//         cout << ans << endl;
+//     }
+// }
+
+
+
 
 // #include <bits/stdc++.h>
 // using namespace std;
