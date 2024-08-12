@@ -263,41 +263,190 @@
 
 
 
-#include <vector>
-#include <algorithm>
+// #include <vector>
+// #include <algorithm>
 
-class Solution {
-public:
-    long long minimumCost(int m, int n, vector<int>& nums1, vector<int>& nums2) {
-        sort(nums1.begin(), nums1.end());
-        sort(nums2.begin(), nums2.end());
+// class Solution {
+// public:
+//     long long minimumCost(int m, int n, vector<int>& nums1, vector<int>& nums2) {
+//         sort(nums1.begin(), nums1.end());
+//         sort(nums2.begin(), nums2.end());
 
-        int ans = 0;
-        int horizon = 1, vertical = 1;
-        int i = nums1.size() - 1, j = nums2.size() - 1;
+//         int ans = 0;
+//         int horizon = 1, vertical = 1;
+//         int i = nums1.size() - 1, j = nums2.size() - 1;
 
-        while (i >= 0 && j >= 0) {
-            if (nums1[i] > nums2[j]) {
-                ans += (long long) nums1[i] * vertical;
-                horizon++;
-                i--;
-            } else {
-                ans += (long long)nums2[j] * horizon;
-                vertical++;
-                j--;
-            }
-        }
+//         while (i >= 0 && j >= 0) {
+//             if (nums1[i] > nums2[j]) {
+//                 ans += (long long) nums1[i] * vertical;
+//                 horizon++;
+//                 i--;
+//             } else {
+//                 ans += (long long)nums2[j] * horizon;
+//                 vertical++;
+//                 j--;
+//             }
+//         }
 
-        while (i >= 0) {
-            ans += (long long)nums1[i] * vertical;
-            i--;
-        }
+//         while (i >= 0) {
+//             ans += (long long)nums1[i] * vertical;
+//             i--;
+//         }
 
-        while (j >= 0) {
-            ans +=  (long long)nums2[j] * horizon;
-            j--;
-        }
+//         while (j >= 0) {
+//             ans +=  (long long)nums2[j] * horizon;
+//             j--;
+//         }
 
-        return ans;
+//         return ans;
+//     }
+// };
+
+
+
+
+// int solution (string &s ,string &t){
+//     if(s.size == 0 && t.size() == 0){
+//         return 0;
+//     }
+//     if(s.size() == 0 && t.size() != 0){
+//         return stoi(t);
+//     }
+//     if(s.size() != 0 && t.size() == 0){
+//         return stoi(s);
+//     }
+//     int ans = INT_MAX;
+
+//     for(int i=0; i<s.size(); i++){
+//         swap(s[i] , t[i]){
+//             ans++;
+//         }
+//     }
+// }
+
+
+
+// #include <iostream>
+// #include <vector>
+// #include <algorithm>
+// #include <string>
+// #include <cmath>
+// using namespace std;
+
+// int minimizeDifference(string &s, string &t) {
+//          int n=s.length();
+//     vector<int>a(n),b(n);
+//     for(int i=0;i<n;i++){
+//         a[i]=s[i]-'0';
+//         b[i]=t[i]-'0';
+//     }
+//     int ans=0;
+//     vector<bool>vis(n,false);
+//     for(int i=0;i<n;i++){
+//         if(vis[i] || a[i]==b[i])
+//             continue;
+//         int j=i,cnt=0;
+//         while(!vis[j]){
+//             vis[j]=true;
+//             int next=-1;
+//             for(int k=0;k<n;k++){
+//                 if(!vis[k] && b[k] ==a[j]){
+//                     next=k;
+//                     break;
+//                 }
+//             }
+//             if(next==-1){
+//                 cnt++;
+//                 break;
+//             }
+//             j=next;
+//             cnt++;
+//         }
+//         if(cnt > 0) 
+//             ans += cnt; 
+//     }
+//     return ans/2;
+
+// }
+
+// // Main function for testing
+// int main() {
+//     string s = "29162";
+//     string t = "10524";
+    
+//     int swaps = minimizeDifference(s, t);
+    
+//     cout << "Minimum number of swaps needed: " << swaps << endl;
+//     cout << "String s after swaps: " << s << endl;
+//     cout << "String t after swaps: " << t << endl;
+
+//     return 0;
+// }
+
+
+
+
+
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+struct pair_hash {
+    template <class T1, class T2>
+    size_t operator () (const pair<T1, T2>& p) const {
+        auto h1 = hash<T1>{}(p.first);
+        auto h2 = hash<T2>{}(p.second);
+        return h1 ^ h2; 
     }
 };
+
+int pathcost = INT_MAX;
+string ans = "";
+
+void solve(const string& s, string temp, int x, int y, int path, const unordered_map<pair<int, int>, pair<int, int>, pair_hash>& mpp) {
+    if (x == 0 && y == 0) {
+        if (path < pathcost) {
+            pathcost = path;
+            ans = temp;
+        }
+        return;
+    }
+
+    if (mpp.find({x + 1, y}) != mpp.end() && mpp.at({x + 1, y}) == make_pair(x, y)) {
+        solve(s, temp + 'N', x + 1, y, path + 1, mpp);
+    }
+    if (mpp.find({x - 1, y}) != mpp.end() && mpp.at({x - 1, y}) == make_pair(x, y)) {
+        solve(s, temp + 'S', x - 1, y, path + 1, mpp);
+    }
+    if (mpp.find({x, y + 1}) != mpp.end() && mpp.at({x, y + 1}) == make_pair(x, y)) {
+        solve(s, temp + 'E', x, y + 1, path + 1, mpp);
+    }
+    if (mpp.find({x, y - 1}) != mpp.end() && mpp.at({x, y - 1}) == make_pair(x, y)) {
+        solve(s, temp + 'W', x, y - 1, path + 1, mpp);
+    }
+}
+
+string solution(string &forth) {
+     unordered_map<pair<int, int>, pair<int, int>, pair_hash> mpp;
+    int x = 0, y = 0;
+
+    for (char direction : forth) {
+        if (direction == 'S') {
+            mpp[{x - 1, y}] = {x, y};
+            x--;
+        } else if (direction == 'N') {
+            mpp[{x + 1, y}] = {x, y};
+            x++;
+        } else if (direction == 'E') {
+            mpp[{x, y + 1}] = {x, y};
+            y++;
+        } else if (direction == 'W') {
+            mpp[{x, y - 1}] = {x, y};
+            y--;
+        }
+    }
+
+    solve(forth, "", x, y, 0, mpp);
+    return ans;
+}

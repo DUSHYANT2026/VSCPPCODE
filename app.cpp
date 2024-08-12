@@ -394,15 +394,15 @@ return 0;}
 
 
 
-#include <iostream>
-using namespace std;
+// #include <iostream>
+// using namespace std;
 
-int main() {
-  int var = 20; 
-  int* ptr; // note that data type of ptr and var must be same
-  ptr = &var; // assign the address of a variable to a pointer
-  cout << "Value at ptr = " << ptr << "\n"; // print the address stored in ptr                  // ptr is the addess that changes in the heap memory so its a parmant change
-  cout << "Value at var = " << var << "\n"; // print the value of var
-  cout << "Value at *ptr = " << *ptr << "\n"; // print the value of the variable that ptr points to
-  return 0;
-}
+// int main() {
+//   int var = 20; 
+//   int* ptr; // note that data type of ptr and var must be same
+//   ptr = &var; // assign the address of a variable to a pointer
+//   cout << "Value at ptr = " << ptr << "\n"; // print the address stored in ptr                  // ptr is the addess that changes in the heap memory so its a parmant change
+//   cout << "Value at var = " << var << "\n"; // print the value of var
+//   cout << "Value at *ptr = " << *ptr << "\n"; // print the value of the variable that ptr points to
+//   return 0;
+// }
