@@ -1,12 +1,12 @@
 #include<iostream>
 using namespace std;
-int fact(int n){
-int factorial=1;
-for(int i=1;i<=n;i++){
+long long fact(long long n){
+long long factorial=1;
+for(long long i=1;i<=n;i++){
 factorial*=i;}
 return factorial;}
 int main(){
-int n;
+long long n;
 cin>>n;
 cout<<fact(n)<<endl;
 return 0;}
