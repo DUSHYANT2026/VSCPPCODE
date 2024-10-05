@@ -64,28 +64,28 @@
 // ptr->next=n;
 // cout<<"NEW NODE INSERT AFTER: "<<k<<endl;}}}
 
-// void deletenode(int k){
-// if(head==NULL){
-// cout<<"THERE IS NO NODE IN SINGLELINKEDLIST: "<<endl;}
-// else if(head!=NULL){
-// if(head->key==k){
-// head=head->next;
-// cout<<"NODE IS DELETED WITH THE KEY: "<<k<<endl;}
-// else{
-// node* temp=NULL;
-// node* preptr=head;
-// node* currptr=head->next;
-// while(currptr!=NULL){
-// if(currptr->key==k){
-// temp=currptr;
-// currptr=NULL;}
-// else{
-// preptr=preptr->next;
-// currptr=head->next;}}
-// if(temp!=NULL){
-// preptr->next=temp->next;}
-// else
-// cout<<"NODE DOES NOT EXIST WITH KEY THAT YOU ENTERED:"<<endl;}}}
+void deletenode(int k){
+if(head==NULL){
+cout<<"THERE IS NO NODE IN SINGLELINKEDLIST: "<<endl;}
+else if(head!=NULL){
+if(head->key==k){
+head=head->next;
+cout<<"NODE IS DELETED WITH THE KEY: "<<k<<endl;}
+else{
+node* temp=NULL;
+node* preptr=head;
+node* currptr=head->next;
+while(currptr!=NULL){
+if(currptr->key==k){
+temp=currptr;
+currptr=NULL;}
+else{
+preptr=preptr->next;
+currptr=head->next;}}
+if(temp!=NULL){
+preptr->next=temp->next;}
+else
+cout<<"NODE DOES NOT EXIST WITH KEY THAT YOU ENTERED:"<<endl;}}}
 
 // void updatenode(int k,int d){
 // node* ptr=nodeexist(k);

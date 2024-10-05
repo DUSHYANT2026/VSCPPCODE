@@ -1,114 +1,114 @@
-// #include <bits/stdc++.h>
-// #include<iostream>
-// using namespace std;
-// class node {
-// public:
-// int data;
-// node* next;
-// node(int value){
-// data=value;
-// next = NULL;}};
+#include <bits/stdc++.h>
+#include<iostream>
+using namespace std;
+class node {
+public:
+int data;
+node* next;
+node(int value){
+data=value;
+next = NULL;}};
   
-// void insertathead(node*& head, int val){
-// node* n = new node(val);
-// n->next = head;
-// head = n;}
+void insertathead(node*& head, int val){
+node* n = new node(val);
+n->next = head;
+head = n;}
 
-// void insertafter(node* head, int key, int val){
-// node* n = new node(val);
-// if (key == head->data) {
-// n->next = head->next;
-// head->next = n;
-// return;}
-// node* temp = head;
-// while (temp->data != key) {
-// temp = temp->next;
-// if (temp == NULL) {
-// return;}}
-// n->next = temp->next;
-// temp->next = n;}
+void insertafter(node* head, int key, int val){
+node* n = new node(val);
+if (key == head->data) {
+n->next = head->next;
+head->next = n;
+return;}
+node* temp = head;
+while (temp->data != key) {
+temp = temp->next;
+if (temp == NULL) {
+return;}}
+n->next = temp->next;
+temp->next = n;}
 
-// void insertattail(node*& head, int val){
-// node* n = new node(val);
-// if (head == NULL) {
-// head = n;
-// return;}
-// node* temp = head;
-// while (temp->next != NULL) {
-// temp = temp->next;}
-// temp->next = n;}
+void insertattail(node*& head, int val){
+node* n = new node(val);
+if (head == NULL) {
+head = n;
+return;}
+node* temp = head;
+while (temp->next != NULL) {
+temp = temp->next;}
+temp->next = n;}
 
-// void reversenode()
+void reversenode()
 
-// void print(node*& head){
-// node* temp = head;
-// while (temp != NULL) {
-// cout << temp->data << " -> ";
-// temp = temp->next;}
-// cout << "NULL" << endl;}
+void print(node*& head){
+node* temp = head;
+while (temp != NULL) {
+cout << temp->data << " -> ";
+temp = temp->next;}
+cout << "NULL" << endl;}
   
-// int main(){
-// node* head = NULL;
-// insertathead(head, 1);
-// insertathead(head, 2);
-// cout << "After insertion at head: ";
-// print(head);
-// insertattail(head, 4);
-// insertattail(head, 5);
-// cout << "After insertion at tail: ";
-// print(head);
-// insertafter(head, 1, 2);
-// insertafter(head, 5, 6);
-// cout << "After insertion at a given position: ";
-// print(head);
-// return 0;}
+int main(){
+node* head = NULL;
+insertathead(head, 1);
+insertathead(head, 2);
+cout << "After insertion at head: ";
+print(head);
+insertattail(head, 4);
+insertattail(head, 5);
+cout << "After insertion at tail: ";
+print(head);
+insertafter(head, 1, 2);
+insertafter(head, 5, 6);
+cout << "After insertion at a given position: ";
+print(head);
+return 0;}
 
-// #include <iostream>
-// using namespace std;
-// struct ListNode {
-//     int val;
-//     ListNode* next;
-//     ListNode(int x) : val(x), next(nullptr) {}
-// };
+#include <iostream>
+using namespace std;
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode(int x) : val(x), next(nullptr) {}
+};
 
-// void deleteNode(ListNode* node) {
-//     ListNode* nextNode = node->next;
-//     node->val = nextNode->val;
-//     node->next = nextNode->next;
-//     delete nextNode;
-// }
-// void printLinkedList(ListNode* head) {
-//     ListNode* curr = head;
-//     while (curr != nullptr) {
-//         cout << curr->val << " -> ";
-//         curr = curr->next;
-//     }
-//     cout << "nullptr" << endl;
-// }
+void deleteNode(ListNode* node) {
+    ListNode* nextNode = node->next;
+    node->val = nextNode->val;
+    node->next = nextNode->next;
+    delete nextNode;
+}
+void printLinkedList(ListNode* head) {
+    ListNode* curr = head;
+    while (curr != nullptr) {
+        cout << curr->val << " -> ";
+        curr = curr->next;
+    }
+    cout << "nullptr" << endl;
+}
 
-// int main() {
+int main() {
 
-//     ListNode* head = new ListNode(1);
-//     head->next = new ListNode(2);
-//     head->next->next = new ListNode(3);
-//     head->next->next->next = new ListNode(4);
-//     head->next->next->next->next = new ListNode(5);
+    ListNode* head = new ListNode(1);
+    head->next = new ListNode(2);
+    head->next->next = new ListNode(3);
+    head->next->next->next = new ListNode(4);
+    head->next->next->next->next = new ListNode(5);
 
-//     cout << "Original linked list: ";
-//     printLinkedList(head);
-//     ListNode* nodeToDelete = head->next->next;
-//     deleteNode(nodeToDelete);
+    cout << "Original linked list: ";
+    printLinkedList(head);
+    ListNode* nodeToDelete = head->next->next;
+    deleteNode(nodeToDelete);
 
-//     cout << "Linked list after deletion: ";
-//     printLinkedList(head);
-//     ListNode* curr = head;
-//     while (curr != nullptr) {
-//         ListNode* temp = curr;
-//         curr = curr->next;
-//         delete temp;
-//     }
-//     return 0;
-// }
+    cout << "Linked list after deletion: ";
+    printLinkedList(head);
+    ListNode* curr = head;
+    while (curr != nullptr) {
+        ListNode* temp = curr;
+        curr = curr->next;
+        delete temp;
+    }
+    return 0;
+}
 
 
 
