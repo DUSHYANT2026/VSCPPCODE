@@ -315,17 +315,17 @@
 
 
 
-// IN THIS QUESTION SPLIT VECTOR INTO K PARTS AFTER THAT CONVERTED INTO LINKED LIST
-// /**
-//  * Definition for singly-linked list.
-//  * struct ListNode {
-//  *     int val;
-//  *     ListNode *next;
-//  *     ListNode() : val(0), next(nullptr) {}
-//  *     ListNode(int x) : val(x), next(nullptr) {}
-//  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
-//  * };
-//  */
+IN THIS QUESTION SPLIT VECTOR INTO K PARTS AFTER THAT CONVERTED INTO LINKED LIST
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
 // class Solution {
 // public:
 //     vector<ListNode*> splitListToParts(ListNode* head, int k) {
