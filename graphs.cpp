@@ -1768,8 +1768,6 @@ class Solution
         vis[row][col] = 0;
     }
     public:
-    //Function to return the minimum cost to react at bottom
-	//right cell from top left cell.
     int minimumCostPath(vector<vector<int>>& grid) 
     {
         
