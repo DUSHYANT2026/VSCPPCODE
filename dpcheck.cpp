@@ -324,3 +324,150 @@
 //     }
 //     return 0;
 // }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// class Solution {
+// private: 
+//     int dpcheck(vector<int> &nums,int index ,vector<int> & dp){
+
+//         if(index < 0) return 0;
+//         if(index == 0) return nums[index];
+//         if(dp[index] != -1) return dp[index];
+
+//         int pick = nums[index] + dpcheck(nums,index-2,dp);
+//         int notpick = dpcheck(nums,index-1,dp);
+//         return dp[index] = max(pick,notpick);
+//     }
+// public:
+//     int rob(vector<int>& nums) {
+        
+//         int n = nums.size();
+//         vector<int> dp(n,-1);
+//         return dpcheck(nums,n-1,dp);
+//     }
+// };
+// class Solution2 {
+//     public:
+//     int rob(vector<int>& nums) {
+//         int n = nums.size();
+//         vector<int> dp(n,-1);
+
+//         dp[0] = nums[0];
+
+//         for(int i=1; i<n; i++){
+//             int take = nums[i];
+
+//             if(i > 1){
+//                 take += dp[i-2];
+//             }
+//             int leave = dp[i-1];
+
+//             dp[i] = max(take,leave);
+//         }
+//         return dp[n-1];
+//     }
+// };
+// int main(){
+//     int n,x; 
+//     cout<<"ENTER THE SIZE OF THE ARRAY"<<endl;
+//     cin>>n;
+
+//     vector<int> nums;
+//     for(int i=0; i<n; i++){
+//         cin>>x;
+//         nums.push_back(x);
+//     } 
+//     Solution2 obj;
+
+//     cout <<"MAXIMUM AMOUNT THE THEIF CAN STEAL FORM ALL THE HOUSES "<<obj.rob(nums)<<endl;
+// }
+
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// class Solution {
+// private:
+//     int dpcheck(vector<int> &dp,int index,vector<int> &nums){                      // memoization code for the house robber problem if last and first index are adjacent too
+//         int n = nums.size();                                                      // just update the array in first array remove tha first element , second remove the last one
+//         if(index == 0) return nums[0];                                           // store the maximum amount
+//         if(index < 0) return 0;
+
+//         if(dp[index] != -1) return dp[index];
+        
+//         int take = nums[index] + dpcheck(dp,index-2,nums);
+//         int leave = dpcheck(dp,index-1,nums);
+
+//         return dp[index] = max(take,leave);
+//     }
+// public:
+//     int rob(vector<int>& nums) {
+//         int n = nums.size();
+
+//         vector<int> temp1, temp2;
+//         if(n==1) return nums[0];
+
+//         for(int i=0;i<n;i++)
+//         {
+//             if(i!=0) temp1.push_back(nums[i]);
+//             if(i!=n-1) temp2.push_back(nums[i]);
+//         }
+//         int n1 = temp1.size(); int n2 = temp2.size();
+//         vector<int> dp1(n1,-1), dp2(n2,-1);
+//         return max(dpcheck(dp1,n1-1,temp1),dpcheck(dp2,n2-1,temp2));
+//     }
+// };
+// class Solution2{
+// private:
+//     int dpcheck(vector<int> &nums){             // using tabulation        
+//         int n = nums.size();                                                     
+//         vector<int> dp(n,-1);
+
+//         dp[0] = nums[0];
+
+//         for(int i=1; i<n; i++){
+//             int take = dp[i];
+//             if(i > 1){
+//                 take += dp[i-2];
+//             }
+//             int leave = dp[i-1];
+//             dp[i] = max(take,leave);
+//         }
+
+//         return dp[n-1];
+//     }
+// public:
+//     int rob(vector<int>& nums) {
+//         int n = nums.size();
+//         vector<int> temp1, temp2;
+//         if(n==1) return nums[0];
+
+//         for(int i=0;i<n;i++)
+//         {
+//             if(i!=0) temp1.push_back(nums[i]);
+//             if(i!=n-1) temp2.push_back(nums[i]);
+//         }
+//         return max(dpcheck(temp1),dpcheck(temp2));
+//     }
+// };
+// int main(){
+//     int n,x; 
+//     cout<<"ENTER THE SIZE OF THE ARRAY"<<endl;
+//     cin>>n;
+
+//     vector<int> nums;
+//     for(int i=0; i<n; i++){
+//         cin>>x;
+//         nums.push_back(x);
+//     } 
+//     Solution2 obj;
+
+//     cout <<"MAXIMUM AMOUNT THE THEIF CAN STEAL FORM ALL THE HOUSES "<<obj.rob(nums)<<endl;
+// }
+
