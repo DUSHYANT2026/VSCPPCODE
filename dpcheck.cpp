@@ -552,3 +552,187 @@
 //     }
 //     return 0;
 // }
+
+
+
+
+
+// #include <bits/stdc++.h>              // total unique path from start to end point 
+// using namespace std;
+
+// class Solution {
+// private:
+//     int dpcheck(int i, int j, vector<vector<int>> &dp){                  // using top-down memoization
+//         if(i == 0 && j == 0) return 1;
+//         if(i < 0 || j < 0) return 0;
+        
+//         if(dp[i][j] != -1) return dp[i][j];
+
+//         int up = dpcheck(i-1,j,dp);
+//         int left = dpcheck(i,j-1,dp);
+
+//         return dp[i][j] = (up+left);
+//     }
+// public:
+//     int uniquePaths(int m, int n) {
+//         vector<vector<int>> dp(n,vector<int>(m,-1));
+//         return dpcheck(n-1,m-1,dp);
+//     }
+// };
+
+// class Solution2 {
+// private:
+//     int dpcheck(int i, int j,int n, int m, vector<vector<int>> &dp){                  // using bottom-up memoization
+//         if(i == n-1 && j == m-1) return 1;
+//         if(i >= n || j >= m) return 0;
+        
+//         if(dp[i][j] != -1) return dp[i][j];
+
+//         int up = dpcheck(i+1,j,n,m,dp);
+//         int left = dpcheck(i,j+1,n,m,dp);
+
+//         return dp[i][j] = (up+left);
+//     }
+// public:
+//     int uniquePaths(int m, int n) {
+//         vector<vector<int>> dp(n,vector<int>(m,-1));
+//         return dpcheck(0,0,n,m,dp);
+//     }
+// };
+
+// class Solution3 {
+// public:
+//     int uniquePaths(int m, int n) {                                                  // using tabulation
+//         vector<vector<int>> dp(n,vector<int>(m,-1));
+        
+        // dp[0][0] = 1;
+
+        // for(int i=0; i<n; i++){
+        //     for(int j=0; j<m; j++){
+        //         if(i == 0 && j == 0){
+        //             dp[i][j] = 1;
+        //         }else {
+        //             int up = 0; int left = 0;
+        //             if(i > 0) up = dp[i-1][j];
+        //             if(j > 0) left = dp[i][j-1];
+        //             dp[i][j] = up+left;
+        //         }
+        //     }
+        // }
+        // return dp[n-1][m-1];
+//     }
+// };
+
+// int main()
+// {
+// 	int t;
+// 	cin>>t;
+// 	while(t--)
+// 	{
+// 		int N, M;
+// 		cin>>M>>N;
+// 		Solution2 ob;
+// 	    cout << ob.uniquePaths(M, N)<<endl;
+// 	}
+//     return 0;
+// }
+
+
+
+
+
+
+
+// #include <bits/stdc++.h>                    // total unique path from start to end point and also having abstracles
+// using namespace std;
+
+// class Solution {
+// private:
+//     int dpcheck(int i, int j, vector<vector<int>>& nums,vector<vector<int>>& dp){  // using top-down method
+//         if(i >= 0 && j >= 0 && nums[i][j] == 1) return 0;
+//         if(i == 0 && j == 0) return 1;
+//         if(i < 0 || j < 0) return 0;
+
+//         if(dp[i][j] != -1) return dp[i][j];
+//         int up = dpcheck(i-1,j,nums,dp);
+//         int left = dpcheck(i,j-1,nums,dp);
+
+//         return dp[i][j] = (up + left);    
+//     }
+// public:
+//     int uniquePathsWithObstacles(vector<vector<int>>& nums) {
+//         int n = nums.size(); int m = nums[0].size();
+//         vector<vector<int>> dp(n,vector<int>(m,-1));
+
+//         return dpcheck(n-1, m-1,nums,dp);
+//     }
+// };
+
+// class Solution1 {
+// private:
+//     int dpcheck(int i, int j, int n , int m, vector<vector<int>>& nums,vector<vector<int>>& dp){    // using bottom-up approch
+//         if(i >= n || j >= m || nums[i][j] == 1) return 0;
+//         if(i == n-1 && j == m-1) return 1;
+//         if(i >= n || j >= m  ) return 0;
+
+//         if(dp[i][j] != -1) return dp[i][j];
+//         int up = dpcheck(i+1,j,n,m,nums,dp);
+//         int left = dpcheck(i,j+1,n,m,nums,dp);
+
+//         return dp[i][j] = (up + left);  
+        
+//     }
+// public:
+//     int uniquePathsWithObstacles(vector<vector<int>>& nums) {
+//         int n = nums.size(); int m = nums[0].size();
+//         vector<vector<int>> dp(n,vector<int>(m,-1));
+
+//         return dpcheck(0,0,n,m,nums,dp);
+//     }
+// };
+
+// class Solution2 {
+
+// public:
+//     int uniquePathsWithObstacles(vector<vector<int>>& nums) {
+//         int n = nums.size(); int m = nums[0].size();
+//         vector<vector<int>> dp(n,vector<int>(m,-1));
+
+//         dp[0][0] = 1;
+
+//         for(int i=0; i<n; i++){
+//             for(int j=0; j<m; j++){
+//                 if(i == 0 && j == 0){
+//                     dp[i][j] = 1;
+//                 }
+//                 else if(nums[i][j] == 1) dp[i][j] = 0;
+//                 else {
+//                     int up = 0; int left = 0;
+//                     if(i > 0) up = dp[i-1][j];
+//                     if(j > 0) left = dp[i][j-1];
+//                     dp[i][j] = up+left;
+//                 }
+//             }
+//         }
+//         return dp[n-1][m-1];
+        
+//     }
+// };
+
+// int main()
+// {
+// 	int n; int m; cin>>n>>m;
+
+//     vector<vector<int>> nums;
+//     for(int i=0; i<n; i++){
+//         vector<int> temp; int x;
+//         for(int j=0; j<m; j++){
+//             cin>>x;
+//             temp.push_back(x);
+//         }
+//         nums.push_back(temp);
+//     }
+//     Solution2 obj;
+//     cout<<obj.uniquePathsWithObstacles(nums);
+//     return 0;
+// }
