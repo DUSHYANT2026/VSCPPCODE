@@ -471,3 +471,88 @@
 //     cout <<"MAXIMUM AMOUNT THE THEIF CAN STEAL FORM ALL THE HOUSES "<<obj.rob(nums)<<endl;
 // }
 
+
+
+
+// 2D DP OR DP IN GRID
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// class Solution1 {
+//   private:
+//     int dpcheck(vector<vector<int>>&nums,int day,int last){                // using recursion
+//         if(day == 0){
+//             int ans = INT_MIN;
+//             for(int i=0; i<3; i++){
+//                 if(i != last){
+//                     ans = max(ans,nums[0][i]);
+//                 }
+//             }
+//             return ans;
+//         }
+//         int ans = INT_MIN;
+//         for(int i=0; i<3; i++){
+//             if(i != last){
+//                 int newans = nums[day][i] + dpcheck(nums,day-1,i);
+//                 ans = max(ans,newans);
+//             }
+//         }
+//         return ans;
+//     }
+//   public:
+//     int maximumPoints(vector<vector<int>>& arr, int n) {
+//         return dpcheck(arr,n-1,3);
+//     }
+// };
+
+// class Solution {
+//   private:
+//     int dpcheck(vector<vector<int>>&nums,int day,int last,vector<vector<int>> &dp){                // dp using memoization
+//         if(day == 0){
+//             int ans = INT_MIN;
+//             for(int i=0; i<3; i++){
+//                 if(i != last){
+//                     ans = max(ans,nums[0][i]);
+//                 }
+//             }
+//             return ans;
+//         }
+//         if(dp[day][last] != -1) return dp[day][last];
+//         int ans = INT_MIN;
+//         for(int i=0; i<3; i++){
+//             if(i != last){
+//                 int newans = nums[day][i] + dpcheck(nums,day-1,i,dp);
+//                 ans = max(ans,newans);
+//             }
+//         }
+//         return dp[day][last] = ans;
+//     }
+//   public:
+//     int maximumPoints(vector<vector<int>>& arr, int n) {
+//         vector<vector<int>> dp(n , vector<int> (4,-1));
+//         return dpcheck(arr,n-1,3,dp);
+//     }
+// };
+
+// int main() {
+//     int t;
+//     cin >> t;
+//     while (t--) {
+//         int n;
+//         cin >> n;
+//         vector<vector<int>> arr;
+//         for (int i = 0; i < n; ++i) {
+//             vector<int> temp;
+//             for (int j = 0; j < 3; ++j) {
+//                 int x;
+//                 cin >> x;
+//                 temp.push_back(x);
+//             }
+//             arr.push_back(temp);
+//         }
+//         Solution obj;
+//         cout << obj.maximumPoints(arr, n) << endl;
+//     }
+//     return 0;
+// }
