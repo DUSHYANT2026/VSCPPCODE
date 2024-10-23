@@ -460,14 +460,12 @@
 //     int n,x; 
 //     cout<<"ENTER THE SIZE OF THE ARRAY"<<endl;
 //     cin>>n;
-
 //     vector<int> nums;
 //     for(int i=0; i<n; i++){
 //         cin>>x;
 //         nums.push_back(x);
 //     } 
 //     Solution2 obj;
-
 //     cout <<"MAXIMUM AMOUNT THE THEIF CAN STEAL FORM ALL THE HOUSES "<<obj.rob(nums)<<endl;
 // }
 
@@ -505,7 +503,6 @@
 //         return dpcheck(arr,n-1,3);
 //     }
 // };
-
 // class Solution {
 //   private:
 //     int dpcheck(vector<vector<int>>&nums,int day,int last,vector<vector<int>> &dp){                // dp using memoization
@@ -534,7 +531,6 @@
 //         return dpcheck(arr,n-1,3,dp);
 //     }
 // };
-
 // int main() {
 //     int t;
 //     cin >> t;
