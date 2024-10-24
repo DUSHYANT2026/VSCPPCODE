@@ -738,3 +738,93 @@
 // }
 
 
+
+
+
+
+#include <bits/stdc++.h>                    // you have given an matrix task to find the min or max path from start to end (0,0) to (n-1,m-1);
+using namespace std;
+
+class Solution {
+private:
+    int  dpcheck(int i,int j,vector<vector<int>> &nums,vector<vector<int>> &dp){             // top-down memoization
+        if(i == 0 && j == 0) return nums[i][j];
+
+        if(dp[i][j] != -1) return dp[i][j];
+        int up = INT_MAX; int left = INT_MAX;
+
+        if(i > 0) up = nums[i][j] + dpcheck(i-1,j,nums,dp);
+        if(j > 0) left = nums[i][j] + dpcheck(i,j-1,nums,dp);
+
+        return dp[i][j] = min(up , left);
+    }
+public:
+    int minPathSum(vector<vector<int>>& nums) {
+        int n = nums.size(); int m = nums[0].size();
+        vector<vector<int>> dp(n,vector<int> (m,-1));
+        return dpcheck(n-1,m-1,nums,dp);
+    }
+};
+
+class Solution {
+private:
+    int dpsolve(int i,int j,int n,int m,vector<vector<int>>& grid,vector<vector<int>>& dp){     // using bottom-up memoization  TIME: 0(N*M) AND SPACE: 0(N*M) + 0(N+M);
+        if(i == n-1 && j == m-1) return grid[i][j];
+
+        int right=INT_MAX; int down=INT_MAX;
+        if(dp[i][j] != -1) return dp[i][j];
+
+        if(i < n-1) right = grid[i][j] + dpsolve(i+1,j,n,m,grid,dp);
+        if(j < m-1) down=grid[i][j] + dpsolve(i,j+1,n,m,grid,dp);
+        
+        return dp[i][j] = min(right,down);
+    }
+public:
+    int minPathSum(vector<vector<int>>& grid) {
+        int n=grid.size();
+        int m=grid[0].size();
+        vector<vector<int>> dp(n,vector<int> (m,-1));      
+        return dpsolve(0,0,n,m,grid,dp);
+    }
+};
+
+class Solution {
+public:
+    int minPathSum(vector<vector<int>>& nums) {                                                // using tabulation TIME: 0(N*M) AND SPACE: 0(N*M); 
+        int n = nums.size(); int m = nums[0].size();
+        vector<vector<int>> dp(n,vector<int> (m,-1));
+
+        dp[0][0] = nums[0][0];
+
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                int up = INT_MAX; int left = INT_MAX;
+                if(i == 0 && j == 0) dp[i][j] = nums[0][0];
+                else {
+                    if(i > 0) up = nums[i][j] + dp[i-1][j];
+                    if(j > 0) left = nums[i][j] + dp[i][j-1];
+                    dp[i][j] = min(up,left);
+                }
+            }
+        }
+        return dp[n-1][m-1];
+    }
+};
+
+int main()
+{
+    int n; int m; cin>>n>>m;
+    vector<vector<int>> nums;
+    for(int i=0; i<n; i++){
+        vector<int> temp; int x;
+        for(int j=0; j<m; j++){
+            cin>>x;
+            temp.push_back(x);
+        }
+        nums.push_back(temp);
+    }
+    Solution2 obj;
+    cout<<obj.uniquePathsWithObstacles(nums);
+    return 0;
+}
+
