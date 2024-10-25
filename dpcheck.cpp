@@ -557,7 +557,7 @@
 
 
 
-// #include <bits/stdc++.h>              // total unique path from start to end point 
+// #include <bits/stdc++.h>                   // total unique path from start to end point 
 // using namespace std;
 
 // class Solution {
@@ -742,89 +742,290 @@
 
 
 
-#include <bits/stdc++.h>                    // you have given an matrix task to find the min or max path from start to end (0,0) to (n-1,m-1);
-using namespace std;
+// #include <bits/stdc++.h>                    // you have given an matrix task to find the min or max path from start to end (0,0) to (n-1,m-1);
+// using namespace std;
 
-class Solution {
-private:
-    int  dpcheck(int i,int j,vector<vector<int>> &nums,vector<vector<int>> &dp){             // top-down memoization
-        if(i == 0 && j == 0) return nums[i][j];
+// class Solution {
+// private:
+//     int  dpcheck(int i,int j,vector<vector<int>> &nums,vector<vector<int>> &dp){             // top-down memoization
+//         if(i == 0 && j == 0) return nums[i][j];
 
-        if(dp[i][j] != -1) return dp[i][j];
-        int up = INT_MAX; int left = INT_MAX;
+//         if(dp[i][j] != -1) return dp[i][j];
+//         int up = INT_MAX; int left = INT_MAX;
 
-        if(i > 0) up = nums[i][j] + dpcheck(i-1,j,nums,dp);
-        if(j > 0) left = nums[i][j] + dpcheck(i,j-1,nums,dp);
+//         if(i > 0) up = nums[i][j] + dpcheck(i-1,j,nums,dp);
+//         if(j > 0) left = nums[i][j] + dpcheck(i,j-1,nums,dp);
 
-        return dp[i][j] = min(up , left);
-    }
-public:
-    int minPathSum(vector<vector<int>>& nums) {
-        int n = nums.size(); int m = nums[0].size();
-        vector<vector<int>> dp(n,vector<int> (m,-1));
-        return dpcheck(n-1,m-1,nums,dp);
-    }
-};
+//         return dp[i][j] = min(up , left);
+//     }
+// public:
+//     int minPathSum(vector<vector<int>>& nums) {
+//         int n = nums.size(); int m = nums[0].size();
+//         vector<vector<int>> dp(n,vector<int> (m,-1));
+//         return dpcheck(n-1,m-1,nums,dp);
+//     }
+// };
 
-class Solution {
-private:
-    int dpsolve(int i,int j,int n,int m,vector<vector<int>>& grid,vector<vector<int>>& dp){     // using bottom-up memoization  TIME: 0(N*M) AND SPACE: 0(N*M) + 0(N+M);
-        if(i == n-1 && j == m-1) return grid[i][j];
+// class Solution1 {
+// private:
+//     int dpsolve(int i,int j,int n,int m,vector<vector<int>>& grid,vector<vector<int>>& dp){     // using bottom-up memoization  TIME: 0(N*M) AND SPACE: 0(N*M) + 0(N+M);
+//         if(i == n-1 && j == m-1) return grid[i][j];
 
-        int right=INT_MAX; int down=INT_MAX;
-        if(dp[i][j] != -1) return dp[i][j];
+//         int right=INT_MAX; int down=INT_MAX;
+//         if(dp[i][j] != -1) return dp[i][j];
 
-        if(i < n-1) right = grid[i][j] + dpsolve(i+1,j,n,m,grid,dp);
-        if(j < m-1) down=grid[i][j] + dpsolve(i,j+1,n,m,grid,dp);
+//         if(i < n-1) right = grid[i][j] + dpsolve(i+1,j,n,m,grid,dp);
+//         if(j < m-1) down=grid[i][j] + dpsolve(i,j+1,n,m,grid,dp);
         
-        return dp[i][j] = min(right,down);
-    }
-public:
-    int minPathSum(vector<vector<int>>& grid) {
-        int n=grid.size();
-        int m=grid[0].size();
-        vector<vector<int>> dp(n,vector<int> (m,-1));      
-        return dpsolve(0,0,n,m,grid,dp);
-    }
-};
+//         return dp[i][j] = min(right,down);
+//     }
+// public:
+//     int minPathSum(vector<vector<int>>& grid) {
+//         int n=grid.size();
+//         int m=grid[0].size();
+//         vector<vector<int>> dp(n,vector<int> (m,-1));      
+//         return dpsolve(0,0,n,m,grid,dp);
+//     }
+// };
 
-class Solution {
-public:
-    int minPathSum(vector<vector<int>>& nums) {                                                // using tabulation TIME: 0(N*M) AND SPACE: 0(N*M); 
-        int n = nums.size(); int m = nums[0].size();
-        vector<vector<int>> dp(n,vector<int> (m,-1));
+// class Solution2 {
+// public:
+//     int minPathSum(vector<vector<int>>& nums) {                                                // using tabulation TIME: 0(N*M) AND SPACE: 0(N*M); 
+//         int n = nums.size(); int m = nums[0].size();
+//         vector<vector<int>> dp(n,vector<int> (m,-1));
 
-        dp[0][0] = nums[0][0];
+//         dp[0][0] = nums[0][0];
 
-        for(int i=0; i<n; i++){
-            for(int j=0; j<m; j++){
-                int up = INT_MAX; int left = INT_MAX;
-                if(i == 0 && j == 0) dp[i][j] = nums[0][0];
-                else {
-                    if(i > 0) up = nums[i][j] + dp[i-1][j];
-                    if(j > 0) left = nums[i][j] + dp[i][j-1];
-                    dp[i][j] = min(up,left);
-                }
-            }
-        }
-        return dp[n-1][m-1];
-    }
-};
+//         for(int i=0; i<n; i++){
+//             for(int j=0; j<m; j++){
+//                 int up = INT_MAX; int left = INT_MAX;
+//                 if(i == 0 && j == 0) dp[i][j] = nums[0][0];
+//                 else {
+//                     if(i > 0) up = nums[i][j] + dp[i-1][j];
+//                     if(j > 0) left = nums[i][j] + dp[i][j-1];
+//                     dp[i][j] = min(up,left);
+//                 }
+//             }
+//         }
+//         return dp[n-1][m-1];
+//     }
+// };
 
-int main()
-{
-    int n; int m; cin>>n>>m;
-    vector<vector<int>> nums;
-    for(int i=0; i<n; i++){
-        vector<int> temp; int x;
-        for(int j=0; j<m; j++){
-            cin>>x;
-            temp.push_back(x);
-        }
-        nums.push_back(temp);
-    }
-    Solution2 obj;
-    cout<<obj.uniquePathsWithObstacles(nums);
-    return 0;
-}
+// int main()
+// {
+//     int n; int m; cin>>n>>m;
+//     vector<vector<int>> nums;
+//     for(int i=0; i<n; i++){
+//         vector<int> temp; int x;
+//         for(int j=0; j<m; j++){
+//             cin>>x;
+//             temp.push_back(x);
+//         }
+//         nums.push_back(temp);
+//     }
+//     Solution2 obj;
+//     cout<<obj.minPathSum(nums);
+//     return 0;
+// }
 
+
+
+
+
+
+
+
+
+// #include <bits/stdc++.h>                    // you have given triangle task to find the min or max path from start to end (0,0) to last row (dp[n-1][j]);
+// using namespace std;
+
+// class Solution {
+// private:
+//     int dpcheck(int i, int j,int n, vector<vector<int>> &nums, vector<vector<int>>&dp){
+
+//         if(i == n-1) return nums[n-1][j];
+//         if(dp[i][j] != -1) return dp[i][j];
+
+//         int down = 0; int left = 0;
+//         if(i < n-1) down = nums[i][j] + dpcheck(i+1,j,n,nums,dp);
+//         if(j < n-1) left = nums[i][j] + dpcheck(i+1,j+1,n,nums,dp);
+
+//         return dp[i][j] = min(down,left);  
+//     }
+// public:
+//     int minimumTotal(vector<vector<int>>& nums) {
+//         int n = nums.size(); 
+//         vector<vector<int>> dp(n,vector<int> (n,-1));
+//         return dpcheck(0,0,n,nums,dp);
+//     }
+// };
+
+// class Solution1 {
+// public:
+//     int minimumTotal(vector<vector<int>>& nums) {
+//         int n = nums.size(); 
+//         vector<vector<int>> dp(n,vector<int> (n,-1));
+
+//         for(int j=0; j<n; j++){
+//             dp[n-1][j] = nums[n-1][j];
+//         }
+
+//         for(int i = n-2; i>= 0; i--){
+//             for(int j=i; j >=0; j--){
+//                 int down = 0; int dg = 0;
+//                 down = nums[i][j] + dp[i+1][j];
+//                 dg = nums[i][j] + dp[i+1][j+1];
+//                 dp[i][j] = min(down,dg);
+//             }
+//         }
+//         return dp[0][0];
+//     }
+// };
+
+// int main()
+// {
+//     int n; int m; cin>>n>>m;
+//     vector<vector<int>> nums;
+//     for(int i=0; i<n; i++){
+//         vector<int> temp; int x;
+//         for(int j=0; j<m; j++){
+//             cin>>x;
+//             temp.push_back(x);
+//         }
+//         nums.push_back(temp);
+//     }
+//     Solution1 obj;
+//     cout<<obj.minimumTotal(nums);
+//     return 0;
+// }
+
+
+
+
+
+
+// #include <bits/stdc++.h>                    // you have given an matrix task to find the min or max pathsum from starting row to last coloumn (min/max falling problem)
+// using namespace std;
+
+// class Solution {
+// private:
+//     int dpcheck(int i, int j , vector<vector<int>>& nums, vector<vector<int>>& dp,int n,int m){  // code is correct but time-limit-exceeded
+//         if(i == 0) return nums[i][j];
+
+//         if(dp[i][j] != -1) return dp[i][j];
+//         int dgleft = INT_MAX; int dgright = INT_MAX; int up = INT_MAX;
+
+//         if(i > 0) up = nums[i][j] + dpcheck(i-1,j,nums,dp,n,m);
+//         if(i > 0 && j < m-1) dgright = nums[i][j] + dpcheck(i-1,j+1,nums,dp,n,m);
+//         if(j > 0 && i > 0) dgleft  = nums[i][j] + dpcheck(i-1,j-1,nums,dp,n,m);
+
+//         return dp[i][j] = min(up,min(dgright,dgleft));
+        
+//     }
+// public:
+//     int minFallingPathSum(vector<vector<int>>& nums) {
+//         int n = nums.size(); int m = nums[0].size();
+//         vector<vector<int>> dp (n,vector<int> (m,-1));
+//         int ans = INT_MAX;
+//         for(int j=0; j<m; j++) ans = min(ans,dpcheck(n-1,j,nums,dp,n,m));
+//         return ans;
+//     }
+// };
+
+// class Solution1 {
+// public:
+//     int minFallingPathSum(vector<vector<int>>& nums) {
+//         int n = nums.size(); int m = nums[0].size();
+//         vector<vector<int>> dp (n,vector<int> (m,-1));
+       
+//         for(int j=0; j<m; j++) dp[0][j] = nums[0][j];
+
+//         for(int i=1; i<n; i++){
+//             for(int j=0; j<m; j++){
+//                 int down = INT_MAX; int dgleft = INT_MAX; int dgright = INT_MAX;
+
+//                 down = nums[i][j] + dp[i-1][j];
+
+//                 if(j > 0) dgleft = nums[i][j] + dp[i-1][j-1];
+//                 else dgleft = INT_MAX;
+            
+//                 if(j < m-1) dgright = nums[i][j] + dp[i-1][j+1];
+//                 else dgright = INT_MAX;
+
+//                 dp[i][j] = min(down,min(dgleft,dgright));
+//             }
+//         }
+//         int ans = INT_MAX;
+//         for(int j=0; j<m; j++) ans = min(ans,dp[n-1][j]);
+//         return ans;
+//     }
+// };
+
+// int main()
+// {
+//     int n; int m; cin>>n>>m;
+//     vector<vector<int>> nums;
+//     for(int i=0; i<n; i++){
+//         vector<int> temp; int x;
+//         for(int j=0; j<m; j++){
+//             cin>>x;
+//             temp.push_back(x);
+//         }
+//         nums.push_back(temp);
+//     }
+//     Solution1 obj;
+//     cout<<obj.minFallingPathSum(nums);
+//     return 0;
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// class Solution {
+// public:
+//     int minFallingPathSum(vector<vector<int>>& grid) {     //A falling path with non-zero shifts is a choice of exactly one element from each row of grid such that no two elements chosen in adjacent rows are in the same column.
+//         int ans = INT_MAX;
+//         int n = grid.size();
+//         int m = grid[0].size();
+//         vector<vector<int>> dp(n, vector<int>(m, -1));
+
+//         for(int i=0;i<n;i++){
+//             dp[0][i]=grid[0][i];
+//         }
+//         for(int i=1;i<n;i++){
+//             for(int j=0;j<n;j++){
+//                 int mn=INT_MAX;
+//                 for(int k=0;k<n;k++){
+//                     if(k!=j) mn=min(mn,grid[i][j]+dp[i-1][k]);
+//                     dp[i][j]=mn;
+//                 }
+//             }
+//         }
+//         for(int i=0;i<n;i++){
+//             ans=min(ans,dp[n-1][i]);
+//         }
+
+//         return ans;
+//     }
+// };

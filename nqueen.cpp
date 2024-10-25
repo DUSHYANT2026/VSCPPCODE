@@ -82,7 +82,6 @@
 #include <vector>
 using namespace std;
 
-// Function to find common elements in three sorted arrays
 vector<int> findCommonElements(const vector<int>& arr1, const vector<int>& arr2, const vector<int>& arr3) {
     vector<int> result;
     int i = 0, j = 0, k = 0;
@@ -142,6 +141,7 @@ int main() {
 
     return 0;
 }
+
 
 
 
