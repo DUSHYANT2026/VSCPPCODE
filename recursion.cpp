@@ -1,30 +1,30 @@
-#include<iostream>
-#include<vector>
-using namespace std;
-int factorial(int n){
-if(n<=1)
-return n;
-return (n*factorial(n-1));}
-int sumofnaturalnumber(int n){
-if(n<=1)
-return n;
-return (n+sumofnaturalnumber(n-1));}
-int fabonacci(int n){
-if(n<=1) return n;
-return fabonacci(n-1)+fabonacci(n-2);}
-int main(){
-int n;
-cout<<"ENTER THE NUMBER:"<<endl;
-cin>>n;
-cout<<factorial(n)<<endl;
-cout<<sumofnaturalnumber(n)<<endl;
-cout<<fabonacci(n)<<endl;
-vector<int> ans;
-for(int i=1; i<=n; i++){
-    ans.push_back(fabonacci(i));
-}
-for(auto it : ans) cout<<it<<endl;
-return 0;}
+// #include<iostream>
+// #include<vector>
+// using namespace std;
+// int factorial(int n){
+// if(n<=1)
+// return n;
+// return (n*factorial(n-1));}
+// int sumofnaturalnumber(int n){
+// if(n<=1)
+// return n;
+// return (n+sumofnaturalnumber(n-1));}
+// int fabonacci(int n){
+// if(n<=1) return n;
+// return fabonacci(n-1)+fabonacci(n-2);}
+// int main(){
+// int n;
+// cout<<"ENTER THE NUMBER:"<<endl;
+// cin>>n;
+// cout<<factorial(n)<<endl;
+// cout<<sumofnaturalnumber(n)<<endl;
+// cout<<fabonacci(n)<<endl;
+// vector<int> ans;
+// for(int i=1; i<=n; i++){
+//     ans.push_back(fabonacci(i));
+// }
+// for(auto it : ans) cout<<it<<endl;
+// return 0;}
 
 
 
@@ -127,6 +127,50 @@ return 0;}
 //     cout << "]" << endl;
 // }
 // return 0;}
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// class Solution {
+//   private:
+//     void dpcheck(int n, int index, string temp,string str,set<string> &ans){
+//         if(index == n){
+//             ans.insert(temp);
+//             return;
+//         }
+//         temp.push_back(str[index]);
+//         dpcheck(n,index+1,temp,str,ans);
+//         temp.pop_back();
+//         dpcheck(n,index+1,temp,str,ans);
+//     }
+//   public:
+//     string betterString(string str1, string str2) {
+//         set<string> ans1,ans2;
+//         string temp1; string temp2;
+//         dpcheck(str1.size(),0,temp1,str1,ans1);
+//         dpcheck(str2.size(),0,temp2,str2,ans2);
+        
+//         if(ans1.size() == ans2.size()) return str1;
+//         if(ans1.size() > ans2.size()) return str1;
+//         return str2;
+//     }
+// };
+// int main() {
+//     int t;
+//     cin >> t;
+//     while (t--) {
+//         string str1, str2;
+//         cin >> str1 >> str2;
+//         Solution obj;
+//         string ans = obj.betterString(str1, str2);
+//         cout << ans << "\n";
+//      cout << "~" << "\n";
+//     }
+// }
+
+
+
 
 
 // void recursion(int index,int n,vector<int> &nums,vector<int> &ds,
