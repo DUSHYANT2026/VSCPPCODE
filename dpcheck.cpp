@@ -980,6 +980,56 @@
 
 
 
+// #include<bits/stdc++.h>
+// using namespace std;
+// class Solution {
+// private:
+//     int dpcheck(int i,int j,int n, int m,vector<vector<int>>&nums,vector<vector<int>>&dp ){                       
+
+//         if(j == m-1) return 0;
+
+//         if(dp[i][j] != -1) return dp[i][j];
+//         int right = 0; int dgdown = 0; int dgup = 0;
+
+//         if(j+1 < m && i + 1 < n  && nums[i+1][j+1] > nums[i][j]){
+//             right = 1+ dpcheck(i+1,j+1,n,m,nums,dp);
+//         }
+//         if(i > 0 && j + 1 < m && nums[i-1][j+1] > nums[i][j]){
+//             dgup = 1 + dpcheck(i-1,j+1,n,m,nums,dp);
+//         }
+//         if(j + 1 < m && nums[i][j+1] > nums[i][j]){
+//             dgdown = 1 + dpcheck(i,j+1,n,m,nums,dp);
+//         }
+//         return dp[i][j] = max(right,max(dgup,dgdown));
+//     }
+// public:
+//     int maxMoves(vector<vector<int>>& nums) {
+//         int n = nums.size(); int m = nums[0].size(); 
+//         vector<vector<int>>dp (n,vector<int> (m,-1));
+//         int ans = 0;
+//         for(int i=0; i<n; i++){
+//             ans = max(ans,dpcheck(i,0,n,m,nums,dp));
+//         }
+//         return ans;
+//     }
+// };
+
+// int main()
+// {
+//     int n; int m; cin>>n>>m;
+//     vector<vector<int>> nums;
+//     for(int i=0; i<n; i++){
+//         vector<int> temp; int x;
+//         for(int j=0; j<m; j++){
+//             cin>>x;
+//             temp.push_back(x);
+//         }
+//         nums.push_back(temp);
+//     }
+//     Solution1 obj;
+//     cout<<obj.minFallingPathSum(nums);
+//     return 0;
+// }
 
 
 
