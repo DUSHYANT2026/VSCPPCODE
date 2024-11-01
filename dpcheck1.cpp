@@ -32,7 +32,7 @@
 
 // class Solution1{ 
 // private:
-//     bool dpcheck(int index,vector<int> &nums,int sum,vector<vector<int>> &dp){                     //  using mappization top-down  
+//     bool dpcheck(int index,vector<int> &nums,int sum,vector<vector<int>> &dp){                     //  using memoization top-down  
 //         if(sum == 0) return true;
 //         if(index == 0 ) return sum == nums[0];
         
@@ -107,3 +107,157 @@
 //     return 0;
 // }
 
+
+
+
+
+class Solution {
+private:
+    bool dpcheck(vector<int>&nums, vector<vector<int>> &dp,int sum, int index){                  //  Partition Equal Subset Sum
+        if(sum == 0) return true; 
+        if(index == 0) return sum==nums[index];
+
+        if(dp[index][sum] != -1) return dp[index][sum];
+        bool notcount = dpcheck(nums,dp,sum,index-1);
+        bool count = false;
+        if(nums[index] <= sum){
+            count = dpcheck(nums,dp,sum-nums[index],index-1);
+        } 
+        return dp[index][sum] = count || notcount;
+    }
+public:
+    bool canPartition(vector<int>& nums) {
+        int sum = 0;
+        for(auto it : nums) sum += it;
+        if(sum%2 != 0) return false;
+        int newsum = sum/2;
+
+        vector<vector<int>> dp(nums.size(),vector<int>(newsum+1,-1));
+        return dpcheck(nums,dp,newsum,nums.size()-1);
+    }
+};
+
+
+
+
+
+
+int minSubsetSumDifference(vector<int>& nums, int n)
+{
+	    int sum = 0;
+        for(auto it : nums) sum += it;
+
+        vector<vector<bool>> dp(n,vector<bool>(sum+1,false));
+
+        for(int i=0; i<n; i++) dp[i][0] = true;
+
+        if(nums[0] <= sum) dp[0][nums[0]] = true;
+        
+        for(int i=1; i<n; i++){
+            for(int j=1; j<=sum; j++){
+                bool notcount = false; bool count = false;
+                
+                notcount = dp[i-1][j];
+
+                if(nums[i] <= j){
+                    count = dp[i-1][j-nums[i]];
+                }
+                dp[i][j] = count || notcount;
+            }
+        }
+
+        int ans = INT_MAX;
+        for(int i=0; i<=sum/2; i++){
+            if(dp[n-1][i] == true){
+                ans = min(ans,abs((sum-i)-i));
+            }
+        }
+        return ans;
+}
+
+
+
+
+
+
+
+
+
+//{ Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+class Solution {
+// private:
+//     void dpcheck(int index,int n,vector<int>& nums,vector<int> temp,set<int> &ans){
+//         if(index == n){
+//             int sum = 0;
+//             for(auto it : temp) sum += it;
+//             ans.insert(sum);
+//             return;
+//         }
+//         temp.push_back(nums[index]);
+//         dpcheck(index+1,n,nums,temp,ans);
+//         temp.pop_back();
+//         dpcheck(index+1,n,nums,temp,ans);
+//     }
+private:
+    bool dpcheck(int index,vector<int> &nums,int sum,vector<vector<int>> &dp){                     //  using memoization top-down  
+        if(sum == 0) return true;
+        if(index == 0 ) return sum == nums[0];
+        
+        if(dp[index][sum] != -1) return dp[index][sum];
+        
+        bool notcount = dpcheck(index-1,nums,sum,dp);
+        
+        bool count = false;
+        if(sum >= nums[index])
+        count = dpcheck(index-1,nums,sum-nums[index],dp);
+        
+        return dp[index][sum] = count || notcount;
+    }
+public:
+	vector<int> DistinctSum(vector<int>nums){
+	  
+	   // set<int> ans; int n = nums.size();
+	   // vector<int> temp;
+	   // dpcheck(0,n,nums,temp,ans);
+	   // vector<int> v;
+	   // for(auto it : ans) v.push_back(it);
+	   // return v;
+	   
+	   int n = nums.size(); int sum = 0;
+	   for(auto it : nums) sum += it;
+	   vector<vector<int>> dp(n,vector<int>(sum+1,-1));
+	   vector<int> ans;
+	
+	   for(int i=0; i<=sum; i++){
+	       if(dpcheck(n-1,nums,i,dp) == true){
+	           ans.push_back(i);
+	       }
+	   }
+	   return ans;
+	}
+};
+
+//{ Driver Code Starts.
+int main(){
+	int tc;
+	cin >> tc;
+	while(tc--){
+		int n;
+		cin >> n;
+		vector<int>nums(n);
+		for(int i = 0; i < n; i++)cin >> nums[i];
+		Solution obj;
+		vector<int> ans = obj.DistinctSum(nums);
+		for(auto i: ans)cout << i << " ";
+		cout << "\n";
+	
+cout << "~" << "\n";
+}
+	return 0;
+}
+
+// } Driver Code Ends
