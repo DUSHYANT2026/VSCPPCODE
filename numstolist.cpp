@@ -370,3 +370,48 @@
 //         return listans;
 //     }
 // };
+
+
+
+
+
+// insert an  element in a sortet list according to size
+class Solution {
+public:
+    Node* sortedInsert(Node* head, int x) {
+        Node* newNode = getNode(x);
+        
+        // Case 1: Empty list
+        if (head == nullptr) {
+            return newNode;
+        }
+        
+        // Case 2: Insert before the head (smallest element)
+        if (x < head->data) {
+            newNode->next = head;
+            head->prev = newNode;
+            return newNode; // new head
+        }
+        
+        // Traverse the list to find the insertion point
+        Node* current = head;
+        while (current->next != nullptr && current->next->data < x) {
+            current = current->next;
+        }
+        
+        // Case 3: Insert at the end of the list
+        if (current->next == nullptr) {
+            current->next = newNode;
+            newNode->prev = current;
+        }
+        // Case 4: Insert in the middle
+        else {
+            newNode->next = current->next;
+            newNode->prev = current;
+            current->next->prev = newNode;
+            current->next = newNode;
+        }
+        
+        return head;
+    }
+};
