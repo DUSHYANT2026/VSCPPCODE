@@ -183,11 +183,10 @@ int minSubsetSumDifference(vector<int>& nums, int n)
 
 
 
-//{ Driver Code Starts
+
 #include<bits/stdc++.h>
 using namespace std;
 
-// } Driver Code Ends
 class Solution {
 // private:
 //     void dpcheck(int index,int n,vector<int>& nums,vector<int> temp,set<int> &ans){
@@ -240,8 +239,6 @@ public:
 	   return ans;
 	}
 };
-
-//{ Driver Code Starts.
 int main(){
 	int tc;
 	cin >> tc;
@@ -259,5 +256,3 @@ cout << "~" << "\n";
 }
 	return 0;
 }
-
-// } Driver Code Ends
