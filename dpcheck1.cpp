@@ -256,3 +256,140 @@ cout << "~" << "\n";
 }
 	return 0;
 }
+
+
+
+
+
+
+
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+class Solution{
+private:
+int mod = 1e9+7;
+int dpcheck(int index,int nums[],vector<vector<int>> &dp,int k){
+	if(index == 0) {
+		if(k == 0 && nums[0] == 0) return 2;
+		if(k == 0 || nums[0] == k) return 1;
+		return 0;
+	}
+
+	if(dp[index][k] != -1) return dp[index][k];
+	int notcount = dpcheck(index-1,nums,dp,k);
+	int count = 0;
+	if(nums[index] <= k){
+		count = dpcheck(index-1,nums,dp,k-nums[index]);
+	}
+	return dp[index][k] = (count + notcount)%mod;
+}
+	public:
+	int perfectSum(int arr[], int n, int sum)
+	{
+         
+	    vector<vector<int>> dp(n,vector<int> (sum+1,-1));
+	    return dpcheck(n-1,arr,dp,sum);
+	}
+	  
+};
+
+//{ Driver Code Starts.
+int main() 
+{
+   	
+   
+   	int t;
+    cin >> t;
+    while (t--)
+    {
+        int n, sum;
+
+        cin >> n >> sum;
+
+        int a[n];
+        for(int i = 0; i < n; i++)
+        	cin >> a[i];
+
+       
+
+	    Solution ob;
+	    cout << ob.perfectSum(a, n, sum) << "\n";
+	     
+    
+cout << "~" << "\n";
+}
+    return 0;
+}
+
+// } Driver Code Ends
+
+
+
+
+
+
+
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+class Solution {
+  int mod = 1e9+7;
+  private:
+    int dpcheck(int index, vector<int> &nums, int sum, vector<vector<int>> &dp) {                    
+        if (index == 0) {
+            if (sum == 0 && nums[0] == 0) return 2; 
+            if (sum == 0 || sum == nums[0]) return 1; 
+            return 0;
+        }
+        
+        if (dp[index][sum] != -1) return dp[index][sum];
+        
+        int notcount = dpcheck(index - 1, nums, sum, dp) % mod;
+        
+        int count = 0;
+        if (sum >= nums[index])
+            count = dpcheck(index - 1, nums, sum - nums[index], dp) % mod;
+        
+        return dp[index][sum] = (count + notcount) % mod;
+    }
+
+  public:
+    int countPartitions(int n, int d, vector<int>& arr) {
+        int sum = accumulate(arr.begin(), arr.end(), 0);
+        
+        if((sum - d) % 2 != 0 || (sum - d) < 0) return 0;
+        int newsum = (sum - d) / 2;
+        
+        vector<vector<int>> dp(n, vector<int>(newsum + 1, -1));
+        return dpcheck(n - 1, arr, newsum, dp);
+    } 
+};
+
+//{ Driver Code Starts.
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, d;
+        cin >> n >> d;
+        vector<int> arr;
+
+        for (int i = 0; i < n; ++i) {
+            int x;
+            cin >> x;
+            arr.push_back(x);
+        }
+
+        Solution obj;
+        cout << obj.countPartitions(n, d, arr) << "\n";
+    
+cout << "~" << "\n";
+}
+    return 0;
+}
+// } Driver Code Ends
