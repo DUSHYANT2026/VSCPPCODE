@@ -1758,6 +1758,145 @@
 // }
 
 
+// #include<bits/stdc++.h>
+// using namespace std;
+// class Solution {
+//   private:
+//   int timer=1;
+//   void dfs(int node, int parent,vector<int>adj[],vector<int>&visited,int low[], int tn[], vector<int>&mark) {
+//       visited[node] = 1;
+//       low[node] = tn[node] = timer;
+//       timer++;
+//       int child=0;
+//       for(auto it:adj[node]) {
+//           if(it==parent) continue;
+//           if(!visited[it]) {
+//               dfs(it,node,adj,visited,low,tn,mark);
+//               low[node] = min(low[node],low[it]);
+//               if(low[it] >= tn[node] && parent!=-1) {
+//                   mark[node] = 1;
+//               }
+//               child++;
+//           }
+//           else {
+//               low[node] = min(low[node],tn[it]);
+//           }
+//       }
+//       if(child>1 && parent==-1) {
+//           mark[node] = 1;
+//       }
+//   }
+//   public:
+//     vector<int> articulationPoints(int V, vector<int>adj[]) {
+//         vector<int>visited(V,0);
+//         int low[V],tn[V];
+//         vector<int>mark(V,0);
+//         for(int i=0;i<V;i++){
+//             if(!visited[i]) {
+//                 dfs(i,-1,adj,visited,low,tn,mark);
+//             }
+//         }
+//         vector<int>ans;
+//         for(int i=0;i<V;i++) {
+//             if(mark[i]==1) ans.push_back(i);
+//         }
+//         if(ans.size()==0) return {-1};
+//         return ans;
+//     }
+// };
+// int main(){
+// 	int tc;
+// 	cin >> tc;
+// 	while(tc--){
+// 		int V, E;
+// 		cin >> V >> E;
+// 		vector<int>adj[V];
+// 		for(int i = 0; i < E; i++){
+// 			int u, v;
+// 			cin >> u >> v;
+// 			adj[u].push_back(v);
+// 			adj[v].push_back(u);
+// 		}
+// 		Solution obj;
+// 		vector<int> ans = obj.articulationPoints(V, adj);
+// 		for(auto i: ans)cout << i << " ";
+// 		cout << "\n";
+	
+// cout << "~" << "\n";
+// }
+// 	return 0;
+// }
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// class Solution
+// {
+//     int timer = 1;
+//     private:
+//     void dfscheck(int node,int parent,vector<int> &tin,vector<int> &low,vector<int> &vis,
+//     vector<int> adj[],int c, int d,int &ans){
+//         vis[node] = 1;
+//         low[node] = tin[node] = timer;
+//         timer++;
+        
+//         for(auto  it : adj[node]){
+//             if(parent == it) continue;;
+//             if(!vis[it]){
+//                 dfscheck(it,node,tin,low,vis,adj,c,d,ans);
+//                 low[node] = min(low[node],low[it]);
+//                 if(low[it] > tin[node]){
+//                     if((it == c && node == d)||(it == d && node == c)) ans = 1;
+//                 }
+//             }
+//             else low[node] = min(low[node],low[it]);
+//         }
+//     }
+// 	public:
+//     //Function to find if the given edge is a bridge in graph.
+//     int isBridge(int n, vector<int> adj[], int c, int d) 
+//     {
+//         vector<int> vis(n,0);
+//         vector<int> tin(n, -1), low(n, -1);
+//         int ans = 0;
+        
+//         for(int i=0;  i<n; i++){
+//             if(!vis[i]){
+//                 dfscheck(i,-1,tin,low,vis,adj,c,d,ans);
+//             }
+//         }
+//         return ans;
+//     }
+// };
+// int main()
+// {
+//     int t;
+//     cin >> t;
+//     while (t--) {
+//         int V, E;
+//         cin >> V >> E;
+//         vector<int> adj[V];
+//         int i=0;
+//         while (i++<E) {
+//             int u, v;
+//             cin >> u >> v;
+//             adj[u].push_back (v);
+//             adj[v].push_back (u);
+//         }
+        
+//         int c,d;
+//         cin>>c>>d;
+        
+//         Solution obj;
+//     	cout << obj.isBridge(V, adj, c, d) << "\n";
+    
+// cout << "~" << "\n";
+// }
+//     return 0;
+// }
+
+
 // private:
 // int timer=0;
 // void dfscheck(int node,int parent,vector<int> &vis,vector<int> adj[],vector<vector<int>> &ans,int low[],int tin[]){
@@ -1796,97 +1935,240 @@
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-class Solution
-{
-    private:
-    void dfscheck1(int node,vector<int> &vis,stack<int> &s,vector<int> adj[]){
-        vis[node] = 1;
-        for(auto it : adj[node]){
-            if(!vis[it]){
-                dfscheck1(it,vis,s,adj);
-            }
-        }
-        s.push(node);
-    }
-    private:
-    void dfscheck2(int node,vector<int> &vis,vector<int> newadj[],vector<int> &nums){
-        vis[node] = 1;
-        nums.push_back(node);
-        for(auto it : newadj[node]){
-            if(!vis[it]){
-                dfscheck2(it,vis,newadj,nums);
-            }
-        }
-    }
-	public:
-    vector<vector<int>> tarjans(int V, vector<int> adj[])
-    {
-        stack<int> s;
-        vector<int> vis(V,0);
-        for(int i=0;i<V;i++){
-            if(!vis[i]){
-                dfscheck1(i,vis,s,adj);
-            }
-        }
-        vector<int> newadj[V];
-        for (int i = 0; i < V; i++) {
-            vis[i] = 0;
-            for (auto it : adj[i]) {
-                newadj[it].push_back(i); 
-            }
-        }
+// #include<bits/stdc++.h>
+// using namespace std;
+// class Solution
+// {
+//     private:
+//     void dfscheck1(int node,vector<int> &vis,stack<int> &s,vector<int> adj[]){
+//         vis[node] = 1;
+//         for(auto it : adj[node]){
+//             if(!vis[it]){
+//                 dfscheck1(it,vis,s,adj);
+//             }
+//         }
+//         s.push(node);
+//     }
+//     private:
+//     void dfscheck2(int node,vector<int> &vis,vector<int> newadj[],vector<int> &nums){
+//         vis[node] = 1;
+//         nums.push_back(node);
+//         for(auto it : newadj[node]){
+//             if(!vis[it]){
+//                 dfscheck2(it,vis,newadj,nums);
+//             }
+//         }
+//     }
+// 	public:
+//     vector<vector<int>> tarjans(int V, vector<int> adj[])
+//     {
+//         stack<int> s;
+//         vector<int> vis(V,0);
+//         for(int i=0;i<V;i++){
+//             if(!vis[i]){
+//                 dfscheck1(i,vis,s,adj);
+//             }
+//         }
+//         vector<int> newadj[V];
+//         for (int i = 0; i < V; i++) {
+//             vis[i] = 0;
+//             for (auto it : adj[i]) {
+//                 newadj[it].push_back(i); 
+//             }
+//         }
         
-        vector<vector<int>> ans;
-        while(!s.empty()){
-            auto it  = s.top(); s.pop();
-            if(!vis[it]){
-                vector<int> nums;
-                dfscheck2(it,vis,newadj,nums);
-                sort(nums.begin(),nums.end());
-                ans.push_back(nums);
-            }
-        }
-        sort(ans.begin(),ans.end());
-        return ans;
-    }
-};
-int main()
-{
+//         vector<vector<int>> ans;
+//         while(!s.empty()){
+//             auto it  = s.top(); s.pop();
+//             if(!vis[it]){
+//                 vector<int> nums;
+//                 dfscheck2(it,vis,newadj,nums);
+//                 sort(nums.begin(),nums.end());
+//                 ans.push_back(nums);
+//             }
+//         }
+//         sort(ans.begin(),ans.end());
+//         return ans;
+//     }
+// };
+// int main()
+// {
     
-    int t;
-    cin >> t;
-    while(t--)
-    {
-        int V, E;
-        cin >> V >> E;
+//     int t;
+//     cin >> t;
+//     while(t--)
+//     {
+//         int V, E;
+//         cin >> V >> E;
 
-        vector<int> adj[V];
+//         vector<int> adj[V];
 
-        for(int i = 0; i < E; i++)
-        {
-            int u, v;
-            cin >> u >> v;
-            adj[u].push_back(v);
-        }
+//         for(int i = 0; i < E; i++)
+//         {
+//             int u, v;
+//             cin >> u >> v;
+//             adj[u].push_back(v);
+//         }
 
-        Solution obj;
-        vector<vector<int>> ptr = obj.tarjans(V, adj);
+//         Solution obj;
+//         vector<vector<int>> ptr = obj.tarjans(V, adj);
 
-        for(int i=0; i<ptr.size(); i++)
-        {
-            for(int j=0; j<ptr[i].size(); j++)
-            {
-                if(j==ptr[i].size()-1)
-                    cout<<ptr[i][j];
-                else
-                    cout<<ptr[i][j]<<" ";
-            }
-            cout<<',';
-        }
-        cout<<endl;
-    }
+//         for(int i=0; i<ptr.size(); i++)
+//         {
+//             for(int j=0; j<ptr[i].size(); j++)
+//             {
+//                 if(j==ptr[i].size()-1)
+//                     cout<<ptr[i][j];
+//                 else
+//                     cout<<ptr[i][j]<<" ";
+//             }
+//             cout<<',';
+//         }
+//         cout<<endl;
+//     }
+//     return 0;
+// }
 
-    return 0;
-}
+
+
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// class Solution {
+//   private:
+//     bool dfscheck(int node, vector<int> &path,vector<int> & vis,vector<vector<int>> graph){
+//         vis[node] = 1;
+//         path[node] = 1;
+        
+//         for(auto it : graph[node]){
+//             if(path[it]) return true;
+//             if(!vis[it]){
+//                 if(dfscheck(it,path,vis,graph)) return true;
+//             }
+//         }
+//         path[node] = 0;
+//         return false;
+//     }
+//   public:
+//     // Function to detect cycle in a directed graph.
+//     bool isCyclic(int n, vector<vector<int>> adj) {
+//         vector<int> vis(n,0);
+//         vector<int> path(n,0);
+ 
+//         for(int i=0; i<n; i++){
+//             if(!vis[i]) if(dfscheck(i,path,vis,adj)) return true;
+//         }
+//         return false;
+//     }
+// };
+// int main() {
+
+//     int t;
+//     cin >> t;
+//     while (t--) {
+//         int V, E;
+//         cin >> V >> E;
+
+//         vector<vector<int>> adj(V);
+
+//         for (int i = 0; i < E; i++) {
+//             int u, v;
+//             cin >> u >> v;
+//             adj[u].push_back(v);
+        
+//         Solution obj;
+//         cout << obj.isCyclic(V, adj) << "\n";
+
+//         cout << "~"
+//              << "\n";
+//     }
+//     return 0;
+// }
+
+
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// class Solution {
+// private:
+// bool cycledetect(int i,int vis[],vector<vector<int>> &adj){
+//     vis[i]=1;
+//     queue<pair<int,int>> q;
+//     q.push({i,-1});
+//     while(!q.empty()){
+//         int node=q.front().first;
+//         int parent=q.front().second;
+//         q.pop();
+//         for(auto it:adj[node]){
+//             if(vis[it]!=1){
+//                 vis[it]=1;
+//                 q.push({it,node});
+//             }
+//             else if(parent!=it) return true;
+//         }
+//     }
+//     return false;
+// }
+// bool dfscheck(int node, int parent,vector<int> &vis,vector<vector<int>>& adj){
+//     vis[node] = 1;
+//     for(auto it : adj[node]){
+//         if(!vis[it]){
+//             if(dfscheck(it,node,vis,adj)) return true;
+//         }else if(it != parent) return true;
+//     }
+//     return false;
+// }
+//   public:
+//         //Function to detect cycle in an undirected graph.
+//     bool isCycle1(vector<vector<int>>& adj){
+//       int V = adj.size();
+//       int vis[V]={0};
+//       for(int i=0;i<V;i++){
+//           if(!vis[i]){
+//               if(cycledetect(i,vis,adj)==true)
+//               return true;
+//           }
+//       }
+//       return false;
+//     }
+//     bool isCycle(vector<vector<int>>& adj){
+//       int V = adj.size();
+//       vector<int> vis(V,0);
+      
+//        for(int i=0;i<V;i++){
+//             if(!vis[i]){
+//                 if(dfscheck(i,-1,vis,adj)) return true;
+//             }
+//         }
+//       return false;
+//     }
+// };
+// int main() {
+//     int tc;
+//     cin >> tc;
+//     while (tc--) {
+//         int V, E;
+//         cin >> V >> E;
+//         vector<vector<int>> adj(V);
+//         for (int i = 0; i < E; i++) {
+//             int u, v;
+//             cin >> u >> v;
+//             adj[u].push_back(v);
+//             adj[v].push_back(u);
+//         }
+//         Solution obj;
+//         bool ans = obj.isCycle(adj);
+//         if (ans)
+//             cout << "1\n";
+//         else
+//             cout << "0\n";
+
+//         cout << "~"
+//              << "\n";
+//     }
+//     return 0;
+// }
