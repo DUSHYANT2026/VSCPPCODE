@@ -263,11 +263,9 @@ cout << "~" << "\n";
 
 
 
-//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
-// } Driver Code Ends
 class Solution{
 private:
 int mod = 1e9+7;
@@ -295,12 +293,8 @@ int dpcheck(int index,int nums[],vector<vector<int>> &dp,int k){
 	}
 	  
 };
-
-//{ Driver Code Starts.
 int main() 
 {
-   	
-   
    	int t;
     cin >> t;
     while (t--)
@@ -313,18 +307,14 @@ int main()
         for(int i = 0; i < n; i++)
         	cin >> a[i];
 
-       
-
 	    Solution ob;
-	    cout << ob.perfectSum(a, n, sum) << "\n";
-	     
+	    cout << ob.perfectSum(a, n, sum) << "\n";   
     
 cout << "~" << "\n";
 }
     return 0;
 }
 
-// } Driver Code Ends
 
 
 
@@ -332,11 +322,8 @@ cout << "~" << "\n";
 
 
 
-//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
-
-// } Driver Code Ends
 class Solution {
   int mod = 1e9+7;
   private:
@@ -369,8 +356,6 @@ class Solution {
         return dpcheck(n - 1, arr, newsum, dp);
     } 
 };
-
-//{ Driver Code Starts.
 int main() {
     int t;
     cin >> t;
@@ -392,4 +377,3 @@ cout << "~" << "\n";
 }
     return 0;
 }
-// } Driver Code Ends
