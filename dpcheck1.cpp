@@ -377,3 +377,241 @@ cout << "~" << "\n";
 }
     return 0;
 }
+
+
+
+
+#include <bits/stdc++.h> 
+int dpcheck(int index,vector<int> weight, vector<int> value,int maxWeight,vector<vector<int>> &dp){
+
+    if(index == 0) return weight[0] <= maxWeight ? value[0] : 0;
+    
+    if(dp[index][maxWeight] != -1) return dp[index][maxWeight];
+    int notcount = dpcheck(index-1,weight,value,maxWeight,dp);
+    int count = INT_MIN;
+    if(weight[index] <= maxWeight){
+        count = value[index] + dpcheck(index-1,weight,value,maxWeight-weight[index],dp);
+    } 
+    return dp[index][maxWeight] = max(count,notcount);
+}
+int knapsack(vector<int> weight, vector<int> value, int n, int maxWeight) 
+{
+	vector<vector<int>> dp(n,vector<int>(maxWeight+1,0));
+    // return dpcheck(n-1,weight,value,maxWeight,dp);       // using memoization (top - down)
+
+    for(int j = weight[0]; j <= maxWeight; j++) {dp[0][j] = value[0];}          // using tabulation (bottom - up)
+
+    for(int i=1; i<n; i++){
+        for(int j=0; j<=maxWeight; j++){
+            int notcount = 0 + dp[i-1][j];
+            int count = INT_MIN;
+            if (weight[i] <= j) {
+                count = value[i] + dp[i-1][j-weight[i]];
+            }
+            dp[i][j] = max(count,notcount);
+        }
+    }
+    return dp[n-1][maxWeight];
+}
+
+
+
+
+
+
+class Solution {
+private:
+    int dpcheck(int index,vector<int> &nums,int amount,vector<vector<int>>&dp){                      // using memoization (top - down)
+        if(index == 0){
+            if(amount%nums[0] == 0) return amount/nums[0];
+            return 1e9;
+        }
+        if(dp[index][amount] != -1) return dp[index][amount];
+        int notcount = 0 + dpcheck(index-1,nums,amount,dp);
+        int count = INT_MAX;
+        if(nums[index] <= amount){
+            count = 1 + dpcheck(index,nums,amount-nums[index],dp);
+        }
+        return dp[index][amount] = min(count,notcount);
+    }
+public:
+    int coinChange(vector<int>& nums, int amount) {
+        int n = nums.size();
+        vector<vector<int>> dp(n,vector<int>(amount+1,-1));
+
+        int ans = dpcheck(n-1,nums,amount,dp);
+        if(ans >= 1e9) return -1;
+        return ans;
+    }
+};
+
+
+
+
+
+class Solution {
+private:
+    int dpcheck(int index,vector<int> &nums,int amount,vector<vector<int>> &dp){
+        if(index == 0){
+            if(amount%nums[0] == 0) return 1;
+            else return 0;
+        }
+        if(dp[index][amount] != -1) return dp[index][amount];
+        int notcount = dpcheck(index-1,nums,amount,dp);
+        int count = 0;
+        if(nums[index] <= amount){
+            count = dpcheck(index,nums,amount-nums[index],dp);
+        }
+        return dp[index][amount] = notcount + count;
+    }
+public:
+    int change(int amount, vector<int>& coins) {
+        int n = coins.size(); 
+        vector<vector<int>> dp(n,vector<int>(amount+1,-1));
+        return dpcheck(n-1,coins,amount,dp);
+    }
+};
+
+
+
+
+
+
+class Solution {
+private:
+    int dpcheck(int index, vector<int> &nums, int sum, vector<vector<int>> &dp) {                    
+        if (index == 0) {
+            if (sum == 0 && nums[0] == 0) return 2; 
+            if (sum == 0 || sum == nums[0]) return 1; 
+            return 0;
+        }
+        if (dp[index][sum] != -1) return dp[index][sum];
+        int notcount = dpcheck(index - 1, nums, sum, dp);
+        int count = 0;
+        if (sum >= nums[index])
+            count = dpcheck(index - 1, nums, sum - nums[index], dp);   
+        return dp[index][sum] = (count + notcount);
+    }
+public:
+    int findTargetSumWays(vector<int>& nums, int target) {
+        int sum = 0;
+        for(auto it : nums) sum += it;
+
+        if((sum-target)%2 != 0 || sum < target) return 0;
+
+        int newsum = (sum-target)/2;
+        int n = nums.size();
+
+        vector<vector<int>> dp(n,vector<int>(newsum+1,-1));
+        return dpcheck(n-1,nums,newsum,dp);
+    }
+};
+
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+class Solution{
+private:
+    int dpcheck(int index,int val[], int wt[], int W,vector<vector<int>> dp){
+        if(index == 0){
+            return (W/wt[0])*val[0];
+        }
+        if(dp[index][W] != -1) return dp[index][W];
+        
+        int notcount = 0 + dpcheck(index-1,val,wt,W,dp);
+        int count = INT_MIN;
+        if(wt[index] <= W){
+            count = val[index] + dpcheck(index,val,wt,W-wt[index],dp);
+        }
+        return dp[index][W] = max(count,notcount);
+    }
+public:
+    int knapSack(int N, int W, int val[], int wt[])
+    {
+        vector<vector<int>> dp(N,vector<int>(W+1,0));
+        // return dpcheck(N-1,val,wt,W,dp);
+        
+        for(int j=wt[0]; j<=W; j++) {dp[0][j] = (j/wt[0]) * val[0];}
+        
+        for(int i=1; i<N; i++){
+            for(int j=0; j<=W; j++){
+                int notcount = 0 + dp[i-1][j];
+                int count = INT_MIN;
+                if(wt[i] <= j){
+                    count = val[i] + dp[i][j-wt[i]];
+                }
+                dp[i][j] = max(count,notcount);
+            }
+        }
+        return dp[N-1][W];
+    }
+};
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        int N, W;
+        cin>>N>>W;
+        int val[N], wt[N];
+        for(int i = 0;i < N;i++)
+            cin>>val[i];
+        for(int i = 0;i < N;i++)
+            cin>>wt[i];
+        
+        Solution ob;
+        cout<<ob.knapSack(N, W, val, wt)<<endl;
+    
+cout << "~" << "\n";
+}
+    return 0;
+}
+
+
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+class Solution{
+  private:
+    int dpcheck(int index,int price[],vector<vector<int>> &dp,int n){
+        if(index == 0){
+            return n*price[0];
+        }
+        if(dp[index][n] != -1) return dp[index][n];
+        
+        int notcount = 0 + dpcheck(index-1,price,dp,n);
+        int count = INT_MIN;
+        if(index+1 <= n){
+            count = price[index] + dpcheck(index,price,dp,n-(index+1));
+        }
+        return dp[index][n] = max(count,notcount);
+    }
+  public:
+    int cutRod(int price[], int n) {
+        vector<vector<int>> dp(n,vector<int> (n+1,-1));
+        return dpcheck(n-1,price,dp,n);
+    }
+};
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
+        int a[n];
+        for (int i = 0; i < n; i++) 
+            cin >> a[i];
+            
+        Solution ob;
+
+        cout << ob.cutRod(a, n) << endl;
+    
+cout << "~" << "\n";
+}
+    return 0;
+}
