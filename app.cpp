@@ -1,158 +1,155 @@
+// #include <bits/stdc++.h>
+// using namespace std;
 
+// struct Node {
+//     int data;
+//     struct Node *next;
 
+//     Node(int x) {
+//         data = x;
+//         next = NULL;
+//     }
+// };
 
-#include <bits/stdc++.h>
-using namespace std;
+// struct Node *newNode(int data) {
+//     struct Node *new_Node = new Node(data);
 
-struct Node {
-    int data;
-    struct Node *next;
+//     return new_Node;
+// }
 
-    Node(int x) {
-        data = x;
-        next = NULL;
-    }
-};
+// Node *reverse(Node **r) {
+//     Node *prev = NULL;
+//     Node *cur = *r;
+//     Node *nxt;
+//     while (cur != NULL) {
+//         nxt = cur->next;
+//         cur->next = prev;
+//         prev = cur;
+//         cur = nxt;
+//     }
+//     *r = prev;
+// }
 
-struct Node *newNode(int data) {
-    struct Node *new_Node = new Node(data);
-
-    return new_Node;
-}
-
-Node *reverse(Node **r) {
-    Node *prev = NULL;
-    Node *cur = *r;
-    Node *nxt;
-    while (cur != NULL) {
-        nxt = cur->next;
-        cur->next = prev;
-        prev = cur;
-        cur = nxt;
-    }
-    *r = prev;
-}
-
-void push(struct Node **head_ref, int new_data) {
+// void push(struct Node **head_ref, int new_data) {
     
-    struct Node *new_Node = newNode(new_data);
+//     struct Node *new_Node = newNode(new_data);
 
-    new_Node->next = (*head_ref);
+//     new_Node->next = (*head_ref);
 
-    (*head_ref) = new_Node;
-}
+//     (*head_ref) = new_Node;
+// }
 
-void freeList(struct Node *Node) {
-    struct Node *temp;
-    while (Node != NULL) {
+// void freeList(struct Node *Node) {
+//     struct Node *temp;
+//     while (Node != NULL) {
 
-        temp = Node;
-        Node = Node->next;
-        free(temp);
-    }
-}
-struct Node
-{
-    int data;
-    Node* next;
+//         temp = Node;
+//         Node = Node->next;
+//         free(temp);
+//     }
+// }
+// struct Node
+// {
+//     int data;
+//     Node* next;
 
-    Node(int x){
-        data = x;
-        next = NULL;
-    }
+//     Node(int x){
+//         data = x;
+//         next = NULL;
+//     }
 
-};*/
-class solution {
-   private:
-    long long changetonumber(Node* list){
-        long long ans = 0;
-        while(list != NULL){
-            ans  = (ans*10 + (list->data)) % 1000000007;
-            list = list->next;
-        }
-        return ans;
-    }
-  public:
-    long long multiplyTwoLists(Node *first, Node *second) {
-        // code here
-        long long num1 = changetonumber(first);
-        long long num2 = changetonumber(second);
-        long long ans = 0;
+// };*/
+// class solution {
+//    private:
+//     long long changetonumber(Node* list){
+//         long long ans = 0;
+//         while(list != NULL){
+//             ans  = (ans*10 + (list->data)) % 1000000007;
+//             list = list->next;
+//         }
+//         return ans;
+//     }
+//   public:
+//     long long multiplyTwoLists(Node *first, Node *second) {
+//         // code here
+//         long long num1 = changetonumber(first);
+//         long long num2 = changetonumber(second);
+//         long long ans = 0;
         
-        ans = (num1 * num2)%1000000007;
+//         ans = (num1 * num2)%1000000007;
          
-        // ADD TO NUMBERS
-        // long long carry = 0;
-        // long long ans = 0;
-        // long long place = 1;
+//         // ADD TO NUMBERS
+//         // long long carry = 0;
+//         // long long ans = 0;
+//         // long long place = 1;
         
-        // while(num1 > 0 || num1 > 0 || carry > 0){
-        //     long long digit1 = num1%10;
-        //     long long digit2 = num2%10;
+//         // while(num1 > 0 || num1 > 0 || carry > 0){
+//         //     long long digit1 = num1%10;
+//         //     long long digit2 = num2%10;
             
-        //     long digitsum = digit1 + digit2 + carry;
-        //     long newdigit = digitsum % 10;
+//         //     long digitsum = digit1 + digit2 + carry;
+//         //     long newdigit = digitsum % 10;
             
-        //     ans = ans + newdigit * place;
+//         //     ans = ans + newdigit * place;
             
-        //     carry = digitsum/10;
-        //     num1 /= 10; num2 /= 10; 
-        //     place *= 10; 
-        // }
+//         //     carry = digitsum/10;
+//         //     num1 /= 10; num2 /= 10; 
+//         //     place *= 10; 
+//         // }
 
-        return ans;
-    }
-};
-void printList(struct Node *Node) {
-    while (Node != NULL) {
-        printf("%d ", Node->data);
-        Node = Node->next;
-    }
-    printf("\n");
-}
+//         return ans;
+//     }
+// };
+// void printList(struct Node *Node) {
+//     while (Node != NULL) {
+//         printf("%d ", Node->data);
+//         Node = Node->next;
+//     }
+//     printf("\n");
+// }
 
-int main(void) {
+// int main(void) {
 
-    int t;
-    cin >> t;
-    cin.ignore();
-    while (t--) {
+//     int t;
+//     cin >> t;
+//     cin.ignore();
+//     while (t--) {
 
-        struct Node *first = NULL;
-        struct Node *second = NULL;
-        vector<int> arr;
-        string input;
-        getline(cin, input);
-        stringstream ss(input);
-        int number;
+//         struct Node *first = NULL;
+//         struct Node *second = NULL;
+//         vector<int> arr;
+//         string input;
+//         getline(cin, input);
+//         stringstream ss(input);
+//         int number;
 
-        while (ss >> number) {
-            arr.push_back(number);
-        }
-        for (int i = 0; i < arr.size(); i++) {
-            push(&first, arr[i]);
-        }
-        vector<int> brr;
-        string input2;
-        getline(cin, input2);
-        stringstream ss2(input2);
-        int number1;
-        while (ss2 >> number1) {
-            brr.push_back(number1);
-        }
-        for (int i = 0; i < brr.size(); i++) {
-            push(&second, brr[i]);
-        }
-        reverse(&first);
-        reverse(&second);
-        solution ob;
-        long long res = ob.multiplyTwoLists(first, second);
-        cout << res << endl;
-        freeList(first);
-        freeList(second);
-    }
-    return 0;
-}
+//         while (ss >> number) {
+//             arr.push_back(number);
+//         }
+//         for (int i = 0; i < arr.size(); i++) {
+//             push(&first, arr[i]);
+//         }
+//         vector<int> brr;
+//         string input2;
+//         getline(cin, input2);
+//         stringstream ss2(input2);
+//         int number1;
+//         while (ss2 >> number1) {
+//             brr.push_back(number1);
+//         }
+//         for (int i = 0; i < brr.size(); i++) {
+//             push(&second, brr[i]);
+//         }
+//         reverse(&first);
+//         reverse(&second);
+//         solution ob;
+//         long long res = ob.multiplyTwoLists(first, second);
+//         cout << res << endl;
+//         freeList(first);
+//         freeList(second);
+//     }
+//     return 0;
+// }
 
 
 
@@ -565,4 +562,38 @@ int main(void) {
 //   cout << "Value at var = " << var << "\n"; // print the value of var
 //   cout << "Value at *ptr = " << *ptr << "\n"; // print the value of the variable that ptr points to
 //   return 0;
+// }
+
+
+
+
+
+// #include<bits/stdc++.h>             // time pass question
+// using namespace std;
+
+// int main(){
+//     string s;
+//     cin>>s;
+//     string ans = "";
+//     vector<pair<int,int>> mapp;
+//     for(int i=0; i<s.size(); i+=2){
+//         if(isdigit(s[i+2])){
+//             string num ="";
+//             num += s[i+1];
+//             num += s[i+2];
+//             int temp = stoi(num);
+//             mapp.push_back({s[i],temp});
+//             i++;
+//         }
+//         else{
+//             mapp.push_back({s[i],s[i+1]-'0'});
+//         }
+//     }
+//     for(auto it : mapp){
+//         while(it.second--){
+//             ans += it.first;
+//         }
+//     }
+//     cout<<ans;
+//     return 0;
 // }

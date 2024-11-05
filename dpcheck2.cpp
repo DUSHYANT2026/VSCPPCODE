@@ -220,3 +220,236 @@ int main() {
              << "\n";
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution {
+private:
+    int dpcheck(int i, int j,string s, vector<vector<int>> &dp,int n){           // memoization
+        if(i < 0 || j > n-1){
+            return 0;
+        }
+        if(dp[i][j] != -1) return dp[i][j];
+        if(s[i] == s[j]){
+            return dp[i][j] = 1 + dpcheck(i-1,j+1,s,dp,n); 
+        }
+        else{
+            return dp[i][j] = 0 + max(dpcheck(i-1,j,s,dp,n),dpcheck(i,j+1,s,dp,n));
+        }
+    }
+public:
+    int longestPalindromeSubseq(string s) {
+        int n = s.size();
+        vector<vector<int>> dp(n+1,vector<int>(n+1,-1));
+        return dpcheck(n-1,0,s,dp,n);
+    }
+};
+
+
+
+
+
+
+
+class Solution {
+private:
+    int longestCommonSubsequence(string text1, string text2) {
+        int n = text1.size(); int m = text2.size();
+        vector<vector<int>> dp(n+1,vector<int>(m+1));
+
+        for(int i=0;i<n+1;i++){
+            for(int j=0;j<m+1;j++){
+                if(i == 0 || j == 0){
+                    dp[i][j] = 0; continue;
+                }
+                if(text1[i-1] == text2[j-1]){
+                    dp[i][j] = 1 + dp[i-1][j-1];
+                }else{
+                    dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
+                }
+            }
+        }
+        return dp[n][m];
+    }
+public:
+    int longestPalindromeSubseq(string s) {
+        
+        string news = s;
+        reverse(news.begin(),news.end());
+        return longestCommonSubsequence(s,news);
+        
+    }
+};
+
+
+
+
+
+class Solution {
+private:
+    int longestCommonSubsequence(string text1, string text2) {
+        int n = text1.size(); int m = text2.size();
+        vector<vector<int>> dp(n+1,vector<int>(m+1));
+
+        for(int i=0;i<n+1;i++){
+            for(int j=0;j<m+1;j++){
+                if(i == 0 || j == 0){
+                    dp[i][j] = 0; continue;
+                }
+                if(text1[i-1] == text2[j-1]){
+                    dp[i][j] = 1 + dp[i-1][j-1];
+                }else{
+                    dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
+                }
+            }
+        }
+        return dp[n][m];
+    }
+public:
+    int minDistance(string word1, string word2) {
+        int longestcommon = longestCommonSubsequence(word1,word2);
+        int add = (word2.size() - longestcommon);
+        int sub = (word1.size() - longestcommon);
+
+        return (add + sub);
+    }
+};
+
+
+
+
+
+
+class Solution {
+private:
+    int longestCommonSubsequence(string text1, string text2) {
+        int n = text1.size(); int m = text2.size();
+        vector<vector<int>> dp(n+1,vector<int>(m+1));
+
+        for(int i=0;i<n+1;i++){
+            for(int j=0;j<m+1;j++){
+                if(i == 0 || j == 0){
+                    dp[i][j] = 0; continue;
+                }
+                if(text1[i-1] == text2[j-1]){
+                    dp[i][j] = 1 + dp[i-1][j-1];
+                }else{
+                    dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
+                }
+            }
+        }
+        return dp[n][m];
+    }
+public:
+    int minDistance(string word1, string word2) {
+        int longestcommon = longestCommonSubsequence(word1,word2);
+        int add = (word2.size() - longestcommon);
+        int sub = (word1.size() - longestcommon);
+
+        return (add + sub);
+    }
+};
+
+
+
+
+
+
+class Solution {
+public:
+    string shortestCommonSupersequence(string text1, string text2) {
+        int n = text1.size(); int m = text2.size();
+        vector<vector<int>> dp(n+1,vector<int>(m+1,0));
+
+        for(int i=0;i<n+1;i++){
+            for(int j=0;j<m+1;j++){
+                if(i == 0 || j == 0){
+                    dp[i][j] = 0; continue;
+                }
+                if(text1[i-1] == text2[j-1]){
+                    dp[i][j] = 1 + dp[i-1][j-1];
+                }else{
+                    dp[i][j] = 0 + max(dp[i-1][j],dp[i][j-1]);
+                }
+            }
+        }
+        string ans = "";
+
+        int i = n; int j = m;  
+        while(i > 0 && j > 0){
+            if(text1[i-1] == text2[j-1]){
+                ans += text1[i-1];
+                i--; j--;
+            }
+            else if(dp[i-1][j] > dp[i][j-1]){
+                ans += text1[i-1]; 
+                i--;
+            }
+            else{
+                ans += text2[j-1];
+                j--;
+            }
+        }  
+        while(i > 0){
+            ans += text1[i-1]; i--;
+        }
+        while(j > 0){
+            ans += text2[j-1]; j--;
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+};
+
+
+
+
+
+
+
+
+class Solution {
+private:
+    int mod = 1e9 + 7;
+    int dpcheck(int i, int j, string &s, string &t, vector<vector<int>> &dp){
+        if(j == 0) return 1;
+        if(i == 0) return 0;
+
+        if(dp[i][j] != -1) return dp[i][j];
+
+        if(s[i-1] == t[j-1]){
+            return dp[i][j] = (dpcheck(i-1,j-1,s,t,dp) + dpcheck(i-1,j,s,t,dp))%mod;
+        }else{
+            return dp[i][j] = dpcheck(i-1,j,s,t,dp);
+        }
+    }
+public:
+    int numDistinct(string s, string t) {
+        int n = s.size(); int m = t.size();
+        vector<vector<int>> dp(n+1,vector<int> (m+1,0));
+        // return dpcheck(n,m,s,t,dp);
+        for(int i=0; i<n; i++) {dp[i][0] = 1;}
+        for(int j=1; j<m; j++) {dp[0][j] = 0;}
+
+        for(int i=1; i<=n; i++){
+            for(int j=1; j<=m; j++){
+                if(s[i-1] == t[j-1]){
+                    dp[i][j] = (dp[i-1][j-1] + dp[i-1][j])%mod;
+                }else{
+                    dp[i][j] = dp[i-1][j];
+                }
+            }
+        }
+        return dp[n][m];
+    }
+};
