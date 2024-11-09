@@ -453,3 +453,108 @@ public:
         return dp[n][m];
     }
 };
+
+
+
+
+
+
+class Solution {
+private:
+    int dpcheck(int i, int j, string &s, string & t, vector<vector<int>> &dp){
+        if(i == 0) return j;
+        if(j == 0) return i;
+
+        if(dp[i][j] != -1) return dp[i][j];
+        if(s[i-1] == t[j-1]){
+            return dp[i][j] = 0 + dpcheck(i-1,j-1,s,t,dp);
+        }else{
+            return dp[i][j] = 1 + min({dpcheck(i-1,j-1,s,t,dp),dpcheck(i-1,j,s,t,dp),dpcheck(i,j-1,s,t,dp)});
+        }
+    }
+public:
+    int minDistance(string word1, string word2) {
+        int n = word1.size(); int m = word2.size(); 
+        vector<vector<int>> dp(n+1,vector<int> (m+1,0));
+
+        // return dpcheck(n,m,word1,word2,dp);
+        for(int i=0; i<=n; i++) dp[i][0] = i; 
+        for(int j=0; j<=m; j++) dp[0][j] = j;
+
+        for(int i=1; i<=n; i++){
+            for(int j=1; j<=m; j++){
+                if(word1[i-1] == word2[j-1]){
+                    dp[i][j] = 0 + dp[i-1][j-1];
+                }else{
+                    dp[i][j] = 1 + min({dp[i-1][j-1],dp[i-1][j],dp[i][j-1]});
+                }
+            }
+        }
+        return dp[n][m];
+    }
+};
+
+
+
+
+
+
+
+class Solution {
+private:
+    bool dpcheck(int i, int j, string &s, string &t,vector<vector<int>>&dp){
+        if(i == 0 && j == 0) return true;
+        if(i == 0) return false;
+        if(j == 0){
+            for(int x=1; x<=i; x++){
+                if(s[x-1] != '*') return false;
+            }
+            return true;
+        }
+        if(dp[i][j] !=  -1) return dp[i][j];
+
+        if(s[i-1] == t[j-1] || s[i-1] == '?'){
+            return dp[i][j] = dpcheck(i-1,j-1,s,t,dp);
+        }else if(s[i-1] == '*'){
+            return dp[i][j] = dpcheck(i,j-1,s,t,dp) || dpcheck(i-1,j,s,t,dp);
+        }
+        return false;
+    }
+public:
+    bool isMatch(string s, string p) {
+        int m = s.size(); 
+        int n = p.size();
+        vector<vector<int>> dp(n+1,vector<int>(m+1,-1));
+        return dpcheck(n,m,p,s,dp);
+    }
+};
+
+
+
+
+
+class Solution {
+public:
+    int dp[21][31];
+    bool func(int i,int j,string &s,string &p){
+        if(dp[i][j] != -1) return dp[i][j];
+        if(i >= s.size()){
+            if(j == p.size()) return dp[i][j] = true;
+            if(j + 1 < p.size() && p[j + 1] == '*') return dp[i][j] = func(i,j + 2,s,p);
+            return dp[i][j] = false;
+        }
+        else if(j == p.size()) return dp[i][j] = false;
+        bool match = (s[i] == p[j] || p[j] == '.');
+        bool ans = false;
+        if(match){
+            if(j + 1 < p.size() && p[j + 1] == '*') ans = func(i+1,j,s,p);
+            if(!ans) ans = func(i + 1,j + 1,s,p);
+        }
+        if(!ans && j + 1 < p.size() && p[j + 1] == '*') ans = func(i,j + 2,s,p);
+        return dp[i][j] = ans;
+    }
+    bool isMatch(string s, string p) {
+        memset(dp,-1,sizeof dp);
+        return func(0,0,s,p);
+    }
+};
