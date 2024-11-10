@@ -421,19 +421,19 @@
 // 	vector<vector<int>> dp(n,vector<int>(maxWeight+1,0));
 //     // return dpcheck(n-1,weight,value,maxWeight,dp);                            // using memoization (top - down)
 
-//     for(int j = weight[0]; j <= maxWeight; j++) {dp[0][j] = value[0];}          // using tabulation (bottom - up)
+    // for(int j = weight[0]; j <= maxWeight; j++) {dp[0][j] = value[0];}          // using tabulation (bottom - up)
 
-//     for(int i=1; i<n; i++){
-//         for(int j=0; j<=maxWeight; j++){
-//             int notcount = 0 + dp[i-1][j];
-//             int count = INT_MIN;
-//             if (weight[i] <= j) {
-//                 count = value[i] + dp[i-1][j-weight[i]];
-//             }
-//             dp[i][j] = max(count,notcount);
-//         }
-//     }
-//     return dp[n-1][maxWeight];
+    // for(int i=1; i<n; i++){
+    //     for(int j=0; j<=maxWeight; j++){
+    //         int notcount = 0 + dp[i-1][j];
+    //         int count = INT_MIN;
+    //         if (weight[i] <= j) {
+    //             count = value[i] + dp[i-1][j-weight[i]];
+    //         }
+    //         dp[i][j] = max(count,notcount);
+    //     }
+    // }
+    // return dp[n-1][maxWeight];
 // }
 // int main(){
 //     int n;
@@ -456,6 +456,88 @@
 
 //     return 0;
 // }
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// class Solution {
+// private:
+// int dpcheck(int index,vector<int> weight, vector<int> value,int maxWeight,vector<vector<int>> &dp){
+
+//     if(index == 0) return weight[0] <= maxWeight ? value[0] : 0;
+    
+//     if(dp[index][maxWeight] != -1) return dp[index][maxWeight];
+//     int notcount = dpcheck(index-1,weight,value,maxWeight,dp);
+//     int count = INT_MIN;
+//     if(weight[index] <= maxWeight){
+//         count = value[index] + dpcheck(index-1,weight,value,maxWeight-weight[index],dp);
+//     } 
+//     return dp[index][maxWeight] = max(count,notcount);
+// }
+//   public:
+//     // Function to return max value that can be put in knapsack of capacity.
+//     int knapSack(int maxWeight, vector<int> &value, vector<int> &weight) {
+//         int n = value.size();
+//         vector<vector<int>> dp(n,vector<int> (maxWeight+1,0));
+//         // return dpcheck(n,weight,value,maxWeight,dp);
+        
+//     for(int j = weight[0]; j <= maxWeight; j++) {dp[0][j] = value[0];}          
+//     for(int i=1; i<n; i++){
+//         for(int j=0; j<=maxWeight; j++){
+//             int notcount = 0 + dp[i-1][j];
+//             int count = INT_MIN;
+//             if (weight[i] <= j) {
+//                 count = value[i] + dp[i-1][j-weight[i]];
+//             }
+//             dp[i][j] = max(count,notcount);
+//         }
+//     }
+//     return dp[n-1][maxWeight];
+//     }
+// };
+
+// int main() {
+//     // Taking total test cases
+//     int testCases;
+//     cin >> testCases;
+//     cin.ignore();
+//     while (testCases--) {
+//         // Reading number of items and capacity
+//         int numberOfItems, capacity;
+//         vector<int> weights, values;
+//         string input;
+//         int number;
+
+//         // Read capacity and number of items
+//         getline(cin, input);
+//         stringstream ss(input);
+//         ss >> capacity;      // The first number is the capacity
+//         ss >> numberOfItems; // The second number is the number of items
+
+//         // Read values
+//         getline(cin, input);
+//         ss.clear();
+//         ss.str(input);
+//         while (ss >> number) {
+//             values.push_back(number);
+//         }
+
+//         // Read weights
+//         getline(cin, input);
+//         ss.clear();
+//         ss.str(input);
+//         while (ss >> number) {
+//             weights.push_back(number);
+//         }
+
+//         Solution solution;
+//         cout << solution.knapSack(capacity, values, weights) << endl;
+//         cout << "~" << endl;
+//     }
+//     return 0;
+// }
+
 
 
  

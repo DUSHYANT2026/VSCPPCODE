@@ -417,6 +417,81 @@ public:
 
 
 
+#include <bits/stdc++.h>
+using namespace std;
+
+
+class Solution {
+  public:
+    vector<int> LargestSubset(int n, vector<int>& arr) {
+        sort(arr.begin(),arr.end());
+
+        vector<int> dp(n,1);
+        vector<int> check(n);
+        int lastindex = 0; int maxi = 0;
+        
+        for(int i=0; i<n; i++){
+            check[i] = i;
+            for(int j=0; j<i; j++){
+                if(arr[i] % arr[j] == 0 && dp[i] < 1 + dp[j]){
+                    dp[i] = 1 + dp[j];
+                    check[i] = j;
+                }
+            }
+            if(dp[i] > maxi){
+                maxi = dp[i];
+                lastindex = i;
+            }
+        }
+        vector<int> ans;
+        ans.push_back(arr[lastindex]);
+        
+        while(check[lastindex] != lastindex){
+            lastindex = check[lastindex];
+            ans.push_back(arr[lastindex]);
+            
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+};
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
+        vector<int> arr;
+
+        for (int i = 0; i < n; ++i) {
+            int x;
+            cin >> x;
+            arr.push_back(x);
+        }
+
+        Solution obj;
+        vector<int> res = obj.LargestSubset(n, arr);
+        int isValidSeq = 1, sz = res.size();
+        for (int i = 0; i < sz; i++) {
+            for (int j = i + 1; j < sz; j++) {
+                if ((res[i] % res[j]) == 0 || (res[j] % res[i]) == 0)
+                    continue;
+                else {
+                    isValidSeq = 0;
+                    break;
+                }
+            }
+        }
+        cout << isValidSeq << " " << sz << endl;
+    
+cout << "~" << "\n";
+}
+    return 0;
+}
+
+
+
 
 
 class Solution {
@@ -465,3 +540,106 @@ int main() {
     }
 }
 
+
+
+
+
+
+class Solution {
+private:
+    bool check(string &s1, string &s2) {
+        if (s1.size() != s2.size() + 1) return false;
+        int i = 0, j = 0;
+        while (i < s1.size()) {
+            if (j < s2.size() && s1[i] == s2[j]) {
+                i++;
+                j++;
+            } else {
+                i++;
+            }
+        }
+        return j == s2.size();
+    }
+    
+public:
+    static bool comp(string& s1 , string& s2) {
+        return s1.size() < s2.size();
+    }
+
+    int longestStrChain(vector<string>& arr) {
+        sort(arr.begin(), arr.end(), comp);
+        
+        int n = arr.size();
+        vector<int> dp(n, 1);
+        int maxi = 0;
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (check(arr[i], arr[j]) && dp[i] <= 1 + dp[j]) {
+                    dp[i] = 1 + dp[j];
+                }
+            }
+            maxi = max(maxi, dp[i]);
+        }
+        return maxi;
+    }
+};
+
+
+
+
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution{
+    public:
+    int NumberofLIS(int n, vector<int>&arr) {
+        vector<int> dp(n, 1),count(n, 1);
+        int maxi = 0;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                if(arr[i] > arr[j] && dp[i] < 1 + dp[j]) {
+                    dp[i] = 1 + dp[j];
+                    count[i] = count[j];
+                }
+                else if(arr[i] > arr[j] && dp[i] == 1 + dp[j]){
+                    count[i] += count[j];
+                }
+            }
+            maxi = max(maxi, dp[i]);
+        }
+        int ans = 0;
+        for(int i=0; i<n; i++){
+            if(maxi == dp[i]){
+                ans += count[i];
+            }
+        }
+        return ans;
+    }
+};
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--){
+        int n; cin>>n;
+        vector<int> arr;
+        
+        for(int i=0; i<n; ++i){
+            long long x; cin>>x;
+            arr.push_back(x);
+        }
+        
+        Solution obj;
+        cout<<obj.NumberofLIS(n, arr)<<"\n";
+    
+cout << "~" << "\n";
+}
+    return 0;
+}

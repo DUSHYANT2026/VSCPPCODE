@@ -44,6 +44,94 @@ public:
 
 
 
+#include <bits/stdc++.h>
+const int mod = 1e9 + 7;
+using namespace std;
+
+class Solution {
+    int dpcheck(int i,int j,string nums1,string nums2,vector<vector<int>> &dp){    
+        if(i < 0 || j < 0) return 0;
+        if(dp[i][j] != -1) return dp[i][j];
+
+        if(nums1[i] == nums2[j]){
+            return (1 + dpcheck(i-1,j-1,nums1,nums2,dp));
+        }
+        return max(dpcheck(i-1,j,nums1,nums2,dp),dpcheck(i,j-1,nums1,nums2,dp));
+    }
+    // Function to find the length of longest common subsequence in two strings.
+    public:
+    int lcs(int n, int m, string str1, string str2) {
+        // your code here
+        vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
+        
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                if (str1[i - 1] == str2[j - 1]) {
+                    dp[i][j] = 1 + dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+        return dp[n][m];
+    }
+};
+int main() {
+    int t, n, m;
+    cin >> t;
+    while (t--) {
+        cin >> n >> m; // Take size of both the strings as input
+        string str1, str2;
+        cin >> str1 >> str2; // Take both the string as input
+        Solution ob;
+        cout << ob.lcs(n, m, str1, str2) << endl;
+    
+cout << "~" << "\n";
+}
+    return 0;
+}
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+class Solution
+{
+    public:
+    //Function to find length of shortest common supersequence of two strings.
+    int shortestCommonSupersequence(string str1, string str2, int n, int m)
+    {
+        vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                if (str1[i - 1] == str2[j - 1]) {
+                    dp[i][j] = 1 + dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+        return n+m - dp[n][m];
+    }
+};
+int main()
+{    
+    int t; 
+    cin >> t;
+    while(t--){
+    string X, Y;
+	cin >> X >> Y;
+	
+	Solution obj;
+	cout << obj.shortestCommonSupersequence(X, Y, X.size(), Y.size())<< endl;
+    
+cout << "~" << "\n";
+}
+	return 0;
+}
+
+
 
 
 
@@ -255,6 +343,44 @@ public:
     }
 };
 
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution{
+private:
+    int dpcheck(int i, int j,string s, vector<vector<int>> &dp,int n){  
+        if(i < 0 || j > n-1){
+            return 0;
+        }
+        if(dp[i][j] != -1) return dp[i][j];
+        if(s[i] == s[j]){
+            return dp[i][j] = 1 + dpcheck(i-1,j+1,s,dp,n); 
+        }
+        else{
+            return dp[i][j] = 0 + max(dpcheck(i-1,j,s,dp,n),dpcheck(i,j+1,s,dp,n));
+        }
+    }
+  public:
+    int longestPalinSubseq(string s) {
+        int n = s.size();
+        vector<vector<int>> dp(n+1,vector<int>(n+1,-1));
+        return dpcheck(n-1,0,s,dp,n);
+    }
+};
+int32_t main()
+{
+    int t; cin >> t;
+    while (t--)
+    {
+        string s; cin >> s;
+        Solution ob;
+        cout << ob.longestPalinSubseq(s) << endl;
+    
+cout << "~" << "\n";
+}
+}
 
 
 
