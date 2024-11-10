@@ -402,6 +402,8 @@
 
 
 // #include <bits/stdc++.h> 
+// using namespace std;
+
 // int dpcheck(int index,vector<int> weight, vector<int> value,int maxWeight,vector<vector<int>> &dp){
 
 //     if(index == 0) return weight[0] <= maxWeight ? value[0] : 0;
@@ -417,7 +419,7 @@
 // int knapsack(vector<int> weight, vector<int> value, int n, int maxWeight) 
 // {
 // 	vector<vector<int>> dp(n,vector<int>(maxWeight+1,0));
-//     // return dpcheck(n-1,weight,value,maxWeight,dp);       // using memoization (top - down)
+//     // return dpcheck(n-1,weight,value,maxWeight,dp);                            // using memoization (top - down)
 
 //     for(int j = weight[0]; j <= maxWeight; j++) {dp[0][j] = value[0];}          // using tabulation (bottom - up)
 
@@ -433,7 +435,27 @@
 //     }
 //     return dp[n-1][maxWeight];
 // }
+// int main(){
+//     int n;
+//     cin>>n;
+//     int x;
+//     vector<int> weight,value;
+//     for(int i=0; i<n; i++){
+//         cin>>x;
+//         weight.push_back(x);
+//     }
+//     int y;
+//     for(int i=0; i<n; i++){
+//         cin>>y;
+//         value.push_back(y);
+//     }
+//     int maxWeight;
+//     cin>>maxWeight;
 
+//     cout<<knapsack(weight,value,n,maxWeight);
+
+//     return 0;
+// }
 
 
  
