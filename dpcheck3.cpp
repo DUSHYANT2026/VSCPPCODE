@@ -349,3 +349,119 @@ cout << "~" << "\n";
 }
     return 0;
 }
+
+
+
+
+
+class Solution {
+public:
+    vector<int> largestDivisibleSubset(vector<int>& arr) {
+        int n=arr.size();
+        // int maxi=1;
+        // int num=-1;
+        // vector<int>ans;
+        // vector<int>dp(n,1);
+        // sort(arr.begin(),arr.end());
+        // for(int i=1;i<n;i++){
+        //     for(int j=0;j<i;j++){
+        //         if((arr[i]%arr[j]==0)&& dp[i]<dp[j]+1){
+        //             dp[i]=dp[j]+1;
+        //             if(maxi<dp[i]) maxi=dp[i];
+        //         }
+        //     }
+        // }
+        // for(int i=n-1;i>=0;i--){
+        //     if(maxi==dp[i] && (num==-1 || (num%arr[i]==0))){
+        //         ans.push_back(arr[i]);
+        //         maxi--;
+        //         num=arr[i];
+        //     }
+        // }
+        // return ans;
+
+        sort(arr.begin(),arr.end());
+
+        vector<int> dp(n,1);
+        vector<int> check(n);
+        int lastindex = 0; int maxi = 0;
+        
+        for(int i=0; i<n; i++){
+            check[i] = i;
+            for(int j=0; j<i; j++){
+                if(arr[i] % arr[j] == 0 && dp[i] < 1 + dp[j]){
+                    dp[i] = 1 + dp[j];
+                    check[i] = j;
+                }
+            }
+            if(dp[i] > maxi){
+                maxi = dp[i];
+                lastindex = i;
+            }
+        }
+        vector<int> ans;
+        ans.push_back(arr[lastindex]);
+        
+        while(check[lastindex] != lastindex){
+            lastindex = check[lastindex];
+            ans.push_back(arr[lastindex]);
+            
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+};
+
+
+
+
+
+
+
+
+class Solution {
+  public:
+    int LongestBitonicSequence(int n, vector<int> &arr) {
+        vector<int> lis(n, 1);  
+        vector<int> lds(n, 1);  
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (arr[i] > arr[j] && lis[i] < lis[j] + 1) {
+                    lis[i] = lis[j] + 1;
+                }
+            }
+        }
+        for (int i = n - 2; i >= 0; i--) {
+            for (int j = n - 1; j > i; j--) {
+                if (arr[i] > arr[j] && lds[i] < lds[j] + 1) {
+                    lds[i] = lds[j] + 1;
+                }
+            }
+        }
+        int maxLength = 0;
+        for (int i = 0; i < n; i++) {
+            if(lis[i] == 1 || lds[i] == 1) continue;
+            maxLength = max(maxLength, lis[i] + lds[i] - 1);
+        }
+        return maxLength;
+    }
+};
+int main() {
+    int t;
+    scanf("%d ", &t);
+    while (t--) {
+
+        int n;
+        scanf("%d", &n);
+
+        vector<int> nums(n);
+        Array::input(nums, n);
+
+        Solution obj;
+        int res = obj.LongestBitonicSequence(n, nums);
+
+        cout << res << endl;
+        cout << "~" << endl;
+    }
+}
+
