@@ -135,7 +135,6 @@ int main() {
         Solution obj;
         cout << obj.longestSubsequence(arr) << endl;
     }
-
     return 0;
 }
 
