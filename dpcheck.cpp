@@ -1035,42 +1035,48 @@
 
 
 
+// #include<bits/stdc++.h>
+// using namespace std;
+// class Solution {
+// public:
+//     int minFallingPathSum(vector<vector<int>>& grid) {     //A falling path with non-zero shifts is a choice of exactly one element from each row of grid such that no two elements chosen in adjacent rows are in the same column.
+//         int ans = INT_MAX;
+//         int n = grid.size();
+//         int m = grid[0].size();
+//         vector<vector<int>> dp(n, vector<int>(m, -1));
 
+//         for(int i=0;i<n;i++){
+//             dp[0][i]=grid[0][i];
+//         }
+//         for(int i=1;i<n;i++){
+//             for(int j=0;j<n;j++){
+//                 int mn=INT_MAX;
+//                 for(int k=0;k<n;k++){
+//                     if(k!=j) mn=min(mn,grid[i][j]+dp[i-1][k]);
+//                     dp[i][j]=mn;
+//                 }
+//             }
+//         }
+//         for(int i=0;i<n;i++){
+//             ans=min(ans,dp[n-1][i]);
+//         }
 
-
-
-
-
-
-
-
-
-
-
-class Solution {
-public:
-    int minFallingPathSum(vector<vector<int>>& grid) {     //A falling path with non-zero shifts is a choice of exactly one element from each row of grid such that no two elements chosen in adjacent rows are in the same column.
-        int ans = INT_MAX;
-        int n = grid.size();
-        int m = grid[0].size();
-        vector<vector<int>> dp(n, vector<int>(m, -1));
-
-        for(int i=0;i<n;i++){
-            dp[0][i]=grid[0][i];
-        }
-        for(int i=1;i<n;i++){
-            for(int j=0;j<n;j++){
-                int mn=INT_MAX;
-                for(int k=0;k<n;k++){
-                    if(k!=j) mn=min(mn,grid[i][j]+dp[i-1][k]);
-                    dp[i][j]=mn;
-                }
-            }
-        }
-        for(int i=0;i<n;i++){
-            ans=min(ans,dp[n-1][i]);
-        }
-
-        return ans;
-    }
-};
+//         return ans;
+//     }
+// };
+// int main()
+// {
+//     int n; int m; cin>>n>>m;
+//     vector<vector<int>> nums;
+//     for(int i=0; i<n; i++){
+//         vector<int> temp; int x;
+//         for(int j=0; j<m; j++){
+//             cin>>x;
+//             temp.push_back(x);
+//         }
+//         nums.push_back(temp);
+//     }
+//     Solution obj;
+//     cout<<obj.minFallingPathSum(nums);
+//     return 0;
+// }
