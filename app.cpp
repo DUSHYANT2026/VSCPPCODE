@@ -618,8 +618,6 @@ vector<int> monotonicIncreasing(vector<int>& nums)
 
     for (int i = 0; i < n; ++i) {
 
-        // While stack is not empty AND top of stack is more
-        // than the current element
         while (!st.empty() && st.top() > nums[i]) {
      
             st.pop();
@@ -634,7 +632,6 @@ vector<int> monotonicIncreasing(vector<int>& nums)
 }
 
 int main() {
-    // Example usage:
     vector<int> nums = {3, 1, 4, 1, 5, 9, 2, 6};
     vector<int> result = monotonicIncreasing(nums);
     cout << "Monotonic increasing stack: ";
