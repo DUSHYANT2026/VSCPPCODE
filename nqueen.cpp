@@ -78,70 +78,129 @@
 
 
 
-#include <bits/stdc++.h>
-#include <vector>
-using namespace std;
+// #include <bits/stdc++.h>
+// #include <vector>
+// using namespace std;
 
-vector<int> findCommonElements(const vector<int>& arr1, const vector<int>& arr2, const vector<int>& arr3) {
-    vector<int> result;
-    int i = 0, j = 0, k = 0;
+// vector<int> findCommonElements(const vector<int>& arr1, const vector<int>& arr2, const vector<int>& arr3) {
+//     vector<int> result;
+//     int i = 0, j = 0, k = 0;
 
-    while (i < arr1.size() && j < arr2.size() && k < arr3.size()) {
-        if (arr1[i] == arr2[j] && arr2[j] == arr3[k]) {
-            result.push_back(arr1[i]);
-            i++; j++; k++;
-        } else if (arr1[i] < arr2[j]) {
-            i++;
-        } else if (arr2[j] < arr3[k]) {
-            j++;
-        } else {
-            k++;
-        }
-    }
+//     while (i < arr1.size() && j < arr2.size() && k < arr3.size()) {
+//         if (arr1[i] == arr2[j] && arr2[j] == arr3[k]) {
+//             result.push_back(arr1[i]);
+//             i++; j++; k++;
+//         } else if (arr1[i] < arr2[j]) {
+//             i++;
+//         } else if (arr2[j] < arr3[k]) {
+//             j++;
+//         } else {
+//             k++;
+//         }
+//     }
 
-    return result;
-}
+//     return result;
+// }
 
-int main() {
-    vector<int> arr1, arr2, arr3;
-
-
-    int temp;
-    while (cin.peek() != '\n') {
-        cin >> temp;
-        arr1.push_back(temp);
-    }
-    cin.ignore();  
+// int main() {
+//     vector<int> arr1, arr2, arr3;
 
 
-    while (cin.peek() != '\n') {
-        cin >> temp;
-        arr2.push_back(temp);
-    }
-    cin.ignore();
+//     int temp;
+//     while (cin.peek() != '\n') {
+//         cin >> temp;
+//         arr1.push_back(temp);
+//     }
+//     cin.ignore();  
 
 
-    while (cin.peek() != '\n') {
-        cin >> temp;
-        arr3.push_back(temp);
-    }
+//     while (cin.peek() != '\n') {
+//         cin >> temp;
+//         arr2.push_back(temp);
+//     }
+//     cin.ignore();
+
+
+//     while (cin.peek() != '\n') {
+//         cin >> temp;
+//         arr3.push_back(temp);
+//     }
 
    
-    vector<int> commonElements = findCommonElements(arr1, arr2, arr3);
+//     vector<int> commonElements = findCommonElements(arr1, arr2, arr3);
 
-    if (!commonElements.empty()) {
-        cout << "Common elements: ";
-        for (int elem : commonElements) {
-            cout << elem << " ";
+//     if (!commonElements.empty()) {
+//         cout << "Common elements: ";
+//         for (int elem : commonElements) {
+//             cout << elem << " ";
+//         }
+//         cout << endl;
+//     } else {
+//         cout << "No common elements" << endl;
+//     }
+
+//     return 0;
+// }
+
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+class Solution {
+private:
+    bool checkvalid(vector<string>& check, int row, int col,int n){
+     
+        for(int i=0; i < row; i++){
+            if(check[i][col] == '1'){
+               return false;
+            }
         }
-        cout << endl;
-    } else {
-        cout << "No common elements" << endl;
+        for(int i=row,j=col; i>=0 && j>=0; i--,j--){
+            if(check[i][j] == '1'){
+               return false;
+            }
+        }
+        for(int i=row,j=col; i>=0 && j<n; i--,j++){
+            if(check[i][j] == '1'){
+               return false;
+            }
+        }
+        return true;
     }
-
+private:
+    void dfscheck(vector<vector<string>>& ans, vector<string> &temp,int n, int row){
+        if(row == n){
+            ans.push_back(temp);
+            return;
+        }
+        for (int col = 0; col < n; col++) {
+            if (checkvalid(temp,row,col,n)) {
+                temp[row][col] = '1';
+                dfscheck(ans,temp,n,row+1);
+                temp[row][col] = '0'; 
+            }
+        }
+    }
+public:
+    vector<vector<string>> totalNQueens(int n) {
+        vector<vector<string>> ans;
+        vector<string> temp (n, string(n,'0'));
+        dfscheck(ans,temp,n,0);
+        return ans;
+    }
+};
+int main(){
+    int n;
+    cin>>n;
+    Solution s;
+    vector<vector<string>> ans = s.totalNQueens(n);
+    for(auto it : ans){
+        for(auto i : it){
+            cout<<i<<" "<<endl;
+        }
+        cout<<endl;
+    }
     return 0;
 }
-
-
-
-

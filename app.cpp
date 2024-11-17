@@ -575,25 +575,25 @@
 //     string s;
 //     cin>>s;
 //     string ans = "";
-//     vector<pair<int,int>> mapp;
-//     for(int i=0; i<s.size(); i+=2){
-//         if(isdigit(s[i+2])){
-//             string num ="";
-//             num += s[i+1];
-//             num += s[i+2];
-//             int temp = stoi(num);
-//             mapp.push_back({s[i],temp});
-//             i++;
-//         }
-//         else{
-//             mapp.push_back({s[i],s[i+1]-'0'});
-//         }
-//     }
-//     for(auto it : mapp){
-//         while(it.second--){
-//             ans += it.first;
-//         }
-//     }
+    // vector<pair<int,int>> mapp;
+    // for(int i=0; i<s.size(); i+=2){
+    //     if(isdigit(s[i+2])){
+    //         string num ="";
+    //         num += s[i+1];
+    //         num += s[i+2];
+    //         int temp = stoi(num);
+    //         mapp.push_back({s[i],temp});
+    //         i++;
+    //     }
+    //     else{
+    //         mapp.push_back({s[i],s[i+1]-'0'});
+    //     }
+    // }
+    // for(auto it : mapp){
+    //     while(it.second--){
+    //         ans += it.first;
+    //     }
+    // }
 //     cout<<ans;
 //     return 0;
 // }
