@@ -164,6 +164,81 @@
 
 
 
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// class Solution {
+// private:
+//     bool checkplain(int st, int e,string s){
+//         while(st < e){
+//             if(s[st] != s[e]) return false;
+//             st++; e--;
+//         }
+//         return true;
+//     }
+//     int dpcheck(int index, int n, string s, vector<int> &dp){
+//         if(index == n) return -1;
+
+//         if(dp[index] != -1) return dp[index];
+
+//         int ans = INT_MAX;
+//         for(int i=index; i<n; i++){
+//             if(checkplain(index,i,s)){
+//                 int temp = 1 + dpcheck(i+1,n,s,dp);
+//                 ans = min(ans,temp);
+//             }
+//         }
+//         return dp[index] = ans;
+//     }
+// public:
+//     int minCut(string s) {
+//         int n = s.size(); 
+//         vector<int> dp(n,-1);
+//         return dpcheck(0,n,s,dp);
+//     }
+// };
+
+// class Solution1{
+// private:
+//     bool checkplain(int st, int e,string s){
+//         while(st < e){
+//             if(s[st] != s[e]) return false;
+//             st++; e--;
+//         }
+//         return true;
+//     }
+// public:
+//     int minCut(string s) {
+//         int n = s.size(); 
+//         vector<int> dp(n+1,0);
+        
+//         dp[n] = 0;
+//         for(int i=n-1; i>=0; i--){
+//             int ans = INT_MAX;
+//             for(int j=i; j<n; j++){
+//                 if(checkplain(i,j,s)){
+//                     int temp = 1 + dp[j+1];
+//                     ans = min(ans,temp);
+//                 }
+//             }
+//             dp[i] = ans;
+//         }
+//         return dp[0]-1;
+//     }
+// };
+// int main(){
+//     string s;
+//     cout<<"ENTER THE STRING"<<endl;
+//     cin>>s;
+//     Solution1 obj;
+//     cout<<obj.minCut(s)<<endl;
+//     return 0;
+// }
+
+
+
+
+
 
 // #include<bits/stdc++.h>
 // using namespace std;
