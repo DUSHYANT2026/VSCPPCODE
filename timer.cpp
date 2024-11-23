@@ -1,13 +1,13 @@
-// #include<iostream>
-// using namespace std;
-// int total(int a, int b, int c ){
-// int sum=a+b+c;
-// return sum;}
-// int main(){
+#include<iostream>
+using namespace std;
+int total(int a, int b, int c ){
+int sum=a+b+c;
+return sum;}
+int main(){
 // int a,b,c;
 // cin>>a>>b>>c;
-// cout<<total(a,b,c)<<endl;
-// return 0;}
+cout<<total(10,20,30)<<endl;
+return 0;}
 
 // #include<iostream>
 // using namespace std;

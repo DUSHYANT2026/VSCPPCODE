@@ -632,13 +632,15 @@ vector<int> monotonicIncreasing(vector<int>& nums)
 }
 
 int main() {
-    vector<int> nums = {3, 1, 4, 1, 5, 9, 2, 6};
-    vector<int> result = monotonicIncreasing(nums);
-    cout << "Monotonic increasing stack: ";
-    for (int num : result) {
-        cout << num << " ";
-    }
-    cout << endl;
-
+    // vector<int> nums = {3, 1, 4, 1, 5, 9, 2, 6};
+    // vector<int> result = monotonicIncreasing(nums);
+    // cout << "Monotonic increasing stack: ";
+    // for (int num : result) {
+    //     cout << num << " ";
+    // }
+    // cout << endl;
+    int k = -4;
+    k = -k;
+    cout<<k<<endl;
     return 0;
 }
