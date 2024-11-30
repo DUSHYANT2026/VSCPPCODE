@@ -392,3 +392,4 @@
 //     cout<<obj.countSquares(nums);
 //     return 0;
 // }
+
