@@ -791,3 +791,51 @@
 // }
 //     return 0;
 // }
+
+
+
+
+
+
+
+
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// class Solution {
+// private:
+//     int dpcheck(int i, int target, vector<int> &nums, vector<vector<int>> &dp){
+//         if(target == 0){
+//             return 0;
+//         }
+//         if(i < 0) return INT_MIN;
+//         if(dp[i][target] != -1) return dp[i][target];
+//         int notcount = 0 + dpcheck(i-1,target,nums,dp);
+//         int count = INT_MIN;
+//         if(nums[i] <= target){
+//             count = 1 + dpcheck(i-1,target-nums[i],nums,dp);
+//         }
+//         return dp[i][target] = max(count,notcount);
+//     }
+// public:
+//     int lengthOfLongestSubsequence(vector<int>& nums, int target) {
+//         int n = nums.size();
+//         vector<vector<int>>dp (n , vector<int> (target+1,-1));
+//         int ans = dpcheck(n-1,target,nums,dp);
+//         return ans < 0 ? -1 : ans;
+//     }
+// };
+// int main(){
+//     int n;
+//     cin>>n;
+//     int x; vector<int> nums;
+//     for(int i=0; i<n; i++){
+//         cin>>x;
+//         nums.push_back(x);
+//     }
+//     int target;
+//     cin>>target;
+//     Solution s;
+//     cout<<s.lengthOfLongestSubsequence(nums,target);
+//     return 0;
+// }

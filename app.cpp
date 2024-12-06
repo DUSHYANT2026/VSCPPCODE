@@ -631,6 +631,22 @@ vector<int> monotonicIncreasing(vector<int>& nums)
     return result;
 }
 
+    int convert(string s){
+        int ans = 0;
+        string temp = "";
+        temp += s[0];
+        temp += s[1];
+
+        ans += stoi(temp) * 60;
+        temp = "";
+
+        temp += s[3];
+        temp += s[4];
+        ans += stoi(temp);
+
+        return ans;
+    }
+
 int main() {
     // vector<int> nums = {3, 1, 4, 1, 5, 9, 2, 6};
     // vector<int> result = monotonicIncreasing(nums);
@@ -639,8 +655,7 @@ int main() {
     //     cout << num << " ";
     // }
     // cout << endl;
-    int k = -4;
-    k = -k;
-    cout<<k<<endl;
+    string s = "22:15";
+    cout<<convert(s)<<endl;
     return 0;
 }

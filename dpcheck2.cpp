@@ -1,3 +1,49 @@
+// check that the subsequence of the t is exist in s
+
+// #include<bits/stdc++.h>
+// using namespace std;
+// class Solution {
+// private:
+//     bool dpcheck(string &s, int i, int j, string &t) {
+//         if (j < 0) return true;  
+//         if (i < 0) return false; 
+
+//         if (s[i] == t[j]) {
+//             return dpcheck(s, i - 1, j - 1, t); 
+//         }
+//         return dpcheck(s, i - 1, j, t);
+//     }
+
+// public:
+//     int numMatchingSubseq(string s, string t) {
+//         int count = 0;
+//         int n = s.size(); int m = t.size();
+
+//         // for (int i = 0; i < words.size(); i++) {
+//         //     string temp = words[i];
+//         //     int m = temp.size();
+//         //     if (dpcheck(s, n - 1, m - 1, temp)) {
+//         //         count++;
+//         //     }
+//         // }
+
+//         return dpcheck(s,n-1,m-1,t);
+//     }
+// };
+// int main() {
+//     int t;
+//     cin >> t;
+//     while (t--) {
+//         string str1, str2;
+//         cin >> str1 >> str2; 
+//         Solution1 ob;
+//         cout << ob.numMatchingSubseq(str1, str2) << endl;
+// cout << "~" << "\n";
+// }
+//     return 0;
+// }
+
+
 // #include <bits/stdc++.h>
 // const int mod = 1e9 + 7;
 // using namespace std;
