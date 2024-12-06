@@ -306,161 +306,245 @@
 
 
 
-#include <iostream>
-#include <bits/stdc++.h>
-using namespace std;
-class Math {
-public:
-    long factorial(long n) {
-        long ans = 1;
-        for (int i = 1; i <= n; i++) {
-            ans *= i;
-        }
-        return ans;
-    }
+// #include <iostream>
+// #include <bits/stdc++.h>
+// using namespace std;
+// class Math {
+// public:
+//     long factorial(long n) {
+//         long ans = 1;
+//         for (int i = 1; i <= n; i++) {
+//             ans *= i;
+//         }
+//         return ans;
+//     }
 
-    long biggestdigit(long n) {
-        long ans = INT_MIN;
-        while (n != 0) {
-            long x = n % 10;
-            ans = max(ans, x);
-            n = n / 10;
-        }
-        return ans;
-    }
+//     long biggestdigit(long n) {
+//         long ans = INT_MIN;
+//         while (n != 0) {
+//             long x = n % 10;
+//             ans = max(ans, x);
+//             n = n / 10;
+//         }
+//         return ans;
+//     }
 
-    long smallestdigit(long n) {
-        long ans = INT_MAX;
-        while (n != 0) {
-            long x = n % 10;
-            ans = min(ans, x);
-            n = n / 10;
-        }
-        return ans;
-    }
+//     long smallestdigit(long n) {
+//         long ans = INT_MAX;
+//         while (n != 0) {
+//             long x = n % 10;
+//             ans = min(ans, x);
+//             n = n / 10;
+//         }
+//         return ans;
+//     }
 
-    long countdigits(long n) {
-        int count = 0;
-        while (n != 0) {
-            long x = n % 10;
-            count++;
-            n = n / 10;
-        }
-        return count;
-    }
+//     long countdigits(long n) {
+//         int count = 0;
+//         while (n != 0) {
+//             long x = n % 10;
+//             count++;
+//             n = n / 10;
+//         }
+//         return count;
+//     }
 
-    long reversenum(long n) {
-        long ans = 0;
-        while (n != 0) {
-            ans = ans * 10 + n % 10;
-            n = n / 10;
-        }
-        return ans;
-    }
+//     long reversenum(long n) {
+//         long ans = 0;
+//         while (n != 0) {
+//             ans = ans * 10 + n % 10;
+//             n = n / 10;
+//         }
+//         return ans;
+//     }
 
-    bool checkpalind(long n) {
-        long x = n;
-        long ans = 0;
-        while (n != 0) {
-            ans = ans * 10 + n % 10;
-            n = n / 10;
-        }
-        return x == ans;
-    }
+//     bool checkpalind(long n) {
+//         long x = n;
+//         long ans = 0;
+//         while (n != 0) {
+//             ans = ans * 10 + n % 10;
+//             n = n / 10;
+//         }
+//         return x == ans;
+//     }
 
-    bool armstrong(long n) {
-        long original = n;
-        long x = n;
-        long ans = 0;
-        int count = 0;
-        while (x != 0) {
-            long num = x % 10;
-            count++;
-            x = x / 10;
-        }
-        while (n != 0) {
-            long y = n % 10;
-            ans += pow(y, count);
-            n = n / 10;
-        }
-        return original == ans;
-    }
+//     bool armstrong(long n) {
+//         long original = n;
+//         long x = n;
+//         long ans = 0;
+//         int count = 0;
+//         while (x != 0) {
+//             long num = x % 10;
+//             count++;
+//             x = x / 10;
+//         }
+//         while (n != 0) {
+//             long y = n % 10;
+//             ans += pow(y, count);
+//             n = n / 10;
+//         }
+//         return original == ans;
+//     }
 
-    bool primenumber(int n) {
-        if (n < 2) return false;
-        for (int i = 2; i <= sqrt(n); i++) {
-            if (n % i == 0) {
-                return false;
-            }
-        }
-        return true;
-    }
+//     bool primenumber(int n) {
+//         if (n < 2) return false;
+//         for (int i = 2; i <= sqrt(n); i++) {
+//             if (n % i == 0) {
+//                 return false;
+//             }
+//         }
+//         return true;
+//     }
 
-    void alldivisor(int n) {
-        for (int i = 1; i <= sqrt(n); i++) {
-            if (n % i == 0) {
-                cout << i << endl;
-            }
-            if (n / i != i) {
-                cout << n / i << endl;
-            }
-        }
-    }
+//     void alldivisor(int n) {
+//         for (int i = 1; i <= sqrt(n); i++) {
+//             if (n % i == 0) {
+//                 cout << i << endl;
+//             }
+//             if (n / i != i) {
+//                 cout << n / i << endl;
+//             }
+//         }
+//     }
 
-    int GCGHCD(int n, int m) {
-        int ans = 1;
-        for (int i = 1; i <= min(n, m); i++) {
-            if (n % i == 0 && m % i == 0) {
-                ans = i;
-            }
-        }
-        return ans;
-    }
+//     int GCGHCD(int n, int m) {
+//         int ans = 1;
+//         for (int i = 1; i <= min(n, m); i++) {
+//             if (n % i == 0 && m % i == 0) {
+//                 ans = i;
+//             }
+//         }
+//         return ans;
+//     }
 
-    int GCGHCD2(int n, int m) {
-        while (n > 0 && m > 0) {
-            if (n > m) {
-                n = n % m;
-            } else {
-                m = m % n;
-            }
-        }
-        if (n == 0) return m;
-        return n;
-    }
+//     int GCGHCD2(int n, int m) {
+//         while (n > 0 && m > 0) {
+//             if (n > m) {
+//                 n = n % m;
+//             } else {
+//                 m = m % n;
+//             }
+//         }
+//         if (n == 0) return m;
+//         return n;
+//     }
 
-    void primefactor(int n) {
-        for (int i = 2; i <= sqrt(n); i++) {
-            if (n % i == 0 && primenumber(i)) {
-                cout << i << endl;
-            }
-        }
-    }
-};
+//     void primefactor(int n) {
+//         for (int i = 2; i <= sqrt(n); i++) {
+//             if (n % i == 0 && primenumber(i)) {
+//                 cout << i << endl;
+//             }
+//         }
+//     }
+// };
 
-int main() {
-    cout<<"ENTER THE THREE NUMBER FOR THAT YOU WANT TO DO MATHS CALCULATIONS: "<<endl;
-    long x;
-    int y, z;
-    cin >> x >> y >> z;
+// int main() {
+//     cout<<"ENTER THE THREE NUMBER FOR THAT YOU WANT TO DO MATHS CALCULATIONS: "<<endl;
+//     long x;
+//     int y, z;
+//     cin >> x >> y >> z;
 
-    Math m;
+//     Math m;
 
 
-    //  cout << "THE FACTORAIL OF THE NUMBER THAT YOU ENTERS :  " << m.factorial(y) << endl;
-    // cout << "THE BIGGEST DIGIT  OF THE NUMBER THAT YOU ENTERS :  " << m.biggestdigit(x) << endl;
-    // cout << "THE SMALLEST DIGIT  OF THE NUMBER THAT YOU ENTERS :  " << m.smallestdigit(x) << endl;
-    // cout << "THE NUMBER OF  DIGIT  OF THE NUMBER THAT YOU ENTERS :  " << m.countdigits(x) << endl;
-    // cout << "THE REVERSE  OF THE NUMBER THAT YOU ENTERS :  " << m.reversenum(x) << endl;
-    // cout << "THE CHECK THE NUMBER THAT YOU ENTERS IS PALINDROME:   " << ((m.checkpalind(x)) ? "YES" : "NO") << endl;
-    // cout << "THE CHECK THE NUMBER THAT YOU ENTERS IS PRIME NUMBER:   " << ((m.primenumber(y)) ? "YES" : "NO") << endl;
-    // cout << "THE CHECK THE NUMBER THAT YOU ENTERS IS ARMSTRONG:   " << ((m.armstrong(y)) ? "YES" : "NO") << endl;
-    // cout << "THE CHECK THE NUMBER THAT YOU ENTERS IS ALL DIVISOR:  " << endl;
-    // m.alldivisor(y);
-    // cout << "THE GCD AND HIGHEST COMMON FACTOR OF GIVEN RANGE: " << m.GCGHCD(y, z) << endl;  //(WE CAN FIND ALL FACTOR ALSO)
-    // cout << "THE GCD AND HIGHEST COMMON FACTOR OF GIVEN RANGE: " << m.GCGHCD2(y, z) << endl;
-    // cout << "THE CHECK THE NUMBER THAT YOU ENTERS IS ALL PRIME FACTOR:  " << endl;
-    // m.primefactor(y);
+//     //  cout << "THE FACTORAIL OF THE NUMBER THAT YOU ENTERS :  " << m.factorial(y) << endl;
+//     // cout << "THE BIGGEST DIGIT  OF THE NUMBER THAT YOU ENTERS :  " << m.biggestdigit(x) << endl;
+//     // cout << "THE SMALLEST DIGIT  OF THE NUMBER THAT YOU ENTERS :  " << m.smallestdigit(x) << endl;
+//     // cout << "THE NUMBER OF  DIGIT  OF THE NUMBER THAT YOU ENTERS :  " << m.countdigits(x) << endl;
+//     // cout << "THE REVERSE  OF THE NUMBER THAT YOU ENTERS :  " << m.reversenum(x) << endl;
+//     // cout << "THE CHECK THE NUMBER THAT YOU ENTERS IS PALINDROME:   " << ((m.checkpalind(x)) ? "YES" : "NO") << endl;
+//     // cout << "THE CHECK THE NUMBER THAT YOU ENTERS IS PRIME NUMBER:   " << ((m.primenumber(y)) ? "YES" : "NO") << endl;
+//     // cout << "THE CHECK THE NUMBER THAT YOU ENTERS IS ARMSTRONG:   " << ((m.armstrong(y)) ? "YES" : "NO") << endl;
+//     // cout << "THE CHECK THE NUMBER THAT YOU ENTERS IS ALL DIVISOR:  " << endl;
+//     // m.alldivisor(y);
+//     // cout << "THE GCD AND HIGHEST COMMON FACTOR OF GIVEN RANGE: " << m.GCGHCD(y, z) << endl;  //(WE CAN FIND ALL FACTOR ALSO)
+//     // cout << "THE GCD AND HIGHEST COMMON FACTOR OF GIVEN RANGE: " << m.GCGHCD2(y, z) << endl;
+//     // cout << "THE CHECK THE NUMBER THAT YOU ENTERS IS ALL PRIME FACTOR:  " << endl;
+//     // m.primefactor(y);
 
-    return 0;
-}
+//     return 0;
+// }
+
+
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// class Solution{
+//     private:
+//      long long int merge_helper(long long int arr[], int low, int high, int mid) {
+//         long long int count = 0;
+//         int left_size = mid - low + 1;
+//         int right_size = high - mid;
+
+//         vector<long long int> left(left_size);
+//         vector<long long int> right(right_size);
+    
+//         for (int i = 0; i < left_size; i++) {
+//             left[i] = arr[low + i];
+//         }
+//         for (int i = 0; i < right_size; i++) {
+//             right[i] = arr[mid + 1 + i];
+//         }
+//         int i = 0;
+//         int j = 0;
+//         int k = low;
+//         while (i < left_size && j < right_size) {
+//             if (left[i] <= right[j]) {
+//                 arr[k] = left[i];
+//                 i++;
+//             } else {
+//                 arr[k] = right[j];
+//                 j++;
+//                 count += (left_size - i);
+//             }
+//             k++;
+//         }
+//         while (i < left_size) {
+//             arr[k] = left[i];
+//             i++;
+//             k++;
+//         }
+//         while (j < right_size) {
+//             arr[k] = right[j];
+//             j++;
+//             k++;
+//         }
+//         return count;
+//     }
+//     long long int merge_sort_helper(long long int arr[], int low, int high) {
+//         long long int count = 0;
+//         if (low < high) {
+//             int mid = low + (high - low) / 2;
+//             count += merge_sort_helper(arr, low, mid);
+//             count += merge_sort_helper(arr, mid + 1, high);
+//             count += merge_helper(arr, low, high, mid);
+//         }
+//         return count;
+//     }
+//   public:
+//     long long int inversionCount(long long arr[], long long N){
+//         return merge_sort_helper(arr, 0, N-1);
+//     }
+// };
+// int main() {
+//     int T;
+//     cin >> T;
+//     cin.ignore();
+//     while (T--) {
+//         int n;
+//         vector<int> a;
+//         string input;
+//         getline(cin, input);
+//         stringstream ss(input);
+//         int num;
+//         while (ss >> num)
+//             a.push_back(num);
+//         Solution obj;
+//         cout << obj.inversionCount(a) << endl;
+//         cout << "~" << endl;
+//     }
+//     return 0;
+// }
+
