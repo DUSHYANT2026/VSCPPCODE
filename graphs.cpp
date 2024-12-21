@@ -1,48 +1,48 @@
-#include <bits/stdc++.h>
-using namespace std;
-class Solution {
-  private:
-    bool dfscheck(int node,int vis[],int pathvis[],vector<int> adj[]){
-        vis[node]=1;
-        pathvis[node] =1;
-        for(auto it: adj[node]){
-            if(!vis[it]){
-                if(dfscheck(it,vis,pathvis,adj)==true) return true;
-            }
-            else if(pathvis[it]==true) return true;
-        }
-        pathvis[node]=0;
-        return false;
-    }
-  public:
-    bool isCyclicdirectredgraph(int V, vector<int> adj[]) {
-        int vis[V] ={0};
-        int pathvis[V]={0};
-        for(int i=0;i<V;i++){
-            if(!vis[i]){
-                if(dfscheck(i,vis,pathvis,adj)==true) return true;
-            }
-        }
-        return false;
-    }
-};
-int main() {
-    int t;
-    cin >> t;
-    while (t--) {
-        int V, E;
-        cin >> V >> E;
-        vector<int> adj[V];
-        for (int i = 0; i < E; i++) {
-            int u, v;
-            cin >> u >> v;
-            adj[u].push_back(v);
-        }
-        Solution obj;
-        cout << obj.isCyclicdirectredgraph(V, adj) << "\n";
-    }
-    return 0;
-}
+// #include <bits/stdc++.h>
+// using namespace std;
+// class Solution {
+//   private:
+//     bool dfscheck(int node,int vis[],int pathvis[],vector<int> adj[]){
+//         vis[node]=1;
+//         pathvis[node] =1;
+//         for(auto it: adj[node]){
+//             if(!vis[it]){
+//                 if(dfscheck(it,vis,pathvis,adj)==true) return true;
+//             }
+//             else if(pathvis[it]==true) return true;
+//         }
+//         pathvis[node]=0;
+//         return false;
+//     }
+//   public:
+//     bool isCyclicdirectredgraph(int V, vector<int> adj[]) {
+//         int vis[V] ={0};
+//         int pathvis[V]={0};
+//         for(int i=0;i<V;i++){
+//             if(!vis[i]){
+//                 if(dfscheck(i,vis,pathvis,adj)==true) return true;
+//             }
+//         }
+//         return false;
+//     }
+// };
+// int main() {
+//     int t;
+//     cin >> t;
+//     while (t--) {
+//         int V, E;
+//         cin >> V >> E;
+//         vector<int> adj[V];
+//         for (int i = 0; i < E; i++) {
+//             int u, v;
+//             cin >> u >> v;
+//             adj[u].push_back(v);
+//         }
+//         Solution obj;
+//         cout << obj.isCyclicdirectredgraph(V, adj) << "\n";
+//     }
+//     return 0;
+// }
 
 
 
@@ -751,6 +751,202 @@ int main() {
 //     }
 //     return 0;
 // }
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// class Solution {
+// public:
+//     int minimumTime(vector<vector<int>>& grid) {
+//         int n = grid.size(); int m = grid[0].size();
+//         vector<vector<int>> vis(n, vector<int> (m,0));
+
+//         if(grid[0][1] > 1 && grid[1][0] > 1) return -1;
+
+//         priority_queue<pair<int,pair<int,int>> , vector<pair<int,pair<int,int>>>,
+//         greater<pair<int,pair<int,int>>>> pq;
+
+//         pq.push({0,{0,0}});
+//         vector<int> drow = {1,0,-1,0};
+//         vector<int> dcol = {0,1,0,-1};
+
+//         while(!pq.empty()){
+//             auto it = pq.top(); pq.pop();
+//             int row = it.second.first;
+//             int col = it.second.second;
+//             int dis = it.first;
+
+//             if(row == n-1 && col == m-1) return dis;
+
+//             for(int i=0; i<4; i++){
+//                 int nrow = drow[i] + row;
+//                 int ncol = dcol[i] + col;
+//                 if(nrow >= 0 && ncol >= 0 && nrow < n && ncol < m &&
+//                 vis[nrow][ncol] != 1){
+//                     int check = (grid[nrow][ncol] - dis) %2 == 0) ? 1 : 0;
+//                     int newdis = max(grid[nrow][ncol] + check , dis+1);       
+//                     pq.push({newdis,{nrow,ncol}});
+//                     vis[nrow][ncol] = 1;
+//                 }
+//             }
+//         }
+//         return -1;
+//     }
+// };
+// int main() {
+//     int tc;
+//     cin >> tc;
+//     while (tc--) {
+//         int n,m; cin>>n>>m;
+//         vector<vector<int>> grid;
+//         for(int i=0; i<n; ++i){
+//             vector<int> temp;
+//             for(int j=0; j<m; ++j){
+//                 int x; cin>>x;
+//                 temp.push_back(x);
+//             }
+//             grid.push_back(temp);
+//         }  
+//         Solution obj;
+//         cout<<obj.minimumTime(grid)<<"\n";
+//     }
+//     return 0;
+// }
+
+
+
+
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// class Solution {
+// public:
+//     int minTimeToReach(vector<vector<int>>& grid) {
+//         int n = grid.size(); int m = grid[0].size();
+//         vector<vector<int>> distance(n, vector<int> (m,INT_MAX));
+//         distance[0][0] = 0;
+
+//         priority_queue<pair<int,pair<int,int>> , vector<pair<int,pair<int,int>>>,
+//         greater<pair<int,pair<int,int>>>> pq;
+
+//         pq.push({0,{0,0}});
+//         vector<int> drow = {1,0,-1,0};
+//         vector<int> dcol = {0,1,0,-1};
+
+//         while(!pq.empty()){
+//             auto it = pq.top(); pq.pop();
+//             int dis = it.first;
+//             int row = it.second.first; int col = it.second.second;
+
+//             if(row == n-1 && col == m-1) return dis;
+
+//             for(int i=0; i<4; i++){
+//                 int nrow = drow[i] + row;
+//                 int ncol = dcol[i] + col;
+//                 if(nrow >= 0 && ncol >= 0 && nrow < n && ncol < m){
+//                     int newdis = max(dis,grid[nrow][ncol]) + 1; 
+//                     if(newdis < distance[nrow][ncol]){
+//                         distance[nrow][ncol] = newdis;
+//                         pq.push({newdis,{nrow,ncol}});
+//                     } 
+//                 }
+//             }
+//         }
+//         return distance[n-1][m-1];
+//     }
+// };
+// int main() {
+//     int tc;
+//     cin >> tc;
+//     while (tc--) {
+//         int n,m; cin>>n>>m;
+//         vector<vector<int>> grid;
+//         for(int i=0; i<n; ++i){
+//             vector<int> temp;
+//             for(int j=0; j<m; ++j){
+//                 int x; cin>>x;
+//                 temp.push_back(x);
+//             }
+//             grid.push_back(temp);
+//         }  
+//         Solution obj;
+//         cout<<obj.minTimeToReach(grid)<<"\n";
+//     }
+//     return 0;
+// }
+
+
+
+
+
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// class Solution {
+// public:
+//     int minTimeToReach(vector<vector<int>>& grid) {
+//         int n = grid.size(); int m = grid[0].size();
+//         vector<vector<int>> distance(n, vector<int> (m,INT_MAX));
+//         distance[0][0] = 0;
+
+//         priority_queue<pair<int,pair<int,int>> , vector<pair<int,pair<int,int>>>,
+//         greater<pair<int,pair<int,int>>>> pq;
+
+//         pq.push({0,{0,0}});
+//         vector<int> drow = {1,0,-1,0};
+//         vector<int> dcol = {0,1,0,-1};
+
+//         while(!pq.empty()){
+//             auto it = pq.top(); pq.pop();
+//             int dis = it.first;
+//             int row = it.second.first; int col = it.second.second;
+
+//             if(row == n-1 && col == m-1) return dis;
+
+//             for(int i=0; i<4; i++){
+//                 int nrow = drow[i] + row;
+//                 int ncol = dcol[i] + col;
+//                 if(nrow >= 0 && ncol >= 0 && nrow < n && ncol < m){
+//                     int newmove = ((nrow+ncol)%2 == 0) ? 2:1; 
+//                     int newdis = max(dis,grid[nrow][ncol])+newmove; 
+//                     if(newdis < distance[nrow][ncol]){
+//                         distance[nrow][ncol] = newdis;
+//                         pq.push({newdis,{nrow,ncol}});
+//                     } 
+//                 }
+//             }
+//         }
+//         return distance[n-1][m-1];
+//     }
+// };
+// int main() {
+//     int tc;
+//     cin >> tc;
+//     while (tc--) {
+//         int n,m; cin>>n>>m;
+//         vector<vector<int>> grid;
+//         for(int i=0; i<n; ++i){
+//             vector<int> temp;
+//             for(int j=0; j<m; ++j){
+//                 int x; cin>>x;
+//                 temp.push_back(x);
+//             }
+//             grid.push_back(temp);
+//         }  
+//         Solution obj;
+//         cout<<obj.minTimeToReach(grid)<<"\n";
+//     }
+//     return 0;
+// }
+
+
+
+
 
 
 
@@ -1735,95 +1931,95 @@ int main() {
 
 
 
-#include<bits/stdc++.h>
-using namespace std;
-class Solution
-{
-    private:
-    void dfscheck(vector<vector<int>> &graph , vector<vector<int>> &vis,int row, int col,
-    int & ans, int sum ,int n, int m){
+// #include<bits/stdc++.h>
+// using namespace std;
+// class Solution
+// {
+//     private:
+//     void dfscheck(vector<vector<int>> &graph , vector<vector<int>> &vis,int row, int col,
+//     int & ans, int sum ,int n, int m){
         
-        if(row == n-1 && col == m-1){
-            ans = min(ans,sum);
-            return;
-        }
-        vector<int> delrow = {+1,0,-1,0};
-        vector<int> delcol = {0,+1,0,-1};
+//         if(row == n-1 && col == m-1){
+//             ans = min(ans,sum);
+//             return;
+//         }
+//         vector<int> delrow = {+1,0,-1,0};
+//         vector<int> delcol = {0,+1,0,-1};
         
-        vis[row][col] = 1;
-        for(int i=0; i<4; i++){
-            int nrow = delrow[i] + row;
-            int ncol = delcol[i] + col;
+//         vis[row][col] = 1;
+//         for(int i=0; i<4; i++){
+//             int nrow = delrow[i] + row;
+//             int ncol = delcol[i] + col;
             
-            if(nrow >= 0 && nrow < n && ncol < m && ncol >= 0 && vis[nrow][ncol] != 1){
-                dfscheck(graph,vis,nrow,ncol,ans,sum + graph[nrow][ncol],n,m);
-            }
-        }
-        vis[row][col] = 0;
-    }
-    public:
-    int minimumCostPath(vector<vector<int>>& grid) 
-    {
+//             if(nrow >= 0 && nrow < n && ncol < m && ncol >= 0 && vis[nrow][ncol] != 1){
+//                 dfscheck(graph,vis,nrow,ncol,ans,sum + graph[nrow][ncol],n,m);
+//             }
+//         }
+//         vis[row][col] = 0;
+//     }
+//     public:
+//     int minimumCostPath(vector<vector<int>>& grid) 
+//     {
         
-        // SOLVING USING DFS BUT TIME LIMIT (USE BFS AND DISKASTRA) 
-        // int n = grid.size(); int m = grid[0].size();
-        // int ans = INT_MAX;
-        // int sum = grid[0][0];
-        // vector<vector<int>> vis(n , vector<int> (m,0));
-        // dfscheck(grid,vis,0,0,ans,sum,n,m);
-        // return ans;
+//         // SOLVING USING DFS BUT TIME LIMIT (USE BFS AND DISKASTRA) 
+//         // int n = grid.size(); int m = grid[0].size();
+//         // int ans = INT_MAX;
+//         // int sum = grid[0][0];
+//         // vector<vector<int>> vis(n , vector<int> (m,0));
+//         // dfscheck(grid,vis,0,0,ans,sum,n,m);
+//         // return ans;
         
         
-        // SOLVING USING BFS (DISKATRA (MIN - HEAP))
-        int n = grid.size(); int m = grid[0].size();
-        vector<vector<int>> vis(n , vector<int> (m,0));  
-        vis[0][0] = 1;
-        vector<vector<int>> distance(n , vector<int> (m,INT_MAX));
-        distance[0][0] = grid[0][0];
-        priority_queue<pair<int,pair<int,int>>, vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>> pq;
+//         // SOLVING USING BFS (DISKATRA (MIN - HEAP))
+//         int n = grid.size(); int m = grid[0].size();
+//         vector<vector<int>> vis(n , vector<int> (m,0));  
+//         vis[0][0] = 1;
+//         vector<vector<int>> distance(n , vector<int> (m,INT_MAX));
+//         distance[0][0] = grid[0][0];
+//         priority_queue<pair<int,pair<int,int>>, vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>> pq;
         
-        pq.push({grid[0][0],{0,0}});
+//         pq.push({grid[0][0],{0,0}});
         
-        while(!pq.empty()){
-            auto it = pq.top(); pq.pop();
-            int sum = it.first;
-            int row = it.second.first;
-            int col = it.second.second;
+//         while(!pq.empty()){
+//             auto it = pq.top(); pq.pop();
+//             int sum = it.first;
+//             int row = it.second.first;
+//             int col = it.second.second;
             
-            vector<int> delrow = {+1,0,-1,0};
-            vector<int> delcol = {0,+1,0,-1};
+//             vector<int> delrow = {+1,0,-1,0};
+//             vector<int> delcol = {0,+1,0,-1};
             
-            for(int i=0; i<4; i++){
-                int nrow = delrow[i] + row;
-                int ncol = delcol[i] + col;
-                if(nrow < n && ncol < m && nrow >=0 && ncol >= 0 && vis[nrow][ncol] != 1){
-                    vis[nrow][ncol] = 1;
-                    int newsum  = sum + grid[nrow][ncol];
-                    if(distance[nrow][ncol] > newsum){
-                        distance[nrow][ncol] = newsum;
-                        pq.push({newsum,{nrow,ncol}});
-                    }
-                }
-            }
-        }
-        return distance[n-1][m-1];
-    }
-};
-int main(){
-	int tc;
-	cin >> tc;
-	while(tc--){
-		int n;
-		cin >> n;
-		vector<vector<int>>grid(n, vector<int>(n, -1));
-		for(int i = 0; i < n; i++){
-			for(int j = 0; j < n; j++){
-				cin >> grid[i][j];
-			}
-		}
-		Solution obj;
-		int ans = obj.minimumCostPath(grid);
-		cout << ans << "\n";
-	}
-	return 0;
-}
+//             for(int i=0; i<4; i++){
+//                 int nrow = delrow[i] + row;
+//                 int ncol = delcol[i] + col;
+//                 if(nrow < n && ncol < m && nrow >=0 && ncol >= 0 && vis[nrow][ncol] != 1){
+//                     vis[nrow][ncol] = 1;
+//                     int newsum  = sum + grid[nrow][ncol];
+//                     if(distance[nrow][ncol] > newsum){
+//                         distance[nrow][ncol] = newsum;
+//                         pq.push({newsum,{nrow,ncol}});
+//                     }
+//                 }
+//             }
+//         }
+//         return distance[n-1][m-1];
+//     }
+// };
+// int main(){
+// 	int tc;
+// 	cin >> tc;
+// 	while(tc--){
+// 		int n;
+// 		cin >> n;
+// 		vector<vector<int>>grid(n, vector<int>(n, -1));
+// 		for(int i = 0; i < n; i++){
+// 			for(int j = 0; j < n; j++){
+// 				cin >> grid[i][j];
+// 			}
+// 		}
+// 		Solution obj;
+// 		int ans = obj.minimumCostPath(grid);
+// 		cout << ans << "\n";
+// 	}
+// 	return 0;
+// }
