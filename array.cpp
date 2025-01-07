@@ -1108,4 +1108,139 @@
 
 
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// class Solution {
+//   public:
+//     int countTriplets(vector<int> &arr, int target) {
+//         int ans = 0;
+//         int n = arr.size();
+//         sort(arr.begin(), arr.end());
 
+//         for (int i = 0; i < n - 2; i++) {
+//             int j = i + 1, k = n - 1;
+//             while (j < k) {
+//                 int sum = arr[i] + arr[j] + arr[k];
+//                 if (sum == target) {
+//                     if (arr[j] == arr[k]) {
+//                         int count = k - j + 1;
+//                         ans += (count * (count - 1)) / 2;
+//                         break;
+//                     } else {
+//                         int cnt1 = 1, cnt2 = 1;
+//                         while (j + 1 < k && arr[j] == arr[j + 1]) {
+//                             cnt1++;
+//                             j++;
+//                         }
+//                         while (k - 1 > j && arr[k] == arr[k - 1]) {
+//                             cnt2++;
+//                             k--;
+//                         }
+//                         ans += cnt1 * cnt2;
+//                         j++;
+//                         k--;
+//                     }
+//                 } else if (sum < target) {
+//                     j++;
+//                 } else {
+//                     k--;
+//                 }
+//             }
+//         }
+//         return ans;
+//     }
+// };
+// vector<int> lineArray() {
+//     string line;
+//     getline(cin, line);
+//     stringstream ss(line);
+//     vector<int> arr;
+//     int num;
+//     while (ss >> num) {
+//         arr.push_back(num);
+//     }
+//     return arr;
+// }
+// int main() {
+//     int t;
+//     cin >> t;
+//     cin.ignore();
+//     while (t--) {
+//         vector<int> arr = lineArray();
+//         int target;
+//         cin >> target;
+//         cin.ignore();
+
+//         Solution ob;
+//         int res = ob.countTriplets(arr, target);
+//         cout << res << endl;
+//         cout << "~" << endl;
+//     }
+// }
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// class Solution {
+//   public:
+//     int countPairs(vector<int> &arr, int target) {
+//         int res = 0;
+//         // for(int i=0; i<arr.size()-1; i++){
+//         //     for(int j=i+1; j<arr.size(); j++){
+//         //         if(arr[i] + arr[j] == target) count++;
+//         //     }
+//         // }
+//         // return count;
+//         int i=0; int j=arr.size()-1;
+//         while(i < j){
+//             if(arr[i] + arr[j] < target){
+//                 i++;
+//             }else if(arr[i] + arr[j] > target){
+//                 j--;
+//             }
+//             else{
+//                 int cnt1 = 0, cnt2 = 0;
+//                 int ele1 = arr[i], ele2 = arr[j];
+//                 while(i <= j and arr[i] == ele1) {
+//                       i++;
+//                       cnt1++;
+//                 }
+//                 while(i <= j and arr[j] == ele2) {
+//                       j--;
+//                       cnt2++;
+//                 }
+//                 if(ele1 == ele2) 
+//                     res += (cnt1 * (cnt1 - 1))/2;
+//                 else 
+//                     res += (cnt1 * cnt2);
+//             }
+//         }
+//         return res;
+//     }
+// };
+// int main() {
+
+//     int t;
+//     cin >> t;
+//     cin.ignore();
+//     while (t--) {
+//         vector<int> arr;
+//         int target;
+//         string input;
+//         getline(cin, input);
+
+//         stringstream ss(input);
+//         int number;
+//         while (ss >> number) {
+//             arr.push_back(number);
+//         }
+//         cin >> target;
+//         cin.ignore();
+//         Solution obj;
+//         cout << obj.countPairs(arr, target) << endl;
+//         cout << "~\n";
+//     }
+
+//     return 0;
+// }
