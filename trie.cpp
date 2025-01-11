@@ -206,45 +206,45 @@
 // }
 
 
-#include<bits/stdc++.h>
-using namespace std;
-class node{
-    public:
-    node* link[26];
+// #include<bits/stdc++.h>
+// using namespace std;
+// class node{
+//     public:
+//     node* link[26];
     
-    bool containkey(char ch){
-        return (link[ch -'a'] != NULL);
-    }
-    void put(char ch,node * root){
-        link[ch-'a'] = root;
-    }
-    node* getnext(char ch){
-        return link[ch-'a'];
-    }
-};
-int countDistinctSubstrings(string word){
-    node* root = new node();
-    int count = 0;
+//     bool containkey(char ch){
+//         return (link[ch -'a'] != NULL);
+//     }
+//     void put(char ch,node * root){
+//         link[ch-'a'] = root;
+//     }
+//     node* getnext(char ch){
+//         return link[ch-'a'];
+//     }
+// };
+// int countDistinctSubstrings(string word){
+//     node* root = new node();
+//     int count = 0;
 
-    for(int i=0;i<word.size();i++){
-        node * temp = root;
-        for(int j=i;j<word.size();j++){
-            if(!temp->containkey(word[j])){
-                temp->put(word[j],new node());
-                count++;
-            }
-             temp = temp->getnext(word[j]);
-        }
-    }
-    return count;
-}
-int main() {
-  string s1 = "ababa";
-  cout << "Total number of distinct substrings : " << countDistinctSubstrings(s1);
-  cout << "\n";
+//     for(int i=0;i<word.size();i++){
+//         node * temp = root;
+//         for(int j=i;j<word.size();j++){
+//             if(!temp->containkey(word[j])){
+//                 temp->put(word[j],new node());
+//                 count++;
+//             }
+//              temp = temp->getnext(word[j]);
+//         }
+//     }
+//     return count;
+// }
+// int main() {
+//   string s1 = "ababa";
+//   cout << "Total number of distinct substrings : " << countDistinctSubstrings(s1);
+//   cout << "\n";
 
-  string s2 = "ccfdf";
-  cout << "Total number of distinct substrings : " << countDistinctSubstrings(s2);
+//   string s2 = "ccfdf";
+//   cout << "Total number of distinct substrings : " << countDistinctSubstrings(s2);
 
-  return 0;
-}
+//   return 0;
+// }
