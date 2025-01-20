@@ -817,6 +817,47 @@
 
 
 
+class Solution {
+public:
+    int minCost(vector<vector<int>>& grid) {
+        int n = grid.size(); int m = grid[0].size();
+        vector<vector<int>> distance(n, vector<int> (m, INT_MAX));
+        vector<vector<int>> vis(n,vector<int>(m,0));
+        distance[0][0] = 0;
+        priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,
+        greater<pair<int,pair<int,int>>>> pq;
+        pq.push({0,{0,0}});
+
+        vector<int> delrow = {0,0,1,-1};
+        vector<int> delcol = {+1,-1,0,0};
+
+        while(!pq.empty()){
+            auto it = pq.top(); pq.pop();
+            int row = it.second.first;
+            int col = it.second.second;
+            int add = it.first;
+            if(vis[row][col] == 1) continue;
+            vis[row][col] = 1;
+
+            if(row == n-1 && col == m-1) return add;
+            for(int i=0; i<4; i++){
+                int nrow = row + delrow[i];
+                int ncol = col + delcol[i];
+                if(nrow >= 0 && ncol >= 0 && nrow < n && ncol < m){
+                    int newadd = add + ((i + 1 != grid[row][col]) ? 1 : 0);
+                    if(distance[nrow][ncol] > newadd ){
+                        distance[nrow][ncol] = newadd;
+                        pq.push({newadd,{nrow,ncol}});
+                    }
+                }
+            }
+        }
+        return distance[n-1][m-1];
+    }
+};
+
+
+
 
 
 
