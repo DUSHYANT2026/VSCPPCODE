@@ -29,7 +29,11 @@
 //         return false;
 //     }
 // };
+   
 
+
+
+   
 // class Solution1{ 
 // private:
 //     bool dpcheck(int index,vector<int> &nums,int sum,vector<vector<int>> &dp){                     //  using memoization top-down  
