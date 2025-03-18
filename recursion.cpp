@@ -1,30 +1,30 @@
-// #include<iostream>
-// #include<vector>
-// using namespace std;
-// int factorial(int n){
-// if(n<=1)
-// return n;
-// return (n*factorial(n-1));}
-// int sumofnaturalnumber(int n){
-// if(n<=1)
-// return n;
-// return (n+sumofnaturalnumber(n-1));}
-// int fabonacci(int n){
-// if(n<=1) return n;
-// return fabonacci(n-1)+fabonacci(n-2);}
-// int main(){
-// int n;
-// cout<<"ENTER THE NUMBER:"<<endl;
-// cin>>n;
-// cout<<factorial(n)<<endl;
-// cout<<sumofnaturalnumber(n)<<endl;
-// cout<<fabonacci(n)<<endl;
-// vector<int> ans;
-// for(int i=1; i<=n; i++){
-//     ans.push_back(fabonacci(i));
-// }
-// for(auto it : ans) cout<<it<<endl;
-// return 0;}
+#include<iostream>
+#include<vector>
+using namespace std;
+int factorial(int n){
+if(n<=1)
+return n;
+return (n*factorial(n-1));}
+int sumofnaturalnumber(int n){
+if(n<=1)
+return n;
+return (n+sumofnaturalnumber(n-1));}
+int fabonacci(int n){
+if(n<=1) return n;
+return fabonacci(n-1)+fabonacci(n-2);}
+int main(){
+int n;
+cout<<"ENTER THE NUMBER:"<<endl;
+cin>>n;
+cout<<factorial(n)<<endl;
+cout<<sumofnaturalnumber(n)<<endl;
+cout<<fabonacci(n)<<endl;
+vector<int> ans;
+for(int i=1; i<=n; i++){
+    ans.push_back(fabonacci(i));
+}
+for(auto it : ans) cout<<it<<endl;
+return 0;}
 
 
 
