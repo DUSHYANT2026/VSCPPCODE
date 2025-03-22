@@ -1,10 +1,54 @@
-print("Enter the number up to you wand addition: ")
-n=int(input())
-sum=0
-for i in range(0,n+1):
- sum=sum+i
-print('TOTAL SUM UP TO NUMBER THAT YOU ENTER')
-print(sum)
+# import requests
+# import os
+
+# url = "file:///C:/Users/dushy/Documents/NOTES/dp.txt"
+
+# try:
+#     response = requests.get(url, stream=True)
+#     response.raise_for_status()  # Raise an error for bad responses (4xx, 5xx)
+
+#     # Extract filename from URL
+#     local_filename = os.path.basename(url)
+
+#     # Save the file in chunks
+#     with open(local_filename, "wb") as file:
+#         for chunk in response.iter_content(chunk_size=8192):
+#             file.write(chunk)
+
+#     print(f"File downloaded successfully as {local_filename}")
+
+# except requests.exceptions.RequestException as e:
+#     print(f"Error downloading file: {e}")
+
+
+
+
+file_path = "C:/Users/dushy/Documents/NOTES/dp.txt"
+try:
+    with open(file_path, 'r') as file:
+        content = file.read()
+    print(content)
+except FileNotFoundError:
+    print(f"File not found: {file_path}")
+except Exception as e:
+    print(f"Error reading file: {e}")
+
+
+
+
+
+
+
+
+
+
+# print("Enter the number up to you wand addition: ")
+# n=int(input())
+# sum=0
+# for i in range(0,n+1):
+#  sum=sum+i
+# print('TOTAL SUM UP TO NUMBER THAT YOU ENTER')
+# print(sum)
 
 # print("Enter the number up to you wand addition: ")
 # n=int(input())

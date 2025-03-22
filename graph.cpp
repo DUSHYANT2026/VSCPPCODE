@@ -2172,3 +2172,97 @@
 //     }
 //     return 0;
 // }
+
+
+
+
+
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// class Matrix {
+//   public:
+//     template <class T>
+//     static void input(vector<vector<T>> &A, int n, int m) {
+//         for (int i = 0; i < n; i++) {
+//             for (int j = 0; j < m; j++) {
+//                 scanf("%d ", &A[i][j]);
+//             }
+//         }
+//     }
+
+//     template <class T>
+//     static void print(vector<vector<T>> &A) {
+//         for (int i = 0; i < A.size(); i++) {
+//             for (int j = 0; j < A[i].size(); j++) {
+//                 cout << A[i][j] << " ";
+//             }
+//             cout << endl;
+//         }
+//     }
+// };
+
+// class Solution {
+//   private:
+//     void dfscheck(int node, int v, vector<int> &nums,vector<int> &vis, vector<int> graph[]){
+//         nums.push_back(node);
+//         vis[node]++;
+        
+//         for(auto it : graph[node]){
+//             if(!vis[it]){
+//                 dfscheck(it,v,nums,vis,graph);
+//             }
+//         }
+//     }
+//   public:
+//     vector<vector<int>> connectedcomponents(int v, vector<vector<int>>& edges) {
+//         vector<vector<int>> ans;
+//         vector<int> graph[v];
+//         for(auto it : edges){
+//             graph[it[0]].push_back(it[1]);
+//             graph[it[1]].push_back(it[0]);
+//         }
+//         vector<int> vis(v,0);
+//         for(int i=0; i<v; i++){
+//             vector<int> nums;
+//             if(!vis[i]){
+//                dfscheck(i,v,nums,vis,graph);
+//                sort(nums.begin(),nums.end());
+//                ans.push_back(nums);
+//                nums.clear();
+//             }
+//         }
+//         return ans;
+//     }
+// };
+// int main() {
+//     int t;
+//     scanf("%d ", &t);
+//     while (t--) {
+
+//         int e;
+//         scanf("%d", &e);
+
+//         int v;
+//         scanf("%d", &v);
+
+//         vector<vector<int>> edges(e, vector<int>(2));
+//         Matrix::input(edges, e, 2);
+
+//         Solution obj;
+//         vector<vector<int>> res = obj.connectedcomponents(v, edges);
+//         sort(res.begin(), res.end());
+//         for (const auto &component : res) {
+//             for (int node : component) {
+//                 cout << node << " ";
+//             }
+//             cout << endl;
+//         }
+
+//         cout << "~"
+//              << "\n";
+//     }
+// }
+
