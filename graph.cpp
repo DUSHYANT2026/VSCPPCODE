@@ -2266,3 +2266,96 @@
 //     }
 // }
 
+
+
+
+
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// class Matrix {
+//   public:
+//     template <class T>
+//     static void input(vector<vector<T>> &A, int n, int m) {
+//         for (int i = 0; i < n; i++) {
+//             for (int j = 0; j < m; j++) {
+//                 scanf("%d ", &A[i][j]);
+//             }
+//         }
+//     }
+
+//     template <class T>
+//     static void print(vector<vector<T>> &A) {
+//         for (int i = 0; i < A.size(); i++) {
+//             for (int j = 0; j < A[i].size(); j++) {
+//                 cout << A[i][j] << " ";
+//             }
+//             cout << endl;
+//         }
+//     }
+// };
+
+// class Solution {
+// private:
+//     void dfscheck(int i, int& node, int& edge, vector<int> &vis, vector<int> graph[]) {
+//         node++;
+//         vis[i] = 1;
+//         for (auto it : graph[i]) {
+//             edge++; 
+//             if (!vis[it]) {
+//                 dfscheck(it, node, edge, vis, graph);
+//             }
+//         }
+//     }
+
+// public:
+//     int findNumberOfGoodComponent(int e, int n, vector<vector<int>> &grid) {
+//         int ans = 0;
+//         vector<int> vis(n + 1, 0);
+//         vector<int> graph[n + 1];
+
+//         for (auto it : grid) {
+//             graph[it[0]].push_back(it[1]);
+//             graph[it[1]].push_back(it[0]);
+//         }
+
+//         for (int i = 1; i <= n; i++) {
+//             if (!vis[i]) {
+//                 int node = 0, edge = 0;
+//                 dfscheck(i, node, edge, vis, graph);
+//                 edge /= 2;
+//                 if (node * (node - 1) / 2 == edge) ans++; 
+//             }
+//         }
+
+//         return ans;
+//     }
+// };
+
+
+// int main() {
+//     int t;
+//     scanf("%d ", &t);
+//     while (t--) {
+
+//         int e;
+//         scanf("%d", &e);
+
+//         int v;
+//         scanf("%d", &v);
+
+//         vector<vector<int>> edges(e, vector<int>(2));
+//         Matrix::input(edges, e, 2);
+
+//         Solution obj;
+//         int res = obj.findNumberOfGoodComponent(e, v, edges);
+
+//         cout << res << endl;
+    
+// cout << "~" << "\n";
+// }
+// }
+
