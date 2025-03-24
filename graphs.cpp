@@ -879,44 +879,44 @@
 
 
 
-class Solution {
-public:
-    int minCost(vector<vector<int>>& grid) {
-        int n = grid.size(); int m = grid[0].size();
-        vector<vector<int>> distance(n, vector<int> (m, INT_MAX));
-        vector<vector<int>> vis(n,vector<int>(m,0));
-        distance[0][0] = 0;
-        priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,
-        greater<pair<int,pair<int,int>>>> pq;
-        pq.push({0,{0,0}});
+// class Solution {
+// public:
+//     int minCost(vector<vector<int>>& grid) {
+//         int n = grid.size(); int m = grid[0].size();
+//         vector<vector<int>> distance(n, vector<int> (m, INT_MAX));
+//         vector<vector<int>> vis(n,vector<int>(m,0));
+//         distance[0][0] = 0;
+//         priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,
+//         greater<pair<int,pair<int,int>>>> pq;
+//         pq.push({0,{0,0}});
 
-        vector<int> delrow = {0,0,1,-1};
-        vector<int> delcol = {+1,-1,0,0};
+//         vector<int> delrow = {0,0,1,-1};
+//         vector<int> delcol = {+1,-1,0,0};
 
-        while(!pq.empty()){
-            auto it = pq.top(); pq.pop();
-            int row = it.second.first;
-            int col = it.second.second;
-            int add = it.first;
-            if(vis[row][col] == 1) continue;
-            vis[row][col] = 1;
+//         while(!pq.empty()){
+//             auto it = pq.top(); pq.pop();
+//             int row = it.second.first;
+//             int col = it.second.second;
+//             int add = it.first;
+//             if(vis[row][col] == 1) continue;
+//             vis[row][col] = 1;
 
-            if(row == n-1 && col == m-1) return add;
-            for(int i=0; i<4; i++){
-                int nrow = row + delrow[i];
-                int ncol = col + delcol[i];
-                if(nrow >= 0 && ncol >= 0 && nrow < n && ncol < m){
-                    int newadd = add + ((i + 1 != grid[row][col]) ? 1 : 0);
-                    if(distance[nrow][ncol] > newadd ){
-                        distance[nrow][ncol] = newadd;
-                        pq.push({newadd,{nrow,ncol}});
-                    }
-                }
-            }
-        }
-        return distance[n-1][m-1];
-    }
-};
+//             if(row == n-1 && col == m-1) return add;
+//             for(int i=0; i<4; i++){
+//                 int nrow = row + delrow[i];
+//                 int ncol = col + delcol[i];
+//                 if(nrow >= 0 && ncol >= 0 && nrow < n && ncol < m){
+//                     int newadd = add + ((i + 1 != grid[row][col]) ? 1 : 0);
+//                     if(distance[nrow][ncol] > newadd ){
+//                         distance[nrow][ncol] = newadd;
+//                         pq.push({newadd,{nrow,ncol}});
+//                     }
+//                 }
+//             }
+//         }
+//         return distance[n-1][m-1];
+//     }
+// };
 
 
 
@@ -2125,4 +2125,85 @@ public:
 // 		cout << ans << "\n";
 // 	}
 // 	return 0;
+// }
+
+
+
+
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// class Solution {
+//   public:
+//     int shotestPath(vector<vector<int>> grid, int n, int m, int k) {
+//         vector<int> drow = {-1, 0, 1, 0};
+//         vector<int> dcol = {0, 1, 0, -1};
+//         vector<vector<vector<bool>>> visited(n, vector<vector<bool>>(m, vector<bool>(k + 1, false)));
+        
+//         queue<vector<int>> q;
+//         q.push({0, k, 0, 0});
+//         visited[0][0][k] = true;
+        
+//         while (!q.empty()) {
+//             auto current = q.front();
+//             q.pop();
+//             int steps = current[0];
+//             int remaining_k = current[1];
+//             int row = current[2];
+//             int col = current[3];
+//             if (row == n - 1 && col == m - 1) {
+//                 return steps;
+//             }
+            
+//             for (int i = 0; i < 4; i++) {
+//                 int nrow = row + drow[i];
+//                 int ncol = col + dcol[i];
+                
+//                 if (nrow >= 0 && nrow < n && ncol >= 0 && ncol < m) {
+//                     if (grid[nrow][ncol] == 0) {
+//                         if (!visited[nrow][ncol][remaining_k]) {
+//                             visited[nrow][ncol][remaining_k] = true;
+//                             q.push({steps + 1, remaining_k, nrow, ncol});
+//                         }
+//                     } else if (remaining_k > 0) {
+//                         if (!visited[nrow][ncol][remaining_k - 1]) {
+//                             visited[nrow][ncol][remaining_k - 1] = true;
+//                             q.push({steps + 1, remaining_k - 1, nrow, ncol});
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//         return -1;
+//     }
+// };
+// int main() {
+//     int t;
+//     cin >> t;
+//     while (t--) {
+//         int n, m, k, x;
+        
+//         cin>>n>>m>>k;
+//         vector<vector<int>> mat;
+    
+//         for(int i=0; i<n; i++)
+//         {
+//             vector<int> row;
+//             for(int j=0; j<m; j++)
+//             {
+//                 cin>>x;
+//                 row.push_back(x);
+//             }
+//             mat.push_back(row);
+//         }
+
+//         Solution ob;
+//         cout<<ob.shotestPath(mat,n,m,k);
+//         cout<<"\n";
+    
+// cout << "~" << "\n";
+// }
+//     return 0;
 // }
