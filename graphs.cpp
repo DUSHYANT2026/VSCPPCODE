@@ -398,6 +398,68 @@
 //     return 0;
 // }
 
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// class Solution {
+//   public:
+//     int shortestDistance(int n, int m, vector<vector<int>> grid, int x, int y) {
+        
+//         vector<vector<int>> vis(n, vector<int> (m,0));
+//         vector<vector<int>> dist(n,vector<int> (m,INT_MAX));
+//         priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,
+//         greater<pair<int,pair<int,int>>>> pq;
+//         pq.push({0,{0,0}});
+//         if(grid[0][0] != 1) return -1;
+//         if(x == 0 && y == 0) return 0;
+        
+//         while(!pq.empty()){
+//             auto it = pq.top(); pq.pop();
+//             int row = it.second.first;
+//             int col = it.second.second;
+//             int dis = it.first;
+//             vis[row][col] = 1;
+//             vector<int> drow = {+1,0,-1,0};
+//             vector<int> dcol = {0,+1,0,-1};
+//             for(int i=0; i<4; i++){
+//                 int nrow = row + drow[i];
+//                 int ncol = col + dcol[i];
+//                 if(nrow >= 0 && ncol >= 0 && nrow < n && ncol <m && vis[nrow][ncol] == 0 && grid[nrow][ncol] == 1){
+//                     if(dist[nrow][ncol] > dis + 1){
+//                         dist[nrow][ncol] = dis+1;
+//                         pq.push({dist[nrow][ncol],{nrow,ncol}});
+//                     }
+//                 }
+//             }
+//         }
+//         if(dist[x][y] == INT_MAX) return -1;
+//         return dist[x][y];
+//     }
+// };
+// int main() {
+//     int t;
+//     cin >> t;
+//     while (t--) {
+//         int N, M, x, y;
+//         cin >> N >> M;
+//         vector<vector<int>> v(N, vector<int>(M));
+//         for (int i = 0; i < N; i++)
+//             for (int j = 0; j < M; j++) cin >> v[i][j];
+//         cin >> x >> y;
+//         Solution ob;
+//         cout << ob.shortestDistance(N, M, v, x, y) << "\n";
+    
+// cout << "~" << "\n";
+// }
+// }
+
+
+
+
+
+
 // #include<bits/stdc++.h>
 // using namespace std;
 // class Solution
