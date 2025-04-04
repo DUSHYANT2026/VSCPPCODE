@@ -123,88 +123,88 @@ int main(){
 
 
 
-// #include <bits/stdc++.h>
-// using namespace std;
+#include <bits/stdc++.h>
+using namespace std;
 
-// class Solution {
-//     private:
-//     int dpcheck(vector<int> &nums, int index,vector<int> &dp){             // using memoization method O(N) time and O(N) + O(N) = O(N)space 
-//         if(index == 0) return 0;
+class Solution {
+    private:
+    int dpcheck(vector<int> &nums, int index,vector<int> &dp){             // using memoization method O(N) time and O(N) + O(N) = O(N)space 
+        if(index == 0) return 0;
         
-//         if(dp[index] != -1) return dp[index];
+        if(dp[index] != -1) return dp[index];
         
-//         int left = dpcheck(nums,index-1,dp) + abs(nums[index] - nums[index-1]);
-//         int right = INT_MAX;
-//         if(index > 1){
-//             right = dpcheck(nums,index-2,dp) + abs(nums[index] - nums[index-2]);
-//         }
-//         return dp[index] = min(left,right);
-//     }
-//     public:
-//     int minimumEnergy(vector<int>& nums, int n) {                      
+        int left = dpcheck(nums,index-1,dp) + abs(nums[index] - nums[index-1]);
+        int right = INT_MAX;
+        if(index > 1){
+            right = dpcheck(nums,index-2,dp) + abs(nums[index] - nums[index-2]);
+        }
+        return dp[index] = min(left,right);
+    }
+    public:
+    int minimumEnergy(vector<int>& nums, int n) {                      
         
-//         vector<int> dp(n+1,-1);
-//         return dpcheck(nums,n-1,dp);
-//     }
-// };
+        vector<int> dp(n+1,-1);
+        return dpcheck(nums,n-1,dp);
+    }
+};
 
-// class Solution1 {
-//   public:
-//     int minimumEnergy(vector<int>& nums, int n) {                      // using tablution method O(N) time and O(N) space
+class Solution1 {
+  public:
+    int minimumEnergy(vector<int>& nums, int n) {                      // using tablution method O(N) time and O(N) space
         
-//         vector<int> dp(n,-1);
+        vector<int> dp(n,-1);
 
-//         dp[0] = 0;
-//         int left = INT_MAX; int right = INT_MAX;
+        dp[0] = 0;
+        int left = INT_MAX; int right = INT_MAX;
     
-//         for(int i=1; i<n; i++){
-//             left = dp[i-1] + abs(nums[i] - nums[i-1]);
-//             if(i > 1){
-//                 right = dp[i-2] + abs(nums[i] - nums[i-2]);
-//             }
-//             dp[i] = min(left, right);        
-//         }
-//         return dp[n-1];
-//     }
-// };
+        for(int i=1; i<n; i++){
+            left = dp[i-1] + abs(nums[i] - nums[i-1]);
+            if(i > 1){
+                right = dp[i-2] + abs(nums[i] - nums[i-2]);
+            }
+            dp[i] = min(left, right);        
+        }
+        return dp[n-1];
+    }
+};
 
-// class Solution3 {
-//   public:
-//     int minimumEnergy(vector<int>& nums, int n) {                      // using space optimization time : O(N) and space : O(1) constant
+class Solution3 {
+  public:
+    int minimumEnergy(vector<int>& nums, int n) {                      // using space optimization time : O(N) and space : O(1) constant
         
-//         int first = 0;            int ans = 0;
-//         int second = 0;
+        int first = 0;            int ans = 0;
+        int second = 0;
 
-//         int left = INT_MAX; int right = INT_MAX;
+        int left = INT_MAX; int right = INT_MAX;
     
-//         for(int i=1; i<n; i++){
-//             left = first + abs(nums[i] - nums[i-1]);
-//             if(i > 1){
-//                 right = second + abs(nums[i] - nums[i-2]);
-//             }
-//             ans = min(left, right);   
-//             second = first;
-//             first = ans;     
-//         }
-//         return ans;
-//     }
-// };
-// int main() {
-//     int t;
-//     cin >> t;
-//     while (t--) {
-//         int N;
-//         cin >> N;
-//         vector<int> arr(N);
-//         for (int i = 0; i < N; i++) {
-//             cin >> arr[i];
-//         }
-//         Solution obj;
-//         Solution1 obj1;
-//         cout << obj1.minimumEnergy(arr, N) << "\n";
-//     }
-//     return 0;
-// }
+        for(int i=1; i<n; i++){
+            left = first + abs(nums[i] - nums[i-1]);
+            if(i > 1){
+                right = second + abs(nums[i] - nums[i-2]);
+            }
+            ans = min(left, right);   
+            second = first;
+            first = ans;     
+        }
+        return ans;
+    }
+};
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int N;
+        cin >> N;
+        vector<int> arr(N);
+        for (int i = 0; i < N; i++) {
+            cin >> arr[i];
+        }
+        Solution obj;
+        Solution1 obj1;
+        cout << obj1.minimumEnergy(arr, N) << "\n";
+    }
+    return 0;
+}
 
 
 
