@@ -425,19 +425,19 @@
 // 	vector<vector<int>> dp(n,vector<int>(maxWeight+1,0));
 //     // return dpcheck(n-1,weight,value,maxWeight,dp);                            // using memoization (top - down)
 
-    // for(int j = weight[0]; j <= maxWeight; j++) {dp[0][j] = value[0];}          // using tabulation (bottom - up)
+//     for(int j = weight[0]; j <= maxWeight; j++) {dp[0][j] = value[0];}          // using tabulation (bottom - up)
 
-    // for(int i=1; i<n; i++){
-    //     for(int j=0; j<=maxWeight; j++){
-    //         int notcount = 0 + dp[i-1][j];
-    //         int count = INT_MIN;
-    //         if (weight[i] <= j) {
-    //             count = value[i] + dp[i-1][j-weight[i]];
-    //         }
-    //         dp[i][j] = max(count,notcount);
-    //     }
-    // }
-    // return dp[n-1][maxWeight];
+//     for(int i=1; i<n; i++){
+//         for(int j=0; j<=maxWeight; j++){
+//             int notcount = 0 + dp[i-1][j];
+//             int count = INT_MIN;
+//             if (weight[i] <= j) {
+//                 count = value[i] + dp[i-1][j-weight[i]];
+//             }
+//             dp[i][j] = max(count,notcount);
+//         }
+//     }
+//     return dp[n-1][maxWeight];
 // }
 // int main(){
 //     int n;
@@ -547,47 +547,47 @@
  
 
 
-// #include<bits/stdc++.h>
-// using namespace std;
-// class Solution {
-// private:
-//     int dpcheck(int index,vector<int> &nums,int amount,vector<vector<int>>&dp){                      // using memoization (top - down)
-//         if(index == 0){
-//             if(amount%nums[0] == 0) return amount/nums[0];
-//             return 1e9;
-//         }
-//         if(dp[index][amount] != -1) return dp[index][amount];
-//         int notcount = 0 + dpcheck(index-1,nums,amount,dp);
-//         int count = INT_MAX;
-//         if(nums[index] <= amount){
-//             count = 1 + dpcheck(index,nums,amount-nums[index],dp);
-//         }
-//         return dp[index][amount] = min(count,notcount);
-//     }
-// public:
-//     int coinChange(vector<int>& nums, int amount) {
-//         int n = nums.size();
-//         vector<vector<int>> dp(n,vector<int>(amount+1,-1));
+#include<bits/stdc++.h>
+using namespace std;
+class Solution {
+private:
+    int dpcheck(int index,vector<int> &nums,int amount,vector<vector<int>>&dp){                      // using memoization (top - down)
+        if(index == 0){
+            if(amount%nums[0] == 0) return amount/nums[0];
+            return 1e9;
+        }
+        if(dp[index][amount] != -1) return dp[index][amount];
+        int notcount = 0 + dpcheck(index-1,nums,amount,dp);
+        int count = INT_MAX;
+        if(nums[index] <= amount){
+            count = 1 + dpcheck(index,nums,amount-nums[index],dp);
+        }
+        return dp[index][amount] = min(count,notcount);
+    }
+public:
+    int coinChange(vector<int>& nums, int amount) {
+        int n = nums.size();
+        vector<vector<int>> dp(n,vector<int>(amount+1,-1));
 
-//         int ans = dpcheck(n-1,nums,amount,dp);
-//         if(ans >= 1e9) return -1;
-//         return ans;
-//     }
-// };
-// int main(){
-//     int n;
-//     cin>>n;
-//     int x; vector<int> nums;
-//     for(int i=0; i<n; i++){
-//         cin>>x;
-//         nums.push_back(x);
-//     }
-//     int amount;
-//     cin>>amount;
-//     Solution s;
-//     cout<<s.coinChange(nums,amount);
-//     return 0;
-// }
+        int ans = dpcheck(n-1,nums,amount,dp);
+        if(ans >= 1e9) return -1;
+        return ans;
+    }
+};
+int main(){
+    int n;
+    cin>>n;
+    int x; vector<int> nums;
+    for(int i=0; i<n; i++){
+        cin>>x;
+        nums.push_back(x);
+    }
+    int amount;
+    cin>>amount;
+    Solution s;
+    cout<<s.coinChange(nums,amount);
+    return 0;
+}
 
 
 
