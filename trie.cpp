@@ -73,13 +73,13 @@
 // 		}
 // 		else if (type[i] == 2) {
 // 			if (tie.search(value[i])) {
-// 				cout << "true" << "\n";
-// 			}
+// 				cout << "true" << "\n";c:\Users\dushy\Documents\DataScience
+// 			}c:\Users\dushy\Documents\GIT REPO
 // 			else {
 // 				cout << "false" << "\n";
-// 			}
+// 			}c:\Users\dushy\Documents\DataScience
 // 		}
-// 		else {
+// 		else {c:\Users\dushy\Documents\DataScience
 // 			if (tie.startwith(value[i])) {
 // 				cout << "true" << "\n";
 // 			}
