@@ -304,13 +304,17 @@
 //     return 0;
 // }
 
-
-
 // #include <iostream>
 // #include <bits/stdc++.h>
 // using namespace std;
 // class Math {
-// public:
+//     public:
+//     int number;
+//     int number2;
+//     Math(int n, int n2) {
+//         number = n;
+//         number2 = n2;
+//     }
 //     long factorial(long n) {
 //         long ans = 1;
 //         for (int i = 1; i <= n; i++) {
@@ -444,10 +448,10 @@
 //     int y, z;
 //     cin >> x >> y >> z;
 
-//     Math m;
+//     Math m(10,20);
+//     cout<<m.number2<<endl;
 
-
-//     //  cout << "THE FACTORAIL OF THE NUMBER THAT YOU ENTERS :  " << m.factorial(y) << endl;
+//      cout << "THE FACTORAIL OF THE NUMBER THAT YOU ENTERS :  " << m.factorial(y) << endl;
 //     // cout << "THE BIGGEST DIGIT  OF THE NUMBER THAT YOU ENTERS :  " << m.biggestdigit(x) << endl;
 //     // cout << "THE SMALLEST DIGIT  OF THE NUMBER THAT YOU ENTERS :  " << m.smallestdigit(x) << endl;
 //     // cout << "THE NUMBER OF  DIGIT  OF THE NUMBER THAT YOU ENTERS :  " << m.countdigits(x) << endl;
