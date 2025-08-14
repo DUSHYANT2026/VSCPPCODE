@@ -552,3 +552,44 @@
 //     return 0;
 // }
 
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// const int MOD = 1000000007;
+
+// unordered_map<long long, long long> memo;
+
+// long long solve(long long n) {
+//     if (n == 0) return 0;
+    
+//     if (memo.find(n) != memo.end()) {
+//         return memo[n];
+//     }
+    
+  
+//     long long divided_sum = solve(n / 2) + solve(n / 3) + solve(n / 4);
+//     divided_sum %= MOD;
+    
+//     long long result = max(n % MOD, divided_sum);
+    
+
+//     memo[n] = result;
+//     return result;
+// }
+
+// int main() {
+
+    
+//     long long n;
+//     cin >> n;
+    
+//     cout << solve(n) << endl;
+    
+//     return 0;
+// }
+
+
+
