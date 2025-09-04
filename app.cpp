@@ -603,59 +603,64 @@
 
 
 
-#include <iostream>
-#include <stack>
-#include <vector>
+// #include <iostream>
+// #include <stack>
+// #include <vector>
 
-using namespace std;
+// using namespace std;
 
-// Function to implement monotonic increasing stack
-vector<int> monotonicIncreasing(vector<int>& nums)
-{
-    int n = nums.size();
-    stack<int> st;
-    vector<int> result;
+// // Function to implement monotonic increasing stack
+// vector<int> monotonicIncreasing(vector<int>& nums)
+// {
+//     int n = nums.size();
+//     stack<int> st;
+//     vector<int> result;
 
-    for (int i = 0; i < n; ++i) {
+//     for (int i = 0; i < n; ++i) {
 
-        while (!st.empty() && st.top() > nums[i]) {
+//         while (!st.empty() && st.top() > nums[i]) {
      
-            st.pop();
-        }
-        st.push(nums[i]);
-    }
-    while (!st.empty()) {
-        result.insert(result.begin(), st.top());
-        st.pop();
-    }
-    return result;
-}
+//             st.pop();
+//         }
+//         st.push(nums[i]);
+//     }
+//     while (!st.empty()) {
+//         result.insert(result.begin(), st.top());
+//         st.pop();
+//     }
+//     return result;
+// }
 
-    int convert(string s){
-        int ans = 0;
-        string temp = "";
-        temp += s[0];
-        temp += s[1];
+//     int convert(string s){
+//         int ans = 0;
+//         string temp = "";
+//         temp += s[0];
+//         temp += s[1];
 
-        ans += stoi(temp) * 60;
-        temp = "";
+//         ans += stoi(temp) * 60;
+//         temp = "";
 
-        temp += s[3];
-        temp += s[4];
-        ans += stoi(temp);
+//         temp += s[3];
+//         temp += s[4];
+//         ans += stoi(temp);
 
-        return ans;
-    }
+//         return ans;
+//     }
 
-int main() {
-    // vector<int> nums = {3, 1, 4, 1, 5, 9, 2, 6};
-    // vector<int> result = monotonicIncreasing(nums);
-    // cout << "Monotonic increasing stack: ";
-    // for (int num : result) {
-    //     cout << num << " ";
-    // }
-    // cout << endl;
-    string s = "22:15";
-    cout<<convert(s)<<endl;
-    return 0;
-}
+// int main() {
+//     // vector<int> nums = {3, 1, 4, 1, 5, 9, 2, 6};
+//     // vector<int> result = monotonicIncreasing(nums);
+//     // cout << "Monotonic increasing stack: ";
+//     // for (int num : result) {
+//     //     cout << num << " ";
+//     // }
+//     // cout << endl;
+//     string s = "22:15";
+//     cout<<convert(s)<<endl;
+//     return 0;
+// }
+
+
+
+
+
