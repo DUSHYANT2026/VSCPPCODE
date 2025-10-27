@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/VISUALSTUDIO",
-      "program": "c:/VISUALSTUDIO/build/Debug/outDebug",
+      "cwd": "c:/Users/dushy/Documents/VISUALSTUDIO",
+      "program": "c:/Users/dushy/Documents/VISUALSTUDIO/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
